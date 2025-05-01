@@ -12,6 +12,12 @@
       "title": "サービス内容"
     }
   },
+  "nav": {
+    "portfolio": "ポートフォリオ",
+    "services": "サービス",
+    "blog": "ブログ",
+    "contact": "お問い合わせ"
+  },
   "services": {
     "webDev": {
       "title": "Webサイト開発",
@@ -24,6 +30,14 @@
     "design": {
       "title": "UI/UXデザイン",
       "description": "美しく直感的なユーザーインターフェースと優れたユーザー体験"
+    }
+  },
+  "portfolio": {
+    "viewProject": "プロジェクトを見る",
+    "categories": {
+      "web": "Webサイト",
+      "mobile": "モバイル",
+      "design": "デザイン"
     }
   }
 } 

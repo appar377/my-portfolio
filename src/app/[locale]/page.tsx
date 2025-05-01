@@ -3,9 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 import { FaArrowRight, FaCode, FaMobile, FaPaintBrush } from 'react-icons/fa';
-import { useEffect, useRef } from 'react';
 
 const services = [
   {
@@ -27,51 +25,12 @@ const services = [
 
 export default function Home() {
   const t = useTranslations();
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    // 動画の自動再生を設定
-    if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.log("Video autoplay failed:", error);
-      });
-    }
-  }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0">
-          <video
-            ref={videoRef}
-            className="object-cover w-full h-full"
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/background_image.png"
-          >
-            <source src="/background.mp4" type="video/mp4" />
-            {/* フォールバック画像 */}
-            <img
-              src="/background_image.png"
-              alt="Background"
-              className="object-cover w-full h-full"
-            />
-          </video>
-        </div>
-        {/* Gradient Overlay with Animation */}
-        <div 
-          className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background backdrop-blur-[1px]"
-          style={{
-            maskImage: 'linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.013) 5.3%, rgba(0, 0, 0, 0.049) 10.1%, rgba(0, 0, 0, 0.104) 14.5%, rgba(0, 0, 0, 0.175) 18.5%, rgba(0, 0, 0, 0.259) 22.1%, rgba(0, 0, 0, 0.352) 25.4%, rgba(0, 0, 0, 0.45) 28.4%, rgba(0, 0, 0, 0.55) 31.2%, rgba(0, 0, 0, 0.648) 33.9%, rgba(0, 0, 0, 0.741) 36.4%, rgba(0, 0, 0, 0.825) 38.9%, rgba(0, 0, 0, 0.896) 41.4%, rgba(0, 0, 0, 0.951) 44%, rgba(0, 0, 0, 0.987) 46.6%, black 49.4%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.013) 5.3%, rgba(0, 0, 0, 0.049) 10.1%, rgba(0, 0, 0, 0.104) 14.5%, rgba(0, 0, 0, 0.175) 18.5%, rgba(0, 0, 0, 0.259) 22.1%, rgba(0, 0, 0, 0.352) 25.4%, rgba(0, 0, 0, 0.45) 28.4%, rgba(0, 0, 0, 0.55) 31.2%, rgba(0, 0, 0, 0.648) 33.9%, rgba(0, 0, 0, 0.741) 36.4%, rgba(0, 0, 0, 0.825) 38.9%, rgba(0, 0, 0, 0.896) 41.4%, rgba(0, 0, 0, 0.951) 44%, rgba(0, 0, 0, 0.987) 46.6%, black 49.4%)',
-          }}
-        />
-        {/* Animated Particles Overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_100%)] animate-pulse opacity-50" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden snap-start">
+        {/* Removed gradient overlays for seamless 3D background */}
         
         {/* Content */}
         <div className="container relative z-10 text-center pt-20">
@@ -115,7 +74,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects Section */}
-      <section className="py-20">
+      <section className="snap-start min-h-screen flex flex-col justify-center py-20">
         <div className="container">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -151,7 +110,7 @@ export default function Home() {
       </section>
 
       {/* Services Preview Section */}
-      <section className="py-20 bg-foreground/5">
+      <section className="snap-start min-h-screen flex flex-col justify-center py-20 bg-foreground/5">
         <div className="container">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

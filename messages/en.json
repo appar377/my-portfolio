@@ -12,6 +12,12 @@
       "title": "What I Do"
     }
   },
+  "nav": {
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
   "services": {
     "webDev": {
       "title": "Web Development",
@@ -24,6 +30,14 @@
     "design": {
       "title": "UI/UX Design",
       "description": "Beautiful and intuitive user interfaces with great user experience"
+    }
+  },
+  "portfolio": {
+    "viewProject": "View Project",
+    "categories": {
+      "web": "Web",
+      "mobile": "Mobile",
+      "design": "Design"
     }
   }
 } 
