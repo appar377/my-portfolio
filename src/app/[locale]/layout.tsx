@@ -28,7 +28,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang={locale}>
-      <body className={`${inter.variable} ${playfair.variable} min-h-screen`}>
+      <body className={`${inter.variable} ${playfair.variable} min-h-screen overflow-x-hidden`}>
         <Background />
         <div className="relative z-20">
           <Header />

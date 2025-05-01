@@ -7,7 +7,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 w-screen overflow-x-hidden z-50 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-white">

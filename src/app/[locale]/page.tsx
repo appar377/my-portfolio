@@ -27,7 +27,7 @@ export default function Home() {
   const t = useTranslations();
 
   return (
-    <div className="h-screen snap-y snap-mandatory overflow-y-scroll">
+    <div className="snap-y snap-mandatory">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden snap-start">
         {/* Removed gradient overlays for seamless 3D background */}

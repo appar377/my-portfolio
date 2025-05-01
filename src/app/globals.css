@@ -17,11 +17,19 @@
   html {
     @apply antialiased scroll-smooth;
     scroll-snap-type: y mandatory;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   body {
     @apply bg-[#1F1F1F] text-white min-h-screen;
     font-feature-settings: "rlig" 1, "calt" 1;
+    min-height: 100vh;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   h1, h2, h3, h4, h5, h6 {
