@@ -29,11 +29,11 @@ export default function Home() {
   return (
     <div className="snap-y snap-mandatory">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden snap-start">
+      <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden snap-start">
         {/* Removed gradient overlays for seamless 3D background */}
         
         {/* Content */}
-        <div className="container relative z-10 text-center pt-20">
+        <div className="container relative z-10 text-center flex flex-col items-center justify-center h-full">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
