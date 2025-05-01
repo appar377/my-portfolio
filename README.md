@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Portfolio Website
+
+A modern, responsive, bilingual (Japanese/English) portfolio website built with Next.js, Tailwind CSS, and Framer Motion.
+
+## Features
+
+- 🌐 Bilingual support (English/Japanese)
+- 📱 Fully responsive design
+- 🎨 Modern UI with smooth animations
+- 📝 Blog integration
+- 📊 Portfolio showcase with category filtering
+- 📧 Contact form with validation
+- 🔗 Social media integration
+
+## Tech Stack
+
+- Next.js 14
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Hook Form
+- Zod
+- Radix UI
+- next-intl
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/my-portfolio.git
+   cd my-portfolio
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+2. Install dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Create a `.env.local` file and add your environment variables:
+   ```env
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+
+4. Run the development server:
+   ```bash
+   pnpm dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── [locale]/
+│   │   ├── page.tsx
+│   │   ├── portfolio/
+│   │   ├── services/
+│   │   ├── blog/
+│   │   └── contact/
+│   ├── globals.css
+│   └── layout.tsx
+├── components/
+│   ├── layout/
+│   │   ├── Header.tsx
+│   │   └── Layout.tsx
+│   └── ui/
+├── messages/
+│   ├── en.json
+│   └── ja.json
+└── middleware.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Adding New Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Translations
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Add new translations to `src/messages/en.json` and `src/messages/ja.json`
+2. Use the `useTranslations` hook in your components:
+   ```tsx
+   const t = useTranslations();
+   <h1>{t('your.translation.key')}</h1>
+   ```
 
-## Learn More
+### Portfolio Items
 
-To learn more about Next.js, take a look at the following resources:
+1. Add new portfolio items to the `projects` array in `src/app/[locale]/portfolio/page.tsx`
+2. Add corresponding images to the `public/projects` directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Blog Posts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Add new blog posts to the `blogPosts` array in `src/app/[locale]/blog/page.tsx`
+2. Add corresponding images to the `public/blog` directory
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The project can be deployed to Vercel, Netlify, or any other platform that supports Next.js applications.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+MIT
