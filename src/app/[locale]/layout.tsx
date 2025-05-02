@@ -1,42 +1,36 @@
-import type { Metadata } from 'next';
-import { Inter, Playfair_Display } from 'next/font/google';
-import '../globals.css';
-import Header from '@/components/Header';
+'import client';
+import { NextIntlClientProvider } from 'next-intl';
+import Header from '@/components/layout/Header';
 import Background from '@/components/Background';
+import '@/app/globals.css';
+import type { ReactNode } from 'react';
 
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
+export async function generateStaticParams() {
+  return [
+    { locale: 'en' },
+    { locale: 'ja' }
+  ];
+}
 
-const playfair = Playfair_Display({ 
-  subsets: ['latin'],
-  variable: '--font-playfair',
-});
-
-export const metadata: Metadata = {
-  title: 'Yusuke Portfolio',
-  description: 'Creative Developer & Designer Portfolio',
-};
-
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
   params: { locale }
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { locale: string };
 }) {
+  const messages = (
+    await import(`../../i18n/messages/${locale}.json`)
+  ).default;
   return (
-    <html lang={locale}>
-      <body className={`${inter.variable} ${playfair.variable} min-h-screen overflow-x-hidden`}>
-        <Background />
-        <div className="relative z-20">
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <html lang={locale}>
+        <body>
+          <Background />
           <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-        </div>
-      </body>
-    </html>
+          <main>{children}</main>
+        </body>
+      </html>
+    </NextIntlClientProvider>
   );
-} 
+}

@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "blog": "Blog",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Welcome to My Portfolio",
+    "subtitle": "Full Stack Developer & Creative Designer",
+    "cta": "View My Work"
+  },
+  "home": {
+    "title": "My Work",
+    "hero": {
+      "title": "Welcome to My Portfolio",
+      "subtitle": "Full Stack Developer & Creative Designer",
+      "cta": "View My Work"
+    },
+    "categories": {
+      "web": "Web Applications",
+      "mobile": "Mobile Apps",
+      "3d": "3D Models"
+    },
+    "viewProject": "View Project",
+    "featured": { "title": "Featured Projects" },
+    "services": { "title": "What I Do" }
+  },
+  "portfolio": {
+    "title": "My Work",
+    "categories": {
+      "web": "Web Applications",
+      "mobile": "Mobile Apps",
+      "3d": "3D Models",
+      "design": "Design"
+    },
+    "viewProject": "View Project",
+    "featured": { "title": "Featured Projects" },
+    "services": { "title": "What I Do" }
+  },
+  "services": {
+    "title": "Services",
+    "webDev": {
+      "title": "Web Development",
+      "description": "Custom web applications built with modern technologies"
+    },
+    "mobileDev": {
+      "title": "Mobile Development",
+      "description": "Native and cross-platform mobile applications"
+    },
+    "design": {
+      "title": "UI/UX Design",
+      "description": "Beautiful and intuitive user interfaces"
+    },
+    "backendDev": {
+      "title": "Backend Development",
+      "description": "Robust and scalable backend systems and APIs"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "getInTouch": "Get in Touch",
+    "description": "Feel free to reach out using the form or the contact information below.",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "name": "Name",
+    "message": "Message",
+    "submit": "Send Message",
+    "success": "Thank you for your message! I'll get back to you soon."
+  }
+}

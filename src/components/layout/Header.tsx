@@ -3,8 +3,8 @@
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
-import { FaGlobe } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import SettingLang from '@/components/SettingLang';
 
 export default function Header() {
   const pathname = usePathname();
@@ -21,12 +21,6 @@ export default function Header() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const toggleLocale = () => {
-    const newLocale = locale === 'en' ? 'ja' : 'en';
-    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-    window.location.href = newPath;
-  };
 
   return (
     <header
@@ -70,13 +64,7 @@ export default function Header() {
             >
               Contact
             </Link>
-            <button
-              onClick={toggleLocale}
-              className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors"
-            >
-              <FaGlobe className="w-5 h-5" />
-              <span>{locale.toUpperCase()}</span>
-            </button>
+            <SettingLang />
           </nav>
         </div>
       </div>

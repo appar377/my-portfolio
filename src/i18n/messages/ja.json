@@ -1,0 +1,73 @@
+{
+  "navigation": {
+    "home": "ホーム",
+    "portfolio": "ポートフォリオ",
+    "services": "サービス",
+    "blog": "ブログ",
+    "contact": "お問い合わせ"
+  },
+  "hero": {
+    "title": "ポートフォリオへようこそ",
+    "subtitle": "フルスタック開発者 & クリエイティブデザイナー",
+    "cta": "作品を見る"
+  },
+  "home": {
+    "title": "作品一覧",
+    "hero": {
+      "title": "ポートフォリオへようこそ",
+      "subtitle": "フルスタック開発者 & クリエイティブデザイナー",
+      "cta": "作品を見る"
+    },
+    "categories": {
+      "web": "Webアプリケーション",
+      "mobile": "モバイルアプリ",
+      "3d": "3Dモデル"
+    },
+    "viewProject": "プロジェクトを見る",
+    "featured": { "title": "注目のプロジェクト" },
+    "services": { "title": "サービス内容" }
+  },
+  "portfolio": {
+    "title": "作品一覧",
+    "categories": {
+      "web": "Webアプリケーション",
+      "mobile": "モバイルアプリ",
+      "3d": "3Dモデル",
+      "design": "デザイン"
+    },
+    "viewProject": "プロジェクトを見る",
+    "featured": { "title": "注目のプロジェクト" },
+    "services": { "title": "サービス内容" }
+  },
+  "services": {
+    "title": "サービス",
+    "webDev": {
+      "title": "Web開発",
+      "description": "最新技術を使用したカスタムWebアプリケーション"
+    },
+    "mobileDev": {
+      "title": "モバイル開発",
+      "description": "ネイティブおよびクロスプラットフォームモバイルアプリ"
+    },
+    "design": {
+      "title": "UI/UXデザイン",
+      "description": "美しく直感的なユーザーインターフェース"
+    },
+    "backendDev": {
+      "title": "バックエンド開発",
+      "description": "堅牢でスケーラブルなバックエンドシステムとAPI"
+    }
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "getInTouch": "お問い合わせはこちら",
+    "description": "下記フォームまたは連絡先からお気軽にご連絡ください。",
+    "address": "住所",
+    "phone": "電話番号",
+    "email": "メールアドレス",
+    "name": "お名前",
+    "message": "メッセージ",
+    "submit": "送信",
+    "success": "メッセージありがとうございます。できるだけ早くご返信いたします。"
+  }
+} 

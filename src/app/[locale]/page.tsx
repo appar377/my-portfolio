@@ -25,13 +25,14 @@ const services = [
 
 export default function Home() {
   const t = useTranslations();
+  console.log(t("home.hero.title"), t)
 
   return (
     <div className="snap-y snap-mandatory">
       {/* Hero Section */}
       <section className="relative h-[calc(100vh-4rem)] flex items-center justify-center overflow-hidden snap-start">
         {/* Removed gradient overlays for seamless 3D background */}
-        
+
         {/* Content */}
         <div className="container relative z-10 text-center flex flex-col items-center justify-center h-full">
           <motion.h1
@@ -150,4 +151,4 @@ export default function Home() {
       </section>
     </div>
   );
-} 
+}
