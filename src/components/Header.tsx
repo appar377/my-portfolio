@@ -36,15 +36,21 @@ export default function Header() {
             href="/"
             className="text-2xl font-display text-white hover:text-accent transition-colors"
           >
-            Portfolio
+            Yusuke Uwagaichi
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-8">
             <Link
-              href="/portfolio"
+              href="/about"
               className="text-white/80 hover:text-white transition-colors"
             >
-              Portfolio
+              About
+            </Link>
+            <Link
+              href="/creations"
+              className="text-white/80 hover:text-white transition-colors"
+            >
+              Creations
             </Link>
             <Link
               href="/services"
@@ -70,4 +76,4 @@ export default function Header() {
       </div>
     </header>
   );
-} 
+}

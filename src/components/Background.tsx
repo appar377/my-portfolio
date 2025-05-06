@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import ThreeScene from './ThreeScene';
+import { usePathname } from 'next/navigation';
 
 const Background = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -37,11 +38,13 @@ const Background = () => {
 
   console.log('activeSection', activeSection);
   return (
-    <div className="fixed inset-0 -z-10">
+    <>
+      <div className="fixed inset-0 -z-10">
       {/* 3D Scene with section-based variation */}
-      <ThreeScene activeSection={activeSection} />
-    </div>
+        <ThreeScene activeSection={activeSection} />
+      </div>
+    </>
   );
 };
 
-export default Background; 
+export default Background;

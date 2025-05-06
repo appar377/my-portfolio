@@ -1,6 +1,6 @@
 'import client';
 import { NextIntlClientProvider } from 'next-intl';
-import Header from '@/components/layout/Header';
+import Header from '@/components/Header';
 import Background from '@/components/Background';
 import '@/app/globals.css';
 import type { ReactNode } from 'react';

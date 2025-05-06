@@ -2,8 +2,21 @@
 
 import PlanetTimeline from '@/components/PlanetTimeline';
 import { TimelineItem } from '@/components/Timeline';
+import { motion } from 'framer-motion';
 
 export default function AboutPage() {
+  // プロフィール情報
+  const profile = {
+    name: '上垣内 裕介',
+    nameEn: 'Yusuke Uwagaich',
+    birthdate: '2000年7月7日',
+    birthplace: '広島県広島市',
+    education: '工業高等学校 化学科卒業',
+    introduction: '学ぶことが好きで、現在は英語を少し話し、韓国語も勉強中です。美しいコードを書くことにこだわり、常に読みやすさと拡張性を意識して開発に取り組んでいます。AIを積極的に活用することで、作業の効率化や品質向上にも力を入れています。',
+    skills: ['HTML/CSS', 'JavaScript/TypeScript', 'React', 'Vue.js/Nuxt.js', 'Python', 'Streamlit', 'Flask', 'pyinstaller(デスクトップアプリ化)', 'GitHub', 'MySQL', 'バッチ処理', 'Docker', 'AWS', 'PHP/Laravel', 'GitHub', 'Playwright' ,'テスト', 'コードレビュー', '仕様作成'],
+    hobbies: ['読書', '歌', '筋トレ', 'テニス'],
+  };
+
   // Define career items for timeline
   const careerItems: TimelineItem[] = [
     { 
@@ -87,6 +100,95 @@ export default function AboutPage() {
 
   return (
     <>
+      {/* プロフィールセクション */}
+      <section className="relative bg-gradient-to-b from-gray-900 to-transparent pt-24 pb-16 px-6 md:px-12 font-timeline z-20">
+        <div className="max-w-6xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="profile-card backdrop-blur-sm bg-gray-900/60 p-8 rounded-2xl border border-gray-800/50 shadow-xl"
+          >
+            <div className="flex flex-col md:flex-row gap-8 items-start">
+              {/* プロフィール画像（仮） */}
+              <div className="profile-image-container w-40 h-40 relative flex-shrink-0 mx-auto md:mx-0">
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 p-1">
+                  <div className="w-full h-full rounded-full bg-gray-800 flex items-center justify-center text-3xl text-white font-bold">
+                    {profile.name.charAt(0)}
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">
+                  Engineer
+                </div>
+              </div>
+              
+              {/* プロフィール情報 */}
+              <div className="flex-1 text-white space-y-4">
+                <div>
+                  <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                    {profile.name}
+                  </h1>
+                  <p className="text-gray-400 mt-1">{profile.nameEn}</p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div className="space-y-2">
+                    <div className="flex items-start">
+                      <span className="w-24 text-gray-400">生年月日</span>
+                      <span>{profile.birthdate}</span>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="w-24 text-gray-400">出身</span>
+                      <span>{profile.birthplace}</span>
+                    </div>
+                    <div className="flex items-start">
+                      <span className="w-24 text-gray-400">学歴</span>
+                      <span>{profile.education}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <div className="flex flex-col">
+                      <span className="text-gray-400 mb-1">趣味・特技</span>
+                      <div className="flex flex-wrap gap-2">
+                        {profile.hobbies.map((hobby, idx) => (
+                          <span key={idx} className="text-xs bg-gray-800/80 px-3 py-1 rounded-full border border-gray-700/50">
+                            {hobby}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <p className="text-gray-300 text-sm leading-relaxed md:pr-10">
+                  {profile.introduction}
+                </p>
+                
+                <div className="pt-2">
+                  <p className="text-gray-400 text-sm mb-2">技術スタック</p>
+                  <div className="flex flex-wrap gap-2">
+                    {profile.skills.map((skill, idx) => (
+                      <span key={idx} className="text-xs bg-indigo-900/40 px-3 py-1 rounded-full border border-indigo-800/50">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          
+          <div className="text-center mt-16 mb-4">
+            <h2 className="text-2xl font-bold text-white inline-block relative">
+              Career Timeline
+              <div className="w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mt-1 rounded-full"></div>
+            </h2>
+          </div>
+        </div>
+      </section>
+      
+      {/* タイムラインセクション */}
       <PlanetTimeline items={careerItems} />
     </>
   );
