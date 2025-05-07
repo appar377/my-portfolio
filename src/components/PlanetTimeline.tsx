@@ -2,9 +2,6 @@
 
 import React from "react";
 import { useScroll, MotionValue, motion } from "framer-motion";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Stars } from "@react-three/drei";
-import type { Group } from "three";
 import { TimelineItem } from "./Timeline";
 
 // 内部用にcolorプロパティを持つ拡張インターフェース
@@ -240,65 +237,3 @@ export default function PlanetTimeline({ items }: PlanetTimelineProps) {
     </>
   );
 }
-
-function Planet({
-  position,
-  color,
-}: {
-  position: [number, number, number];
-  color: string;
-}) {
-  return (
-    <mesh position={position}>
-      <sphereGeometry args={[0.8, 32, 32]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
-}
-
-function Rocket({
-  scrollYProgress,
-  positions,
-}: {
-  scrollYProgress: MotionValue<number>;
-  positions: [number, number, number][];
-}) {
-  const ref = React.useRef<Group>(null!);
-  useFrame(() => {
-    const t = scrollYProgress.get() * (positions.length - 1);
-    const idx = Math.floor(t);
-    const frac = t - idx;
-    const [x0, y0] = positions[idx];
-    const [x1, y1] = positions[Math.min(idx + 1, positions.length - 1)];
-    ref.current.position.set(x0 + (x1 - x0) * frac, y0 + (y1 - y0) * frac, 0);
-    ref.current.lookAt(x1, y1, 0);
-  });
-  return (
-    <group ref={ref} scale={[0.5, 0.5, 0.5] as [number, number, number]}>
-      <mesh>
-        <cylinderGeometry args={[0.15, 0.15, 0.8, 16]} />
-        <meshStandardMaterial color="#ff4500" metalness={0.5} roughness={0.2} />
-      </mesh>
-      <mesh position={[0, 0.5, 0]}>
-        <coneGeometry args={[0.15, 0.3, 16]} />
-        <meshStandardMaterial color="#ffa500" metalness={0.5} roughness={0.2} />
-      </mesh>
-    </group>
-  );
-}
-
-// ランダムな惑星の色を生成する関数
-function getRandomColor() {
-  const colors = [
-    "#4C3575",
-    "#5B4B8A",
-    "#7858A6",
-    "#A84448",
-    "#E45826",
-    "#4C6793",
-    "#10B981",
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
-
-export type { TimelineItem };

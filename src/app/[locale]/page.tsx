@@ -6,7 +6,6 @@ import {
   useScroll,
   useTransform,
   useSpring,
-  useMotionValue,
   AnimatePresence,
 } from "framer-motion";
 import Link from "next/link";
@@ -25,9 +24,6 @@ import { useParams } from "next/navigation";
 
 // スプラッシュアニメーションコンポーネント
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
-  // グリッドアニメーション用の配列
-  const gridItems = Array.from({ length: 25 }, (_, i) => i);
-
   // タイプライター効果用の文字配列
   const portfolioText = "PORTFOLIO";
   const [visibleCharIndex, setVisibleCharIndex] = useState(-1);
@@ -268,20 +264,6 @@ const itemVariants = {
     y: 0,
     opacity: 1,
     transition: { duration: 0.5 },
-  },
-};
-
-// 文字のアニメーション
-const letterVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: "spring",
-      damping: 12,
-      stiffness: 100,
-    },
   },
 };
 

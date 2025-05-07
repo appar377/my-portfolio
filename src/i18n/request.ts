@@ -12,3 +12,8 @@ export default getRequestConfig(async ({ locale }) => {
     locale,
   };
 });
+
+export async function request<T = unknown>(...args: unknown[]): Promise<T> {
+  // Implementation of the function
+  return undefined as unknown as T;
+}

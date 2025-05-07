@@ -7,13 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import * as Dialog from "@radix-ui/react-dialog";
-import {
-  FaComments,
-  FaClipboardList,
-  FaPaperPlane,
-  FaLock,
-  FaArrowLeft,
-} from "react-icons/fa";
+import { FaPaperPlane, FaArrowLeft } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 const contactSchema = z.object({

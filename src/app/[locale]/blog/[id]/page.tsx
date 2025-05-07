@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -94,7 +94,6 @@ const blogPosts = [
 
 export default function BlogPost() {
   const params = useParams();
-  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const t = useTranslations();
 

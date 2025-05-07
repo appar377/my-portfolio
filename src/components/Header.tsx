@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import { useState, useEffect } from "react";
 import SettingLang from "@/components/SettingLang";
 import { motion } from "framer-motion";
@@ -43,7 +42,6 @@ const navItems = [
 
 export default function Header() {
   const pathname = usePathname();
-  const locale = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
 
   // スクロール位置に応じてヘッダーの背景を変更

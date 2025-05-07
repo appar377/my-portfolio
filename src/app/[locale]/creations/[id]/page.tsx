@@ -1,6 +1,6 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -128,7 +128,6 @@ const projects = [
 
 export default function CreationDetail() {
   const params = useParams();
-  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const t = useTranslations();

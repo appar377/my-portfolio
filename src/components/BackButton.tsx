@@ -1,4 +1,4 @@
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { FaArrowLeft } from "react-icons/fa";
 import { useRef } from "react";
 

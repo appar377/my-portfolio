@@ -4,7 +4,6 @@ import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { FaCode, FaEye, FaGithub } from "react-icons/fa";
 import BackButton from "@/components/BackButton";
 
