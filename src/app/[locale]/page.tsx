@@ -72,7 +72,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
       animate={{ opacity: 1 }}
       exit={{ 
         opacity: 0,
-        transition: { duration: 0.5 }
+        transition: { duration: 1 }
       }}
     >
       {/* サイバーグリッド背景 */}
@@ -334,6 +334,8 @@ export default function Home() {
     duration: number;
   }[]>([]);
 
+  const [mainVisible, setMainVisible] = useState(false);
+
   useEffect(() => {
     setMounted(true);
     // セッションストレージをチェックして、初回のみスプラッシュ表示
@@ -358,6 +360,16 @@ export default function Home() {
     );
   }, []);
 
+  // スプラッシュが消えたらメインをフェードイン
+  useEffect(() => {
+    if (!showSplash) {
+      const timer = setTimeout(() => setMainVisible(true), 200); // 少し遅延してからフェードイン
+      return () => clearTimeout(timer);
+    } else {
+      setMainVisible(false);
+    }
+  }, [showSplash]);
+
   // スプラッシュアニメーションの完了ハンドラー
   const handleSplashComplete = () => {
     setShowSplash(false);
@@ -372,7 +384,12 @@ export default function Home() {
       </AnimatePresence>
       <div className="flex flex-col min-h-screen" ref={containerRef}>
         {/* メインヒーローセクション */}
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <motion.section
+          className="relative min-h-screen flex items-center justify-center overflow-hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: mainVisible ? 1 : 0 }}
+          transition={{ duration: 1 }}
+        >
           {/* 装飾的な背景エレメント */}
           <div className="absolute inset-0 pointer-events-none">
             <FloatingElement 
@@ -616,7 +633,7 @@ export default function Home() {
               </motion.div>
             </motion.div>
           </motion.div>
-        </section>
+        </motion.section>
 
         {/* ナビゲーションセクション */}
         <section className="py-24 bg-gray-900/30 backdrop-blur-lg relative overflow-hidden">
