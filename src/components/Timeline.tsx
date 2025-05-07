@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useInView } from "framer-motion";
-// @ts-expect-error
+// @ts-expect-error: canvas-confetti has no type definitions
 import confetti from "canvas-confetti";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
