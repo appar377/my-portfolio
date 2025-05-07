@@ -3,6 +3,7 @@
 import PlanetTimeline from '@/components/PlanetTimeline';
 import { TimelineItem } from '@/components/Timeline';
 import { motion } from 'framer-motion';
+import BackButton from '@/components/BackButton';
 
 export default function AboutPage() {
   // プロフィール情報
@@ -99,7 +100,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <>
+    <div className="container py-20">
+      <BackButton variant="about" />
       {/* プロフィールセクション */}
       <section className="relative bg-gradient-to-b from-gray-900 to-transparent pt-24 pb-16 px-6 md:px-12 font-timeline z-20">
         <div className="max-w-6xl mx-auto">
@@ -257,6 +259,6 @@ export default function AboutPage() {
       
       {/* タイムラインセクション */}
       <PlanetTimeline items={careerItems} />
-    </>
+    </div>
   );
 }

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaCalendarAlt, FaArrowLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import BackButton from '@/components/BackButton';
 
 // ダミーの画像パス（実際の画像がない場合のフォールバック用）
 const placeholderImages = [
@@ -116,7 +117,8 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="container mx-auto px-6 py-20">
+    <div className="container py-20">
+      <BackButton />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

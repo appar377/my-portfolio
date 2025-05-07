@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaCode, FaEye, FaGithub } from 'react-icons/fa';
+import BackButton from '@/components/BackButton';
 
 // ダミーの画像パス（実際の画像がない場合のフォールバック用）
 const placeholderImages = [
@@ -116,7 +117,8 @@ export default function Creations() {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <div className="container mx-auto px-6 py-20">
+    <div className="container py-20">
+      <BackButton variant="creations" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

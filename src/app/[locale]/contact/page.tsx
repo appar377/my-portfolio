@@ -7,7 +7,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import * as Dialog from '@radix-ui/react-dialog';
-import { FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
+import { FaComments, FaClipboardList, FaPaperPlane, FaLock, FaArrowLeft } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
 
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -19,7 +20,9 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   const t = useTranslations();
+  const router = useRouter();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -30,10 +33,15 @@ export default function Contact() {
   });
 
   const onSubmit = async (data: ContactFormData) => {
+    setIsSubmitting(true);
     // Here you would typically send the form data to your backend
     console.log(data);
-    setIsSuccess(true);
-    reset();
+    // 送信シミュレーション
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      reset();
+    }, 1000);
   };
 
   return (
@@ -41,122 +49,150 @@ export default function Contact() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-2xl mx-auto"
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto px-6"
       >
-        <h1 className="text-4xl font-display text-center mb-12">
+        {/* Back Button */}
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full bg-white/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:text-rose-500 hover:shadow-lg transition-all duration-200 font-medium backdrop-blur-sm"
+        >
+          <FaArrowLeft className="text-lg" />
+          <span className="text-base">戻る</span>
+        </button>
+        <h1 className="text-4xl md:text-5xl font-display text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
           {t('contact.title')}
         </h1>
+        
+        <p className="text-center text-lg text-white/70 max-w-2xl mx-auto mb-12">
+          {t('contact.description')}
+        </p>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl font-display mb-6">{t('contact.getInTouch')}</h2>
-            <p className="text-foreground/70 mb-8">{t('contact.description')}</p>
-
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <FaMapMarkerAlt className="w-6 h-6 text-accent mt-1" />
-                <div>
-                  <h3 className="font-display mb-1">{t('contact.address')}</h3>
-                  <p className="text-foreground/70">123 Main Street, City, Country</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <FaPhone className="w-6 h-6 text-accent mt-1" />
-                <div>
-                  <h3 className="font-display mb-1">{t('contact.phone')}</h3>
-                  <p className="text-foreground/70">+1 (123) 456-7890</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <FaEnvelope className="w-6 h-6 text-accent mt-1" />
-                <div>
-                  <h3 className="font-display mb-1">{t('contact.email')}</h3>
-                  <p className="text-foreground/70">contact@example.com</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        {/* フォームセクション */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-foreground/5 backdrop-blur-sm border border-rose-500/20 rounded-xl p-8 mb-12"
+        >
+          <h2 className="text-2xl font-display mb-6 text-center">お問い合わせフォーム</h2>
+          
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block mb-2">
+                <label htmlFor="name" className="block mb-2 text-white/80">
                   {t('contact.name')}
                 </label>
                 <input
                   id="name"
                   type="text"
                   {...register('name')}
-                  className="w-full px-4 py-2 rounded-md bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                  placeholder="お名前"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-red-500">{errors.name.message}</p>
+                  <p className="mt-1 text-red-500 text-sm">{errors.name.message}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block mb-2">
+                <label htmlFor="email" className="block mb-2 text-white/80">
                   {t('contact.email')}
                 </label>
                 <input
                   id="email"
                   type="email"
                   {...register('email')}
-                  className="w-full px-4 py-2 rounded-md bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                  placeholder="連絡先メールアドレス"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-red-500">{errors.email.message}</p>
+                  <p className="mt-1 text-red-500 text-sm">{errors.email.message}</p>
                 )}
               </div>
+            </div>
 
-              <div>
-                <label htmlFor="message" className="block mb-2">
-                  {t('contact.message')}
-                </label>
-                <textarea
-                  id="message"
-                  {...register('message')}
-                  rows={5}
-                  className="w-full px-4 py-2 rounded-md bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-accent"
-                />
-                {errors.message && (
-                  <p className="mt-1 text-red-500">{errors.message.message}</p>
-                )}
-              </div>
+            <div>
+              <label htmlFor="message" className="block mb-2 text-white/80">
+                {t('contact.message')}
+              </label>
+              <textarea
+                id="message"
+                {...register('message')}
+                rows={6}
+                className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                placeholder="お問い合わせ内容をご記入ください"
+              />
+              {errors.message && (
+                <p className="mt-1 text-red-500 text-sm">{errors.message.message}</p>
+              )}
+            </div>
 
-              <button
+            <div className="flex justify-center mt-8">
+              <motion.button
                 type="submit"
-                className="btn btn-primary w-full"
+                className="px-8 py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
               >
-                {t('contact.submit')}
-              </button>
-            </form>
-          </motion.div>
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    送信中...
+                  </>
+                ) : (
+                  <>
+                    {t('contact.submit')} <FaPaperPlane className="ml-1" />
+                  </>
+                )}
+              </motion.button>
+            </div>
+            
+            <p className="text-center text-xs text-white/50 mt-4">
+              * お問い合わせいただいた内容に基づき、後日ご連絡させていただきます。
+            </p>
+          </form>
+        </motion.div>
+        
+        {/* プライバシーノート */}
+        <div className="mt-12 text-center">
+          <p className="text-white/50 text-sm">
+            ご提供いただいた個人情報は、お問い合わせへの対応のみに使用し、<br />
+            それ以外の目的では使用いたしません。
+          </p>
         </div>
       </motion.div>
 
+      {/* 成功メッセージモーダル */}
       <Dialog.Root open={isSuccess} onOpenChange={setIsSuccess}>
         <Dialog.Portal>
-          <Dialog.Overlay className="fixed inset-0 bg-background/80 backdrop-blur-sm" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-background p-6 rounded-lg shadow-lg max-w-md w-full">
-            <Dialog.Title className="text-xl font-display mb-4">
-              {t('contact.success')}
-            </Dialog.Title>
-            <Dialog.Close className="btn btn-primary">
-              Close
-            </Dialog.Close>
+          <Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40" />
+          <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-rose-500/30 z-50">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 mb-6">
+                <FaPaperPlane className="text-white text-xl" />
+              </div>
+              <Dialog.Title className="text-2xl font-display mb-3">
+                {t('contact.success')}
+              </Dialog.Title>
+              <p className="text-white/70 mb-6">
+                お問い合わせいただきありがとうございます。内容を確認次第、ご連絡いたします。
+              </p>
+              <Dialog.Close asChild>
+                <motion.button 
+                  className="px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  閉じる
+                </motion.button>
+              </Dialog.Close>
+            </div>
           </Dialog.Content>
         </Dialog.Portal>
       </Dialog.Root>

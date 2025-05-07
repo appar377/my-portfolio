@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FaReact, FaRobot, FaPalette, FaClipboardCheck, FaArrowRight } from 'react-icons/fa';
+import BackButton from '@/components/BackButton';
 
 const services = [
   {
@@ -33,6 +34,7 @@ export default function Services() {
 
   return (
     <div className="container py-20">
+      <BackButton variant="services" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
