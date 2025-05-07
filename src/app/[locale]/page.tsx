@@ -21,6 +21,7 @@ import {
   FaClipboardList,
 } from "react-icons/fa";
 import { useEffect, useState, useRef } from "react";
+import { useParams } from "next/navigation";
 
 // スプラッシュアニメーションコンポーネント
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
@@ -98,7 +99,7 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
         {Array.from({ length: 18 }).map((_, i) => (
           <span
             key={i}
-            className="absolute w-[2px] h-full bg-gradient-to-b from-cyan-500/10 via-blue-500/10 to-indigo-500/0"
+            className="absolute w-[2px] h-full bg-gradient-to-b from-cyan-500/10 via-blue-500/10 to-indigo-500/0 pointer-events-none z-0"
             style={{
               left: `${(i + 1) * 5.2}%`,
               transform: `rotate(-18deg)`,
@@ -352,6 +353,8 @@ const navigationItems = [
 
 export default function Home() {
   const t = useTranslations();
+  const params = useParams();
+  const locale = typeof params.locale === 'string' ? params.locale : Array.isArray(params.locale) ? params.locale[0] : 'ja';
   const [mounted, setMounted] = useState(false);
   const [showSplash, setShowSplash] = useState(false);
   const containerRef = useRef(null);
@@ -534,7 +537,7 @@ export default function Home() {
                   {Array.from({ length: 12 }).map((_, i) => (
                     <span
                       key={i}
-                      className="absolute w-[2px] h-full bg-gradient-to-b from-cyan-500/10 via-blue-500/10 to-indigo-500/0"
+                      className="absolute w-[2px] h-full bg-gradient-to-b from-cyan-500/10 via-blue-500/10 to-indigo-500/0 pointer-events-none z-0"
                       style={{
                         left: `${(i + 1) * 7}%`,
                         transform: `rotate(-18deg)`,
@@ -544,7 +547,7 @@ export default function Home() {
                 </div>
                 {/* グラデーションオーラ（複数重ねる） */}
                 <motion.div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[220px] sm:w-[600px] sm:h-[320px] rounded-full bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-indigo-500/10 blur-3xl"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[220px] sm:w-[600px] sm:h-[320px] rounded-full bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-indigo-500/10 blur-3xl pointer-events-none z-0"
                   initial={{ scale: 0.95, opacity: 0.7 }}
                   animate={{
                     scale: [0.95, 1.05, 0.95],
@@ -559,7 +562,7 @@ export default function Home() {
                   style={{ zIndex: 1 }}
                 />
                 <motion.div
-                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[120px] sm:w-[420px] sm:h-[180px] rounded-full bg-gradient-to-br from-indigo-400/20 via-cyan-400/10 to-blue-400/10 blur-2xl"
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[120px] sm:w-[420px] sm:h-[180px] rounded-full bg-gradient-to-br from-indigo-400/20 via-cyan-400/10 to-blue-400/10 blur-2xl pointer-events-none z-0"
                   initial={{ scale: 1.1, opacity: 0.5 }}
                   animate={{
                     scale: [1.1, 0.95, 1.1],
@@ -663,8 +666,8 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/50 text-white font-medium hover:bg-white/15 hover:border-cyan-400 transition-all duration-300"
+                    href={`/${locale}/contact`}
+                    className="relative z-10 inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/50 text-white font-medium hover:bg-white/15 hover:border-cyan-400 transition-all duration-300"
                   >
                     <span>{t("home.hero.cta.contact")}</span>
                     <motion.span
@@ -1075,7 +1078,7 @@ export default function Home() {
                 className="inline-block"
               >
                 <Link
-                  href="/contact"
+                  href={`/${locale}/contact`}
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 >
                   <span>{t("home.contact.cta")}</span>
