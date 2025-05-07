@@ -4,8 +4,11 @@ import PlanetTimeline from '@/components/PlanetTimeline';
 import { TimelineItem } from '@/components/Timeline';
 import { motion } from 'framer-motion';
 import BackButton from '@/components/BackButton';
+import { useTranslations } from 'next-intl';
 
 export default function AboutPage() {
+  const t = useTranslations();
+
   // プロフィール情報
   const profile = {
     name: '上垣内 裕介',
@@ -13,7 +16,7 @@ export default function AboutPage() {
     birthdate: '2000年7月7日',
     birthplace: '広島県広島市',
     education: '工業高等学校 化学科卒業',
-    introduction: 'AIを積極的に活用し、UI/UXデザインを含む幅広いタスクに対応できるフルスタックエンジニアです。美しいコードと使いやすいデザインの両立を追求し、効率化や品質向上にも力を入れています。現在は英語を少し話し、韓国語も勉強中です。',
+    introduction: t('about.profile.introduction'),
     skills: ['HTML/CSS', 'JavaScript/TypeScript', 'React', 'Vue.js/Nuxt.js', 'Python', 'Streamlit', 'Flask', 'pyinstaller(デスクトップアプリ化)', 'GitHub', 'MySQL', 'バッチ処理', 'Docker', 'AWS', 'PHP/Laravel', 'GitHub', 'Playwright' ,'テスト', 'コードレビュー', '仕様作成'],
     hobbies: ['読書', '歌', '筋トレ', 'テニス'],
   };
@@ -140,7 +143,7 @@ export default function AboutPage() {
                   whileHover={{ scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  Engineer
+                  {t('about.profile.engineer')}
                 </motion.div>
               </motion.div>
               
@@ -167,15 +170,15 @@ export default function AboutPage() {
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">生年月日</span>
+                      <span className="w-24 text-indigo-200">{t('about.profile.birthdate')}</span>
                       <span>{profile.birthdate}</span>
                     </div>
                     <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">出身</span>
+                      <span className="w-24 text-indigo-200">{t('about.profile.birthplace')}</span>
                       <span>{profile.birthplace}</span>
                     </div>
                     <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">学歴</span>
+                      <span className="w-24 text-indigo-200">{t('about.profile.education')}</span>
                       <span>{profile.education}</span>
                     </div>
                   </motion.div>
@@ -189,7 +192,7 @@ export default function AboutPage() {
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     <div className="flex flex-col">
-                      <span className="text-purple-200 mb-2">趣味・特技</span>
+                      <span className="text-purple-200 mb-2">{t('about.profile.hobbies')}</span>
                       <div className="flex flex-wrap gap-2">
                         {profile.hobbies.map((hobby, idx) => (
                           <motion.span 
@@ -222,7 +225,7 @@ export default function AboutPage() {
                 </motion.p>
                 
                 <div className="pt-2">
-                  <p className="text-cyan-200 text-sm mb-3">技術スタック</p>
+                  <p className="text-cyan-200 text-sm mb-3">{t('about.profile.skills')}</p>
                   <div className="flex flex-wrap gap-2">
                     {profile.skills.map((skill, idx) => (
                       <motion.span 
@@ -250,7 +253,7 @@ export default function AboutPage() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
-              Career Timeline
+              {t('about.careerTimeline')}
               <div className="w-full h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 mt-2 rounded-full shadow-sm shadow-indigo-500/30"></div>
             </motion.h2>
           </div>

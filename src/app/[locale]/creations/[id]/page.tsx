@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { FaArrowLeft, FaGithub, FaExternalLinkAlt, FaCalendarAlt, FaLaptopCode, FaTags } from 'react-icons/fa';
 import BackButton from '@/components/BackButton';
+import { useTranslations } from 'next-intl';
 
 // ダミーの画像パス（実際の画像がない場合のフォールバック用）
 const placeholderImages = [
@@ -121,6 +122,7 @@ export default function CreationDetail() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const t = useTranslations();
 
   useEffect(() => {
     setMounted(true);
@@ -136,10 +138,10 @@ export default function CreationDetail() {
   if (!project) {
     return (
       <div className="container mx-auto px-6 py-20 text-center">
-        <h1 className="text-4xl text-cyan-500 mb-4">プロジェクトが見つかりません</h1>
-        <p className="mb-8">お探しのプロジェクトは存在しないようです。</p>
+        <h1 className="text-4xl text-cyan-500 mb-4">{t('creations.detail.notFoundTitle')}</h1>
+        <p className="mb-8">{t('creations.detail.notFoundDescription')}</p>
         <Link href="/creations" className="inline-flex items-center text-cyan-400 hover:text-cyan-300">
-          <FaArrowLeft className="mr-2" /> 作品一覧に戻る
+          <FaArrowLeft className="mr-2" /> {t('creations.detail.backToList')}
         </Link>
       </div>
     );
@@ -157,7 +159,7 @@ export default function CreationDetail() {
           href="/creations" 
           className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-8 transition-colors duration-200"
         >
-          <FaArrowLeft className="mr-2" /> 作品一覧に戻る
+          <FaArrowLeft className="mr-2" /> {t('creations.detail.backToList')}
         </Link>
 
         <article className="max-w-5xl mx-auto">
@@ -181,9 +183,7 @@ export default function CreationDetail() {
               </div>
               <div className="flex items-center">
                 <FaTags className="mr-2 text-cyan-400" />
-                <span>{project.category === 'web' ? 'Webアプリ' : 
-                       project.category === 'mobile' ? 'モバイルアプリ' : 
-                       project.category === 'design' ? 'UIデザイン' : 'ゲーム開発'}</span>
+                <span>{t(`creations.categories.${project.category}`)}</span>
               </div>
             </div>
             
@@ -197,7 +197,7 @@ export default function CreationDetail() {
                   className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full inline-flex items-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 >
                   <FaExternalLinkAlt className="mr-2" />
-                  デモを見る
+                  {t('creations.detail.demo')}
                 </a>
               )}
               
@@ -209,7 +209,7 @@ export default function CreationDetail() {
                   className="px-6 py-3 bg-blue-900/40 text-white rounded-full inline-flex items-center border border-cyan-500/30 hover:border-cyan-500/50 hover:bg-blue-900/60 transition-all duration-300"
                 >
                   <FaGithub className="mr-2" />
-                  ソースコードを見る
+                  {t('creations.detail.code')}
                 </a>
               )}
             </div>
@@ -232,7 +232,7 @@ export default function CreationDetail() {
             {/* 左側: 技術情報 */}
             <div className="md:col-span-1">
               <div className="bg-blue-900/10 backdrop-blur-sm rounded-xl p-6 border border-cyan-500/20">
-                <h2 className="text-xl font-display mb-4 text-cyan-300">使用技術</h2>
+                <h2 className="text-xl font-display mb-4 text-cyan-300">{t('creations.detail.techStack')}</h2>
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.technologies.map((tech, index) => (
                     <span 
@@ -244,19 +244,23 @@ export default function CreationDetail() {
                   ))}
                 </div>
                 
-                <h2 className="text-xl font-display mb-4 text-cyan-300">プロジェクト情報</h2>
+                <h2 className="text-xl font-display mb-4 text-cyan-300">{t('creations.detail.projectInfo')}</h2>
                 <ul className="space-y-3 text-sm">
                   <li className="flex justify-between">
-                    <span className="text-gray-400">期間:</span>
+                    <span className="text-gray-400">{t('creations.detail.period')}:</span>
                     <span>{project.duration}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-gray-400">担当:</span>
+                    <span className="text-gray-400">{t('creations.detail.role')}:</span>
                     <span>{project.role}</span>
                   </li>
                   <li className="flex justify-between">
-                    <span className="text-gray-400">クライアント:</span>
+                    <span className="text-gray-400">{t('creations.detail.client')}:</span>
                     <span>{project.client}</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span className="text-gray-400">{t('creations.detail.category')}:</span>
+                    <span>{t(`creations.categories.${project.category}`)}</span>
                   </li>
                 </ul>
               </div>
@@ -314,13 +318,13 @@ export default function CreationDetail() {
           
           {/* 関連プロジェクト / CTAセクション */}
           <div className="text-center mt-16 bg-blue-900/20 backdrop-blur-sm rounded-xl p-8 border border-cyan-500/20">
-            <h2 className="text-2xl font-display mb-4 text-cyan-300">他のプロジェクトも見てみませんか？</h2>
-            <p className="mb-8 text-gray-300">さまざまな技術スタックを活用したプロジェクトをご覧いただけます。</p>
+            <h2 className="text-2xl font-display mb-4 text-cyan-300">{t('creations.detail.relatedTitle')}</h2>
+            <p className="mb-8 text-gray-300">{t('creations.detail.relatedDescription')}</p>
             <Link 
               href="/creations"
               className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full inline-flex items-center hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
             >
-              作品一覧に戻る
+              {t('creations.detail.relatedBackToList')}
             </Link>
           </div>
         </article>

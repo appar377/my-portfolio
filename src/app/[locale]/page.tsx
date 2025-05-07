@@ -292,11 +292,11 @@ const FloatingElement = ({ delay = 0, duration = 20, className }: { delay?: numb
 
 // ナビゲーションアイテム
 const navigationItems = [
-  { path: '/about', icon: FaUserAlt, labelKey: 'navigation.about', color: 'from-purple-500 to-indigo-600' },
-  { path: '/creations', icon: FaLaptopCode, labelKey: 'navigation.creations', color: 'from-cyan-500 to-blue-600' },
-  { path: '/services', icon: FaBriefcase, labelKey: 'navigation.services', color: 'from-emerald-500 to-teal-600' },
-  { path: '/blog', icon: FaBlog, labelKey: 'navigation.blog', color: 'from-amber-500 to-orange-600' },
-  { path: '/contact', icon: FaComments, labelKey: 'navigation.contact', color: 'from-rose-500 to-pink-600' }
+  { path: '/about', icon: FaUserAlt, labelKey: 'home.navigation.about', color: 'from-purple-500 to-indigo-600' },
+  { path: '/creations', icon: FaLaptopCode, labelKey: 'home.navigation.creations', color: 'from-cyan-500 to-blue-600' },
+  { path: '/services', icon: FaBriefcase, labelKey: 'home.navigation.services', color: 'from-emerald-500 to-teal-600' },
+  { path: '/blog', icon: FaBlog, labelKey: 'home.navigation.blog', color: 'from-amber-500 to-orange-600' },
+  { path: '/contact', icon: FaComments, labelKey: 'home.navigation.contact', color: 'from-rose-500 to-pink-600' }
 ];
 
 export default function Home() {
@@ -538,9 +538,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, ease: 'easeOut' }}
                 >
-                  <span className="block">
-                    Yusuke Uwagaich
-                  </span>
+                  <span className="block">{t('home.hero.title')}</span>
                   <span
                     className="block text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold
                       bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-blue-400
@@ -576,7 +574,7 @@ export default function Home() {
                     href="/creations" 
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                   >
-                    <span>作品を見る</span>
+                    <span>{t('home.hero.cta.creations')}</span>
                     <motion.span 
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
@@ -594,7 +592,7 @@ export default function Home() {
                     href="/contact" 
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white/10 backdrop-blur-sm border border-cyan-500/50 text-white font-medium hover:bg-white/15 hover:border-cyan-400 transition-all duration-300"
                   >
-                    <span>お問い合わせ</span>
+                    <span>{t('home.hero.cta.contact')}</span>
                     <motion.span 
                       animate={{ rotate: [0, 15, 0] }}
                       transition={{ duration: 2, repeat: Infinity, repeatType: "loop" }}
@@ -619,7 +617,7 @@ export default function Home() {
               transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
               className="flex flex-col items-center"
             >
-              <span className="text-white/60 text-sm mb-2">スクロールして続きを見る</span>
+              <span className="text-white/60 text-sm mb-2">{t('home.hero.scrollIndicator')}</span>
               <motion.div
                 animate={{ y: [0, 5, 0] }}
                 transition={{ 
@@ -678,7 +676,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-3xl md:text-4xl font-display text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
             >
-              ページを選択
+              {t('home.navigation.title')}
             </motion.h2>
             
             <motion.div
@@ -785,10 +783,10 @@ export default function Home() {
               className="max-w-6xl mx-auto"
             >
               <h2 className="text-3xl md:text-4xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                注目のプロジェクト
+                {t('home.featured.title')}
               </h2>
               <p className="text-center text-white/70 max-w-2xl mx-auto mb-12">
-                最近取り組んだ作品の一部をご紹介します
+                {t('home.featured.description')}
               </p>
               
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -826,8 +824,8 @@ export default function Home() {
                       </motion.div>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-display text-white mb-2">プロジェクト {item}</h3>
-                      <p className="text-white/60 text-sm mb-4">最新のテクノロジーを活用した革新的なWebアプリケーション</p>
+                      <h3 className="text-xl font-display text-white mb-2">{t('home.featured.projectTitle', { item })}</h3>
+                      <p className="text-white/60 text-sm mb-4">{t('home.featured.projectDescription')}</p>
                       <div className="flex items-center">
                         <motion.div
                           whileHover={{ x: 5 }}
@@ -837,7 +835,7 @@ export default function Home() {
                             href="/creations/1" 
                             className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors"
                           >
-                            詳細を見る 
+                            {t('home.featured.detail')}
                             <motion.span
                               className="inline-block ml-2"
                               animate={{ x: [0, 4, 0] }}
@@ -868,7 +866,7 @@ export default function Home() {
                     href="/creations" 
                     className="inline-flex items-center px-6 py-3 rounded-full border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition-all duration-300"
                   >
-                    すべての作品を見る 
+                    {t('home.featured.all')}
                     <motion.span
                       className="inline-block ml-2"
                       animate={{ x: [0, 5, 0] }}
@@ -953,11 +951,11 @@ export default function Home() {
               className="max-w-3xl mx-auto text-center"
             >
               <h2 className="text-3xl md:text-4xl font-display mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 to-blue-400">
-                お問い合わせ
+                {t('home.contact.title')}
               </h2>
               
               <p className="text-lg text-white/80 mb-10 max-w-xl mx-auto">
-                プロジェクトのご相談やお仕事のご依頼は、専用フォームからお気軽にお問い合わせください。プライバシーを尊重し、個人情報の取り扱いに十分配慮いたします。
+                {t('home.contact.description')}
               </p>
               
               <motion.div
@@ -969,7 +967,7 @@ export default function Home() {
                   href="/contact" 
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 >
-                  <span>お問い合わせはこちら</span>
+                  <span>{t('home.contact.cta')}</span>
                   <span className="bg-white/20 rounded-full p-2 flex items-center justify-center">
                     <motion.span
                       animate={{ 

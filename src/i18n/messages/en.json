@@ -1,75 +1,203 @@
 {
-  "navigation": {
-    "home": "Home",
+  "home": {
+    "hero": {
+      "title": "Yusuke Uwagaich",
+      "subtitle": "Transforming your ideas into reality with cutting-edge web technology and design",
+      "cta": {
+        "creations": "View Works",
+        "contact": "Contact"
+      },
+      "scrollIndicator": "Scroll to see more"
+    },
+    "navigation": {
+      "title": "Select a Page",
+      "about": "About",
+      "creations": "Works",
+      "services": "Services",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "featured": {
+      "title": "Featured Projects",
+      "description": "Here are some of my recent works",
+      "projectTitle": "Project {item}",
+      "projectDescription": "An innovative web application utilizing the latest technology",
+      "detail": "View Details",
+      "all": "View All Works"
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "For project inquiries or work requests, please feel free to contact me via the dedicated form. Your privacy is respected and your personal information will be handled with care.",
+      "cta": "Contact Here"
+    }
+  },
+  "nav": {
     "portfolio": "Portfolio",
     "services": "Services",
     "blog": "Blog",
-    "contact": "Contact",
-    "about": "About",
-    "creations": "Creations"
-  },
-  "hero": {
-    "title": "Welcome to My Portfolio",
-    "subtitle": "Frontend Developer & UI/UX Designer",
-    "cta": "View My Work"
-  },
-  "home": {
-    "title": "My Work",
-    "hero": {
-      "title": "Yusuke Uwagaichi's Portfolio",
-      "subtitle": "Frontend Developer specializing in UI/UX Design",
-      "cta": "Contact Me"
-    },
-    "categories": {
-      "web": "Web Applications",
-      "mobile": "Mobile Apps",
-      "3d": "3D Models"
-    },
-    "viewProject": "View Project",
-    "featured": { "title": "Featured Projects" },
-    "services": { "title": "What I Do" }
-  },
-  "portfolio": {
-    "title": "My Work",
-    "categories": {
-      "web": "Web Applications",
-      "mobile": "Mobile Apps",
-      "3d": "3D Models",
-      "design": "Design"
-    },
-    "viewProject": "View Project",
-    "featured": { "title": "Featured Projects" },
-    "services": { "title": "What I Do" }
+    "contact": "Contact"
   },
   "services": {
     "title": "Services",
     "webDev": {
-      "title": "Modern Frontend Development",
-      "description": "SPA/SSR web applications using React, TypeScript, and Vue.js/Nuxt.js. Responsive design and performance optimization."
+      "title": "Web Development",
+      "description": "Building modern, scalable web applications tailored to your needs."
     },
     "mobileDev": {
-      "title": "Automation Systems",
-      "description": "Web automation systems using Python, Streamlit, and Flask. Process optimization and automation of repetitive tasks."
+      "title": "Mobile Development",
+      "description": "Cross-platform mobile apps for iOS and Android with great performance."
     },
     "design": {
-      "title": "UI/UX Design & Implementation",
-      "description": "User-friendly and beautiful interface design with frontend implementation. Optimizations and animations to enhance user experience."
+      "title": "UI/UX Design",
+      "description": "Beautiful and intuitive user interfaces for a seamless experience."
     },
     "backendDev": {
-      "title": "Test Automation & Quality Assurance",
-      "description": "Test automation with Playwright and Jest. Building CI/CD pipelines to ensure code quality and continuous deployment."
+      "title": "Backend/API Development",
+      "description": "Robust backend systems and APIs for secure, efficient data handling."
+    },
+    "otherRequestsTitle": "Other Requests Are Welcome",
+    "otherRequestsDescription": "If you have a project not listed above, feel free to contact me. I can handle a wide range of projects using my skills and experience. Please start by getting in touch."
+  },
+  "portfolio": {
+    "viewProject": "View Project",
+    "categories": {
+      "web": "Web",
+      "mobile": "Mobile",
+      "design": "Design"
+    }
+  },
+  "about": {
+    "profile": {
+      "birthdate": "Birthdate",
+      "birthplace": "Birthplace",
+      "education": "Education",
+      "hobbies": "Hobbies & Special Skills",
+      "skills": "Tech Stack",
+      "engineer": "Engineer",
+      "introduction": "AI-driven full stack engineer with a passion for beautiful code and user-friendly design. Skilled in a wide range of tasks including UI/UX design. Always striving for efficiency and quality. Currently learning English and Korean."
+    },
+    "timeline": {
+      "0": { "title": "Born in Hiroshima", "period": "2000.7", "description": "Born in Hiroshima City, a place rich in history and culture. Grew up with curiosity in an environment where nature and technology coexist." },
+      "1": { "title": "Specialized Education in Chemistry", "period": "2016.4-2019.3", "description": "Fascinated by chemistry, chose a technical high school chemistry course. Acquired experimental and analytical skills, logical thinking, and scientific approach. Obtained several certifications and deepened expertise." },
+      "2": { "title": "Career Start at Chemical Plant", "period": "2019.4-2021.7", "description": "Applied knowledge and skills at a local chemical plant. Engaged in quality control and process optimization, realizing the importance of data analysis and teamwork." },
+      "3": { "title": "Awakening to the Digital World", "period": "2019.10-", "description": "Inspired by data analysis at the plant, became fascinated by programming. Started self-study using online resources, coding late into the night." },
+      "4": { "title": "Seeking Systematic Learning", "period": "2020.10-2021.3", "description": "Joined a programming school for systematic knowledge and skills in web development. Broadened perspective through competition with peers." },
+      "5": { "title": "Period of Stagnation and Introspection", "period": "2021.3-2021.7", "description": "After graduation, faced a period of uncertainty and introspection, which became an opportunity to reconsider true aspirations." },
+      "6": { "title": "Decision and Career Change", "period": "2021.7", "description": "After much deliberation, decided to leave the chemical plant to pursue a passion for programming, stepping into a new path with both anxiety and hope." },
+      "7": { "title": "Balancing Study and Life", "period": "2021.8-2022.2", "description": "Continued programming studies while working part-time, steadily improving skills." },
+      "8": { "title": "Retry - Full-Fledged Engineer Training", "period": "2022.2-2022.7", "description": "Re-enrolled in a programming school for advanced practical curriculum, focusing on modern tech stack and team development." },
+      "9": { "title": "Steady Growth and Confidence", "period": "2022.7", "description": "Graduated with clear growth and confidence, improving problem-solving and communication skills." },
+      "10": { "title": "First Professional Experience - Investment Info Service", "period": "2022.8-2022.10", "description": "Participated in a project for investor information services, handling design and implementation of new features using Vue.js, and learning professional development processes." },
+      "11": { "title": "Challenge and Trial for Independence", "period": "2022.11-2023.3", "description": "Sought projects via crowdsourcing and agents, gaining valuable experience despite initial setbacks, clarifying direction for self-improvement." },
+      "12": { "title": "First Project - Automated Management System", "period": "2023.4-2024.1", "description": "Joined a web automation service project as a frontend engineer, handling UI/UX design and implementation, optimizing state management, and building CI/CD pipelines." },
+      "13": { "title": "Planning and Development of Web Card Game", "period": "2024.2-2025.5", "description": "Handled everything from planning and UI/UX design to frontend and backend integration, overcoming technical challenges and focusing on creating an intuitive and enjoyable game experience." }
+    },
+    "careerTimeline": "Career Timeline"
+  },
+  "creations": {
+    "title": "Works & Creations",
+    "description": "A collection of works and creations developed individually.",
+    "categories": {
+      "all": "All",
+      "web": "Web App",
+      "mobile": "Mobile App",
+      "design": "UI Design",
+      "game": "Game Development"
+    },
+    "featured": "Featured",
+    "techStack": "Tech Stack",
+    "demo": "Demo",
+    "code": "Code",
+    "allWorks": "View All Works",
+    "projects": {
+      "1": {
+        "title": "E-commerce Platform",
+        "subtitle": "Full Stack Web Application",
+        "description": "A comprehensive e-commerce platform with payment features, user authentication, product management, cart, and checkout."
+      },
+      "2": {
+        "title": "Fitness Tracker",
+        "subtitle": "Cross-Platform Mobile App",
+        "description": "A mobile app for tracking workouts and nutrition, offering customizable plans, meal logs, and progress charts."
+      },
+      "3": {
+        "title": "Portfolio Website",
+        "subtitle": "Responsive Web Design",
+        "description": "A modern, interactive portfolio website featuring smooth animations and responsive design."
+      },
+      "4": {
+        "title": "2D Platformer Game",
+        "subtitle": "Browser-based Game Development",
+        "description": "A retro-style 2D platformer game built with HTML5 and JavaScript, featuring multiple levels, enemies, and power-ups."
+      },
+      "5": {
+        "title": "3D Character Model",
+        "subtitle": "3D Modeling & Animation",
+        "description": "A high-poly character model for game development, rigged and animated, exportable to various game engines."
+      },
+      "6": {
+        "title": "SaaS Product Landing Page",
+        "subtitle": "Conversion-Optimized Design",
+        "description": "A performance-focused landing page for a SaaS product, optimized UI/UX for maximum conversion."
+      }
+    },
+    "detail": {
+      "notFoundTitle": "Project Not Found",
+      "notFoundDescription": "The project you are looking for does not exist.",
+      "backToList": "Back to Works List",
+      "demo": "View Demo",
+      "code": "View Source Code",
+      "techStack": "Tech Stack",
+      "projectInfo": "Project Info",
+      "period": "Period",
+      "role": "Role",
+      "client": "Client",
+      "category": "Category",
+      "relatedTitle": "Check out other projects?",
+      "relatedDescription": "You can see projects utilizing various tech stacks.",
+      "relatedBackToList": "Back to Works List"
     }
   },
   "contact": {
-    "title": "Get in Touch",
-    "getInTouch": "Get in Touch",
-    "description": "Feel free to reach out using the form below. I'll propose the best solution for your needs.",
-    "address": "Address",
-    "phone": "Phone",
-    "email": "Email",
+    "title": "Contact",
+    "description": "For project inquiries or work requests, please feel free to contact me via the dedicated form. Your privacy is respected and your personal information will be handled with care.",
+    "back": "Back",
+    "formTitle": "Contact Form",
     "name": "Name",
+    "email": "Email",
     "message": "Message",
-    "submit": "Send Message",
-    "success": "Thank you for your message! I'll get back to you soon."
+    "sending": "Sending...",
+    "submit": "Send",
+    "note": "* We will contact you later based on your inquiry.",
+    "privacy": "Your personal information will only be used to respond to your inquiry and will not be used for any other purpose.",
+    "success": "Thank you for your inquiry!",
+    "successMessage": "Thank you for contacting us. We will get back to you after reviewing your message.",
+    "close": "Close",
+    "nameRequired": "Name is required",
+    "emailInvalid": "Invalid email address",
+    "messageMin": "Message must be at least 10 characters"
+  },
+  "blog": {
+    "description": "Thoughts, ideas, and experiences from my journey as a developer",
+    "readMore": "Read More",
+    "posts": {
+      "1": {
+        "title": "Building Modern Web Applications with Next.js",
+        "excerpt": "Learn how to build scalable and performant web applications using Next.js and modern development practices."
+      },
+      "2": {
+        "title": "The Future of Mobile Development",
+        "excerpt": "Exploring the latest trends and technologies in mobile application development."
+      },
+      "3": {
+        "title": "Designing for Accessibility",
+        "excerpt": "Best practices for creating accessible and inclusive user interfaces."
+      }
+    },
+    "detail": {
+      "notFoundTitle": "Blog Post Not Found",
+      "notFoundDescription": "The article you're looking for doesn't seem to exist.",
+      "backToList": "Back to Blog"
+    }
   }
-}
+} 

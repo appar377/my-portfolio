@@ -75,18 +75,14 @@ export default function Services() {
           transition={{ delay: 0.4 }}
           className="max-w-2xl mx-auto text-center bg-background/30 backdrop-blur-md p-8 rounded-xl border border-white/10 shadow-lg"
         >
-          <h2 className="text-2xl font-display mb-4">その他のご依頼も承ります</h2>
-          <p className="text-foreground/80 mb-8">
-            上記に記載がないお仕事についても、お気軽にご相談ください。
-            スキルと経験を活かして、さまざまなプロジェクトに対応いたします。
-            まずはお問い合わせからお願いします。
-          </p>
+          <h2 className="text-2xl font-display mb-4">{t('services.otherRequestsTitle')}</h2>
+          <p className="text-foreground/80 mb-8">{t('services.otherRequestsDescription')}</p>
           
           <Link
             href="/contact"
             className="btn btn-primary btn-lg shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:scale-105 transition-all duration-300 group"
           >
-            {t('contact.getInTouch')}
+            {t('home.contact.cta')}
             <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
           </Link>
         </motion.div>

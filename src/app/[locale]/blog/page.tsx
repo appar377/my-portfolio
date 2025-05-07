@@ -60,11 +60,11 @@ export default function Blog() {
         transition={{ duration: 0.6 }}
       >
         <h1 className="text-4xl md:text-5xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600">
-          {t('navigation.blog')}
+          {t('home.navigation.blog')}
         </h1>
         
         <p className="text-lg text-center text-amber-200/80 max-w-2xl mx-auto mb-12">
-          Thoughts, ideas, and experiences from my journey as a developer
+          {t('blog.description')}
         </p>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -97,12 +97,12 @@ export default function Blog() {
                   </time>
                 </div>
                 <h3 className="text-xl font-display mb-2 text-white">{post.title}</h3>
-                <p className="text-amber-100/70 mb-4">{post.excerpt}</p>
+                <p className="text-amber-100/70 mb-4">{t(`blog.posts.${post.id}.excerpt`)}</p>
                 <Link
                   href={`/blog/${post.id}`}
                   className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors duration-200"
                 >
-                  Read More
+                  {t('blog.readMore')}
                   <FaArrowRight className="w-4 h-4 ml-2" />
                 </Link>
               </div>

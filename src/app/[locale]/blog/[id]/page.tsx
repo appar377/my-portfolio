@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { FaCalendarAlt, FaArrowLeft } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import BackButton from '@/components/BackButton';
+import { useTranslations } from 'next-intl';
 
 // ダミーの画像パス（実際の画像がない場合のフォールバック用）
 const placeholderImages = [
@@ -92,6 +93,7 @@ export default function BlogPost() {
   const params = useParams();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations();
 
   useEffect(() => {
     setMounted(true);
@@ -107,10 +109,10 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="container mx-auto px-6 py-20 text-center">
-        <h1 className="text-4xl text-amber-500 mb-4">Blog Post Not Found</h1>
-        <p className="mb-8">The article you're looking for doesn't seem to exist.</p>
+        <h1 className="text-4xl text-amber-500 mb-4">{t('blog.detail.notFoundTitle')}</h1>
+        <p className="mb-8">{t('blog.detail.notFoundDescription')}</p>
         <Link href="/blog" className="inline-flex items-center text-amber-400 hover:text-amber-300">
-          <FaArrowLeft className="mr-2" /> Back to Blog
+          <FaArrowLeft className="mr-2" /> {t('blog.detail.backToList')}
         </Link>
       </div>
     );
@@ -128,7 +130,7 @@ export default function BlogPost() {
           href="/blog" 
           className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-8 transition-colors duration-200"
         >
-          <FaArrowLeft className="mr-2" /> Back to Blog
+          <FaArrowLeft className="mr-2" /> {t('blog.detail.backToList')}
         </Link>
 
         <article className="max-w-4xl mx-auto">

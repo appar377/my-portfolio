@@ -59,7 +59,7 @@ export default function Contact() {
           className="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full bg-white/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:text-rose-500 hover:shadow-lg transition-all duration-200 font-medium backdrop-blur-sm"
         >
           <FaArrowLeft className="text-lg" />
-          <span className="text-base">戻る</span>
+          <span className="text-base">{t('contact.back')}</span>
         </button>
         <h1 className="text-4xl md:text-5xl font-display text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
           {t('contact.title')}
@@ -76,7 +76,7 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-foreground/5 backdrop-blur-sm border border-rose-500/20 rounded-xl p-8 mb-12"
         >
-          <h2 className="text-2xl font-display mb-6 text-center">お問い合わせフォーム</h2>
+          <h2 className="text-2xl font-display mb-6 text-center">{t('contact.formTitle')}</h2>
           
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -89,10 +89,10 @@ export default function Contact() {
                   type="text"
                   {...register('name')}
                   className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
-                  placeholder="お名前"
+                  placeholder={t('contact.name')}
                 />
                 {errors.name && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.name.message}</p>
+                  <p className="mt-1 text-red-500 text-sm">{t('contact.nameRequired')}</p>
                 )}
               </div>
 
@@ -105,10 +105,10 @@ export default function Contact() {
                   type="email"
                   {...register('email')}
                   className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
-                  placeholder="連絡先メールアドレス"
+                  placeholder={t('contact.email')}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-red-500 text-sm">{errors.email.message}</p>
+                  <p className="mt-1 text-red-500 text-sm">{t('contact.emailInvalid')}</p>
                 )}
               </div>
             </div>
@@ -122,10 +122,10 @@ export default function Contact() {
                 {...register('message')}
                 rows={6}
                 className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
-                placeholder="お問い合わせ内容をご記入ください"
+                placeholder={t('contact.message')}
               />
               {errors.message && (
-                <p className="mt-1 text-red-500 text-sm">{errors.message.message}</p>
+                <p className="mt-1 text-red-500 text-sm">{t('contact.messageMin')}</p>
               )}
             </div>
 
@@ -143,7 +143,7 @@ export default function Contact() {
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>
-                    送信中...
+                    {t('contact.sending')}
                   </>
                 ) : (
                   <>
@@ -154,7 +154,7 @@ export default function Contact() {
             </div>
             
             <p className="text-center text-xs text-white/50 mt-4">
-              * お問い合わせいただいた内容に基づき、後日ご連絡させていただきます。
+              {t('contact.note')}
             </p>
           </form>
         </motion.div>
@@ -162,8 +162,7 @@ export default function Contact() {
         {/* プライバシーノート */}
         <div className="mt-12 text-center">
           <p className="text-white/50 text-sm">
-            ご提供いただいた個人情報は、お問い合わせへの対応のみに使用し、<br />
-            それ以外の目的では使用いたしません。
+            {t('contact.privacy')}
           </p>
         </div>
       </motion.div>
@@ -181,7 +180,7 @@ export default function Contact() {
                 {t('contact.success')}
               </Dialog.Title>
               <p className="text-white/70 mb-6">
-                お問い合わせいただきありがとうございます。内容を確認次第、ご連絡いたします。
+                {t('contact.successMessage')}
               </p>
               <Dialog.Close asChild>
                 <motion.button 
@@ -189,7 +188,7 @@ export default function Contact() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  閉じる
+                  {t('contact.close')}
                 </motion.button>
               </Dialog.Close>
             </div>
