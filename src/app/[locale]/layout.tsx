@@ -1,7 +1,7 @@
 'import client';
 import { NextIntlClientProvider } from 'next-intl';
-import Header from '@/components/Header';
 import Background from '@/components/Background';
+import SettingLang from '@/components/SettingLang';
 import '@/app/globals.css';
 import type { ReactNode } from 'react';
 
@@ -27,7 +27,9 @@ export default async function LocaleLayout({
       <html lang={locale}>
         <body>
           <Background />
-          <Header />
+          <div className="fixed top-4 right-4 z-50">
+            <SettingLang />
+          </div>
           <main>{children}</main>
         </body>
       </html>

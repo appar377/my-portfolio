@@ -4,19 +4,21 @@
     "portfolio": "Portfolio",
     "services": "Services",
     "blog": "Blog",
-    "contact": "Contact"
+    "contact": "Contact",
+    "about": "About",
+    "creations": "Creations"
   },
   "hero": {
     "title": "Welcome to My Portfolio",
-    "subtitle": "Full Stack Developer & Creative Designer",
+    "subtitle": "Frontend Developer & UI/UX Designer",
     "cta": "View My Work"
   },
   "home": {
     "title": "My Work",
     "hero": {
-      "title": "Welcome to My Portfolio",
-      "subtitle": "Full Stack Developer & Creative Designer",
-      "cta": "View My Work"
+      "title": "Yusuke Uwagaichi's Portfolio",
+      "subtitle": "Frontend Developer specializing in UI/UX Design",
+      "cta": "Contact Me"
     },
     "categories": {
       "web": "Web Applications",
@@ -42,26 +44,26 @@
   "services": {
     "title": "Services",
     "webDev": {
-      "title": "Web Development",
-      "description": "Custom web applications built with modern technologies"
+      "title": "Modern Frontend Development",
+      "description": "SPA/SSR web applications using React, TypeScript, and Vue.js/Nuxt.js. Responsive design and performance optimization."
     },
     "mobileDev": {
-      "title": "Mobile Development",
-      "description": "Native and cross-platform mobile applications"
+      "title": "Automation Systems",
+      "description": "Web automation systems using Python, Streamlit, and Flask. Process optimization and automation of repetitive tasks."
     },
     "design": {
-      "title": "UI/UX Design",
-      "description": "Beautiful and intuitive user interfaces"
+      "title": "UI/UX Design & Implementation",
+      "description": "User-friendly and beautiful interface design with frontend implementation. Optimizations and animations to enhance user experience."
     },
     "backendDev": {
-      "title": "Backend Development",
-      "description": "Robust and scalable backend systems and APIs"
+      "title": "Test Automation & Quality Assurance",
+      "description": "Test automation with Playwright and Jest. Building CI/CD pipelines to ensure code quality and continuous deployment."
     }
   },
   "contact": {
     "title": "Get in Touch",
     "getInTouch": "Get in Touch",
-    "description": "Feel free to reach out using the form or the contact information below.",
+    "description": "Feel free to reach out using the form below. I'll propose the best solution for your needs.",
     "address": "Address",
     "phone": "Phone",
     "email": "Email",

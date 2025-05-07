@@ -4,19 +4,21 @@
     "portfolio": "ポートフォリオ",
     "services": "サービス",
     "blog": "ブログ",
-    "contact": "お問い合わせ"
+    "contact": "お問い合わせ",
+    "about": "自己紹介",
+    "creations": "作品集"
   },
   "hero": {
     "title": "ポートフォリオへようこそ",
-    "subtitle": "フルスタック開発者 & クリエイティブデザイナー",
+    "subtitle": "フロントエンド開発者 & UI/UXデザイナー",
     "cta": "作品を見る"
   },
   "home": {
     "title": "作品一覧",
     "hero": {
-      "title": "ポートフォリオへようこそ",
-      "subtitle": "フルスタック開発者 & クリエイティブデザイナー",
-      "cta": "作品を見る"
+      "title": "上垣内裕介のポートフォリオ",
+      "subtitle": "フロントエンド開発とUI/UXデザインを得意とするエンジニア",
+      "cta": "お問合せはこちら"
     },
     "categories": {
       "web": "Webアプリケーション",
@@ -42,26 +44,26 @@
   "services": {
     "title": "サービス",
     "webDev": {
-      "title": "Web開発",
-      "description": "最新技術を使用したカスタムWebアプリケーション"
+      "title": "モダンフロントエンド開発",
+      "description": "React、TypeScript、Vue.js/Nuxt.jsを使用した最新のSPA/SSRウェブアプリケーション開発。レスポンシブデザインとパフォーマンス最適化に対応。"
     },
     "mobileDev": {
-      "title": "モバイル開発",
-      "description": "ネイティブおよびクロスプラットフォームモバイルアプリ"
+      "title": "自動化システム構築",
+      "description": "Python、Streamlit、Flaskを活用したWeb自動化システムの開発。業務効率化や繰り返し作業の自動化を実現。"
     },
     "design": {
-      "title": "UI/UXデザイン",
-      "description": "美しく直感的なユーザーインターフェース"
+      "title": "UI/UXデザインと実装",
+      "description": "使いやすく美しいインターフェース設計とフロントエンド実装。ユーザー体験を向上させるための最適化とアニメーション。"
     },
     "backendDev": {
-      "title": "バックエンド開発",
-      "description": "堅牢でスケーラブルなバックエンドシステムとAPI"
+      "title": "テスト自動化と品質管理",
+      "description": "Playwright、Jest等を用いたテスト自動化。CI/CDパイプラインの構築によるコード品質の担保と継続的なデプロイの実現。"
     }
   },
   "contact": {
     "title": "お問い合わせ",
     "getInTouch": "お問い合わせはこちら",
-    "description": "下記フォームまたは連絡先からお気軽にご連絡ください。",
+    "description": "下記フォームからお気軽にご連絡ください。最適なソリューションについてご提案いたします。",
     "address": "住所",
     "phone": "電話番号",
     "email": "メールアドレス",

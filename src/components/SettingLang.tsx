@@ -35,22 +35,27 @@ export default function SettingLang() {
 			{/* トグルボタン */}
 			<button
 				onClick={() => setOpen(!open)}
-				className="flex items-center space-x-2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-lg"
+				className="flex items-center space-x-2 px-3 py-2 bg-gray-900/70 backdrop-blur-md rounded-lg border border-white/10 shadow-lg hover:bg-gray-800/80 transition-all duration-300"
+				aria-label="言語切替"
 			>
-				<FaGlobe className="w-5 h-5 text-white" />
-				<span className="text-white font-medium">{locale.toUpperCase()}</span>
+				<FaGlobe className="w-4 h-4 text-accent" />
+				<span className="text-white font-medium text-sm">{locale.toUpperCase()}</span>
 			</button>
 
 			{/* ドロップダウン */}
 			{open && (
-				<ul className="absolute right-0 mt-2 min-w-[5rem] bg-[rgba(var(--background),0.7)] backdrop-blur-md border border-white/20 rounded-lg shadow-xl z-50 divide-y divide-white/10 overflow-hidden">
+				<ul className="absolute right-0 mt-2 min-w-[5rem] bg-gray-900/80 backdrop-blur-lg border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden">
 					{routing.locales.map((l) => (
-						<li key={l}>
+						<li key={l} className="border-b border-white/5 last:border-b-0">
 							<button
 								onClick={() => selectLocale(l)}
-								className="block w-full px-4 py-2 text-sm text-center text-white hover:bg-white/20 transition-colors"
+								className={`block w-full px-4 py-2.5 text-sm text-center transition-colors ${
+									l === locale 
+									? 'bg-accent/20 text-accent font-medium' 
+									: 'text-white hover:bg-white/10'
+								}`}
 							>
-								{l.toUpperCase()}
+								{l === 'ja' ? '日本語' : 'English'}
 							</button>
 						</li>
 					))}
