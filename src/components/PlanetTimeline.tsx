@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useScroll, MotionValue, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { TimelineItem } from "./Timeline";
 
 // 内部用にcolorプロパティを持つ拡張インターフェース
@@ -14,15 +14,12 @@ interface PlanetTimelineProps {
 }
 
 export default function PlanetTimeline({ items }: PlanetTimelineProps) {
-  // windowスクロール進捗を取得
-  const { scrollYProgress } = useScroll();
-
   // 3D惑星の座標を計算
-  const positions: [number, number, number][] = items.map((_, idx) => [
-    idx % 2 === 0 ? -3 : 3,
-    -idx * 5,
-    0,
-  ]);
+  // const positions: [number, number, number][] = items.map((_, idx) => [
+  //   idx % 2 === 0 ? -3 : 3,
+  //   -idx * 5,
+  //   0,
+  // ]);
 
   return (
     <>

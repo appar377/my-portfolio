@@ -2,7 +2,7 @@ import { getRequestConfig } from "next-intl/server";
 import { locales } from "../app/i18n";
 
 export default getRequestConfig(async ({ locale }) => {
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as 'en' | 'ja')) {
     throw new Error(`Invalid locale: ${locale}`);
   }
 
@@ -13,7 +13,7 @@ export default getRequestConfig(async ({ locale }) => {
   };
 });
 
-export async function request<T = unknown>(...args: unknown[]): Promise<T> {
+export async function request<T = unknown>(): Promise<T> {
   // Implementation of the function
   return undefined as unknown as T;
 }

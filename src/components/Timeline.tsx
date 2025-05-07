@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useInView } from "framer-motion";
+// @ts-ignore
 import confetti from "canvas-confetti";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
@@ -15,6 +16,43 @@ type TimelineItem = {
 type TimelineProps = {
   items: TimelineItem[];
 };
+
+// Add a TimelineCard child component to handle hooks per card
+function TimelineCard({ item, idx, isLeft }: { item: TimelineItem; idx: number; isLeft: boolean }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(cardRef, { once: true });
+  useEffect(() => {
+    if (inView)
+      confetti({
+        particleCount: 30,
+        spread: 60,
+        origin: { x: 0.5, y: 0.3 },
+      });
+  }, [inView]);
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: idx * 0.2 }}
+      className="w-full md:w-96 bg-gray-900 rounded-2xl shadow-2xl p-6 border border-black/20"
+    >
+      <h3 className="text-2xl font-semibold text-white mb-2">{item.title}</h3>
+      <p className="text-sm text-gray-400 mb-4">{item.period}</p>
+      {item.description && <p className="text-gray-200 mb-4">{item.description}</p>}
+      {item.technologies && (
+        <div className="flex flex-wrap gap-2">
+          {item.technologies.map((tech, i) => (
+            <span key={i} className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300">
+              {tech}
+            </span>
+          ))}
+        </div>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Timeline({ items }: TimelineProps) {
   // scroll-linked rocket
@@ -44,7 +82,6 @@ export default function Timeline({ items }: TimelineProps) {
           return (
             <div
               key={idx}
-              ref={useRef(null)}
               className={`relative flex items-center ${isLeft ? "justify-start" : "justify-end"}`}
             >
               {/* Connector */}
@@ -54,48 +91,7 @@ export default function Timeline({ items }: TimelineProps) {
                 {!isLeft && <span className="block h-px w-12 bg-accent"></span>}
               </div>
               {/* Card */}
-              {(() => {
-                const cardRef = useRef(null);
-                const inView = useInView(cardRef, { once: true });
-                useEffect(() => {
-                  if (inView)
-                    confetti({
-                      particleCount: 30,
-                      spread: 60,
-                      origin: { x: 0.5, y: 0.3 },
-                    });
-                }, [inView]);
-                return (
-                  <motion.div
-                    ref={cardRef}
-                    initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: idx * 0.2 }}
-                    className="w-full md:w-96 bg-gray-900 rounded-2xl shadow-2xl p-6 border border-black/20"
-                  >
-                    <h3 className="text-2xl font-semibold text-white mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 mb-4">{item.period}</p>
-                    {item.description && (
-                      <p className="text-gray-200 mb-4">{item.description}</p>
-                    )}
-                    {item.technologies && (
-                      <div className="flex flex-wrap gap-2">
-                        {item.technologies.map((tech, i) => (
-                          <span
-                            key={i}
-                            className="text-xs bg-gray-800 px-2 py-1 rounded text-gray-300"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                );
-              })()}
+              <TimelineCard item={item} idx={idx} isLeft={isLeft} />
             </div>
           );
         })}
@@ -105,12 +101,15 @@ export default function Timeline({ items }: TimelineProps) {
 }
 
 // Rocket mesh that moves along Y-axis based on scroll progress
-function ScrollRocket({ scrollYProgress }: { scrollYProgress: any }) {
+function ScrollRocket({ scrollYProgress }: { scrollYProgress: unknown }) {
   const ref = useRef<Group>(null!);
   useFrame(() => {
-    const t = scrollYProgress.get();
-    if (ref.current) ref.current.position.y = 5 - t * 10;
-    ref.current.rotation.y += 0.02;
+    // Type guard for scrollYProgress
+    if (typeof (scrollYProgress as any).get === 'function') {
+      const t = (scrollYProgress as any).get();
+      if (ref.current) ref.current.position.y = 5 - t * 10;
+      ref.current.rotation.y += 0.02;
+    }
   });
   return (
     <group
