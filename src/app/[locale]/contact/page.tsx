@@ -34,14 +34,24 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
-    // Here you would typically send the form data to your backend
-    console.log(data);
-    // 送信シミュレーション
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setIsSuccess(true);
+        reset();
+      } else {
+        // エラー時の処理（必要に応じてアラートやUI追加可）
+        alert(res.statusText);
+      }
+    } catch (e) {
+      alert(e);
+    } finally {
       setIsSubmitting(false);
-      setIsSuccess(true);
-      reset();
-    }, 1000);
+    }
   };
 
   return (
