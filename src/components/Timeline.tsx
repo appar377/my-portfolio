@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useInView } from "framer-motion";
-// @ts-ignore
+// @ts-expect-error
 import confetti from "canvas-confetti";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
@@ -101,15 +101,12 @@ export default function Timeline({ items }: TimelineProps) {
 }
 
 // Rocket mesh that moves along Y-axis based on scroll progress
-function ScrollRocket({ scrollYProgress }: { scrollYProgress: unknown }) {
+function ScrollRocket({ scrollYProgress }: { scrollYProgress: { get: () => number } }) {
   const ref = useRef<Group>(null!);
   useFrame(() => {
-    // Type guard for scrollYProgress
-    if (typeof (scrollYProgress as any).get === 'function') {
-      const t = (scrollYProgress as any).get();
-      if (ref.current) ref.current.position.y = 5 - t * 10;
-      ref.current.rotation.y += 0.02;
-    }
+    const t = scrollYProgress.get();
+    if (ref.current) ref.current.position.y = 5 - t * 10;
+    ref.current.rotation.y += 0.02;
   });
   return (
     <group
