@@ -55,31 +55,31 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="container py-20">
+    <div className="container max-w-full px-2 sm:px-4 md:px-6 py-10 sm:py-16 md:py-20">
       <BackButton variant="blog" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <h1 className="text-4xl md:text-5xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600">
+        <h1 className="text-3xl xs:text-4xl md:text-5xl font-display text-center mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600 leading-tight">
           {t("home.navigation.blog")}
         </h1>
 
-        <p className="text-lg text-center text-amber-200/80 max-w-2xl mx-auto mb-12">
+        <p className="text-center text-base sm:text-lg text-amber-200/80 max-w-xl sm:max-w-2xl mx-auto mb-8 sm:mb-12 px-2">
           {t("blog.description")}
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {blogPosts.map((post, index) => (
             <motion.article
               key={post.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-amber-900/10 backdrop-blur-sm rounded-xl overflow-hidden border border-amber-500/20 hover:border-amber-500/40 shadow-lg hover:shadow-amber-500/10 transition-all duration-300"
+              className="bg-amber-900/10 backdrop-blur-sm rounded-xl overflow-hidden border border-amber-500/20 hover:border-amber-500/40 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col"
             >
-              <div className="aspect-w-16 aspect-h-9 relative h-48 overflow-hidden">
+              <div className="relative w-full h-40 xs:h-48 sm:h-56 md:h-48 lg:h-40 overflow-hidden">
                 {mounted && (
                   <div className="w-full h-full relative">
                     <Image
@@ -92,22 +92,22 @@ export default function Blog() {
                   </div>
                 )}
               </div>
-              <div className="p-6">
-                <div className="flex items-center text-amber-300 mb-4">
+              <div className="p-4 xs:p-6 flex flex-col flex-1">
+                <div className="flex items-center text-amber-300 mb-2 xs:mb-4 text-xs xs:text-sm">
                   <FaCalendarAlt className="w-4 h-4 mr-2" />
                   <time dateTime={post.date}>
                     {new Date(post.date).toLocaleDateString()}
                   </time>
                 </div>
-                <h3 className="text-xl font-display mb-2 text-white">
+                <h3 className="text-lg xs:text-xl font-display mb-1 xs:mb-2 text-white leading-snug">
                   {post.title}
                 </h3>
-                <p className="text-amber-100/70 mb-4">
+                <p className="text-amber-100/70 mb-2 xs:mb-4 text-sm xs:text-base flex-1">
                   {t(`blog.posts.${post.id}.excerpt`)}
                 </p>
                 <Link
                   href={`/blog/${post.id}`}
-                  className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors duration-200"
+                  className="inline-flex items-center text-amber-400 hover:text-amber-300 transition-colors duration-200 text-sm xs:text-base font-medium mt-auto"
                 >
                   {t("blog.readMore")}
                   <FaArrowRight className="w-4 h-4 ml-2" />

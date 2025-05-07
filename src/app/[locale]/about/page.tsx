@@ -156,39 +156,35 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="container py-20">
+    <div className="container max-w-full px-2 sm:px-4 md:px-6 py-8 sm:py-14 md:py-20">
       <BackButton variant="about" />
       {/* プロフィールセクション */}
-      <section className="relative bg-gradient-to-b from-gray-900 to-transparent pt-24 pb-16 px-6 md:px-12 font-timeline z-20">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative bg-gradient-to-b from-gray-900 to-transparent pt-8 xs:pt-12 sm:pt-20 pb-8 xs:pb-10 sm:pb-16 px-2 xs:px-3 sm:px-6 md:px-12 font-timeline z-20">
+        <div className="max-w-md xs:max-w-2xl sm:max-w-3xl md:max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="profile-card backdrop-blur-md bg-gray-900/70 p-8 md:p-10 rounded-2xl border-2 border-indigo-900/30 shadow-2xl shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500"
+            className="profile-card backdrop-blur-md bg-gray-900/70 p-3 xs:p-4 sm:p-6 md:p-10 rounded-2xl border-2 border-indigo-900/30 shadow-2xl shadow-indigo-500/10 hover:shadow-indigo-500/20 transition-all duration-500"
           >
-            <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex flex-col md:flex-row gap-4 xs:gap-6 md:gap-8 items-center md:items-start">
               {/* プロフィール画像（仮） */}
               <motion.div
-                className="profile-image-container w-40 h-40 relative flex-shrink-0 mx-auto md:mx-0"
+                className="profile-image-container w-20 h-20 xs:w-28 xs:h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 relative flex-shrink-0 mx-auto md:mx-0"
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 p-1.5 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-shadow duration-300">
-                  <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center text-3xl text-white font-bold relative overflow-hidden">
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-indigo-600 p-1 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-shadow duration-300">
+                  <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center text-xl xs:text-2xl sm:text-3xl md:text-4xl text-white font-bold relative overflow-hidden">
                     <motion.span
                       animate={{
                         textShadow: [
-                          "0 0 5px rgba(104, 40, 250, 0.5)",
-                          "0 0 20px rgba(104, 40, 250, 0.8)",
-                          "0 0 5px rgba(104, 40, 250, 0.5)",
+                          '0 0 5px rgba(104, 40, 250, 0.5)',
+                          '0 0 20px rgba(104, 40, 250, 0.8)',
+                          '0 0 5px rgba(104, 40, 250, 0.5)',
                         ],
                       }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                      }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: 'reverse' }}
                     >
                       {profile.name.charAt(0)}
                     </motion.span>
@@ -196,140 +192,38 @@ export default function AboutPage() {
                   </div>
                 </div>
                 <motion.div
-                  className="absolute -bottom-2 -right-2 bg-indigo-600 text-white text-xs px-3 py-1 rounded-full shadow-md"
+                  className="absolute -bottom-2 -right-2 bg-indigo-600 text-white text-[10px] xs:text-xs px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 rounded-full shadow-md"
                   whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  {t("about.profile.engineer")}
+                  {profile.nameEn}
                 </motion.div>
               </motion.div>
-
-              {/* プロフィール情報 */}
-              <div className="flex-1 text-white space-y-5">
-                <div>
-                  <motion.h1
-                    className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-indigo-200 to-purple-300"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    {profile.name}
-                  </motion.h1>
-                  <p className="text-indigo-200 mt-1">{profile.nameEn}</p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                  <motion.div
-                    className="space-y-3 bg-indigo-900/10 p-4 rounded-xl border border-indigo-500/20 hover:border-indigo-500/30 transition-all duration-300"
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 0 20px rgba(104, 40, 250, 0.2)",
-                    }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">
-                        {t("about.profile.birthdate")}
-                      </span>
-                      <span>{profile.birthdate}</span>
-                    </div>
-                    <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">
-                        {t("about.profile.birthplace")}
-                      </span>
-                      <span>{profile.birthplace}</span>
-                    </div>
-                    <div className="flex items-start">
-                      <span className="w-24 text-indigo-200">
-                        {t("about.profile.education")}
-                      </span>
-                      <span>{profile.education}</span>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="space-y-3 bg-purple-900/10 p-4 rounded-xl border border-purple-500/20 hover:border-purple-500/30 transition-all duration-300"
-                    whileHover={{
-                      scale: 1.02,
-                      boxShadow: "0 0 20px rgba(144, 40, 250, 0.2)",
-                    }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <div className="flex flex-col">
-                      <span className="text-purple-200 mb-2">
-                        {t("about.profile.hobbies")}
-                      </span>
-                      <div className="flex flex-wrap gap-2">
-                        {profile.hobbies.map((hobby, idx) => (
-                          <motion.span
-                            key={idx}
-                            className="text-xs bg-purple-900/60 px-3 py-1.5 rounded-full border border-purple-500/30 shadow-sm hover:bg-purple-800 transition-colors duration-200"
-                            whileHover={{
-                              scale: 1.1,
-                              y: -2,
-                              boxShadow: "0 3px 10px rgba(144, 40, 250, 0.3)",
-                            }}
-                            transition={{
-                              type: "spring",
-                              stiffness: 500,
-                              damping: 10,
-                            }}
-                          >
-                            {hobby}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <motion.p
-                  className="text-gray-200 text-sm leading-relaxed md:pr-10 bg-blue-900/10 p-4 rounded-xl border border-blue-500/20 hover:border-blue-500/30 transition-all duration-300"
-                  whileHover={{
-                    scale: 1.01,
-                    boxShadow: "0 0 20px rgba(40, 100, 250, 0.2)",
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  {profile.introduction}
-                </motion.p>
-
-                <div className="pt-2">
-                  <p className="text-cyan-200 text-sm mb-3">
-                    {t("about.profile.skills")}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {profile.skills.map((skill, idx) => (
-                      <motion.span
-                        key={idx}
-                        className="text-xs bg-cyan-900/60 px-3.5 py-1.5 rounded-full border border-cyan-500/30 shadow-sm hover:bg-cyan-800 transition-colors duration-200"
-                        whileHover={{
-                          scale: 1.1,
-                          y: -2,
-                          boxShadow: "0 3px 10px rgba(40, 170, 250, 0.3)",
-                        }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          damping: 10,
-                        }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
+              {/* プロフィールテキスト */}
+              <div className="flex-1 w-full text-center md:text-left space-y-1 xs:space-y-2 sm:space-y-3 md:space-y-4">
+                <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-white mb-0.5 xs:mb-1">{profile.name}</h2>
+                <div className="text-xs xs:text-sm sm:text-base text-white/70 mb-1 xs:mb-2">{profile.birthdate}・{profile.birthplace}</div>
+                <div className="text-xs xs:text-sm sm:text-base text-white/70 mb-1 xs:mb-2">{profile.education}</div>
+                <p className="text-sm xs:text-base sm:text-lg text-white/90 leading-relaxed mb-1 xs:mb-2">{profile.introduction}</p>
+                <div className="flex flex-wrap gap-1 xs:gap-2 justify-center md:justify-start mt-1 xs:mt-2">
+                  {profile.skills.slice(0, 6).map((skill) => (
+                    <span key={skill} className="px-1.5 xs:px-2 py-0.5 xs:py-1 bg-indigo-700/30 text-[10px] xs:text-xs sm:text-sm rounded-full text-indigo-200 border border-indigo-500/20">{skill}</span>
+                  ))}
+                  {profile.skills.length > 6 && (
+                    <span className="px-1.5 xs:px-2 py-0.5 xs:py-1 bg-indigo-700/10 text-[10px] xs:text-xs sm:text-sm rounded-full text-indigo-200 border border-indigo-500/10">+more</span>
+                  )}
                 </div>
               </div>
             </div>
           </motion.div>
 
-          <div className="text-center mt-16 mb-8">
+          <div className="text-center mt-10 xs:mt-14 mb-6 xs:mb-8">
             <motion.h2
-              className="text-2xl md:text-3xl font-bold text-white inline-block relative"
+              className="text-xl xs:text-2xl md:text-3xl font-bold text-white inline-block relative"
               whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
             >
-              {t("about.careerTimeline")}
-              <div className="w-full h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 mt-2 rounded-full shadow-sm shadow-indigo-500/30"></div>
+              {t('about.careerTimeline')}
+              <div className="w-full h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 mt-2 rounded-full shadow-sm shadow-indigo-500/30"></div>
             </motion.h2>
           </div>
         </div>

@@ -144,33 +144,32 @@ export default function Creations() {
       : projects.filter((project) => project.category === activeCategory);
 
   return (
-    <div className="container py-20">
+    <div className="container py-10 sm:py-16 md:py-20">
       <BackButton variant="creations" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-6xl mx-auto"
+        className="max-w-full md:max-w-6xl mx-auto"
       >
-        <h1 className="text-4xl md:text-5xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">
+        <h1 className="text-2xl sm:text-3xl md:text-5xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">
           {t("creations.title")}
         </h1>
 
-        <p className="text-lg text-center text-cyan-200/80 max-w-2xl mx-auto mb-12">
+        <p className="text-base sm:text-lg text-center text-cyan-200/80 max-w-2xl mx-auto mb-8 sm:mb-12">
           {t("creations.description")}
         </p>
 
         {/* カテゴリータブ */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 sm:mb-12">
           {categories.map((category) => (
             <motion.button
               key={category.id}
               onClick={() => setActiveCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm md:text-base transition-all duration-300 ${
-                activeCategory === category.id
+              className={`px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm md:text-base transition-all duration-300 min-w-[80px] sm:min-w-[100px]
+                ${activeCategory === category.id
                   ? `bg-gradient-to-r ${category.color} text-white shadow-lg`
-                  : "bg-blue-900/20 text-blue-200 hover:bg-blue-900/40"
-              }`}
+                  : "bg-blue-900/20 text-blue-200 hover:bg-blue-900/40"}`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -180,7 +179,7 @@ export default function Creations() {
         </div>
 
         {/* プロジェクトグリッド */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -190,7 +189,7 @@ export default function Creations() {
               className="bg-blue-900/10 backdrop-blur-sm rounded-xl overflow-hidden border border-cyan-500/20 hover:border-cyan-500/40 shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 flex flex-col h-full"
             >
               {/* プロジェクト画像 */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative h-40 sm:h-48 overflow-hidden">
                 {mounted && (
                   <Image
                     src={project.image}

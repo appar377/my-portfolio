@@ -162,7 +162,7 @@ export default function CreationDetail() {
   }
 
   return (
-    <div className="container py-20">
+    <div className="container py-10 sm:py-16 md:py-20">
       <BackButton />
       <motion.div
         initial={{ opacity: 0 }}
@@ -171,22 +171,22 @@ export default function CreationDetail() {
       >
         <Link
           href="/creations"
-          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-8 transition-colors duration-200"
+          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 mb-6 sm:mb-8 transition-colors duration-200 text-base sm:text-lg"
         >
           <FaArrowLeft className="mr-2" /> {t("creations.detail.backToList")}
         </Link>
 
-        <article className="max-w-5xl mx-auto">
+        <article className="max-w-full md:max-w-5xl mx-auto">
           {/* プロジェクトヘッダー */}
-          <header className="mb-12">
-            <h1 className="text-3xl md:text-5xl font-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">
+          <header className="mb-8 sm:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-5xl font-display mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-500 to-blue-600">
               {project.title}
             </h1>
 
-            <p className="text-xl text-cyan-300 mb-6">{project.subtitle}</p>
+            <p className="text-lg sm:text-xl text-cyan-300 mb-4 sm:mb-6">{project.subtitle}</p>
 
             {/* メタ情報 */}
-            <div className="flex flex-wrap gap-6 text-sm text-gray-300 mb-8">
+            <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-gray-300 mb-6 sm:mb-8">
               <div className="flex items-center">
                 <FaCalendarAlt className="mr-2 text-cyan-400" />
                 <span>{project.date}</span>
@@ -199,6 +199,17 @@ export default function CreationDetail() {
                 <FaTags className="mr-2 text-cyan-400" />
                 <span>{t(`creations.categories.${project.category}`)}</span>
               </div>
+            </div>
+
+            {/* メイン画像 */}
+            <div className="relative w-full h-40 sm:h-64 md:h-80 rounded-xl overflow-hidden mb-6">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
+                className="object-cover"
+              />
             </div>
 
             {/* アクションボタン */}
@@ -228,18 +239,6 @@ export default function CreationDetail() {
               )}
             </div>
           </header>
-
-          {/* メインイメージ */}
-          <div className="aspect-w-16 aspect-h-9 relative h-96 mb-12 overflow-hidden rounded-xl bg-blue-900/30">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              className="object-cover"
-              priority
-            />
-          </div>
 
           {/* 主要情報エリア */}
           <div className="grid md:grid-cols-3 gap-8 mb-12">

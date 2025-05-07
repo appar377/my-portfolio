@@ -32,39 +32,44 @@ export default function PlanetTimeline({ items }: PlanetTimelineProps) {
       {/* コンテンツ：ヘッダー下からスクロール */}
       <main className="relative z-10 pt-16 font-timeline pb-16">
         <div className="timeline-track" />
-        <div className="timeline-container space-y-8">
+        <div className="timeline-container space-y-6 xs:space-y-8">
           {items.map((item, idx) => (
             <section
               key={idx}
-              className={`${idx % 2 === 0 ? "justify-end pr-[52%]" : "justify-start pl-[52%]"} flex items-center`}
+              className={`flex flex-col items-center w-full ${
+                // Only alternate on md+, always center on mobile
+                (typeof window !== 'undefined' && window.innerWidth < 768)
+                  ? ''
+                  : (idx % 2 === 0 ? 'md:justify-end md:pr-[52%]' : 'md:justify-start md:pl-[52%]')
+              }`}
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, margin: "-20px" }}
-                className="card-timeline w-[420px] h-[280px] backdrop-blur-sm rounded-xl shadow-2xl relative timeline-item overflow-hidden"
+                className="card-timeline w-full max-w-[95vw] xs:max-w-xs sm:max-w-md md:w-[420px] h-auto min-h-[160px] xs:min-h-[200px] sm:min-h-[240px] md:h-[280px] backdrop-blur-sm rounded-xl shadow-2xl relative timeline-item overflow-hidden"
               >
                 {/* 接続線 */}
                 <div
-                  className={`timeline-connector ${idx % 2 === 0 ? "timeline-connector-right" : "timeline-connector-left"}`}
+                  className={`hidden md:block timeline-connector ${idx % 2 === 0 ? "timeline-connector-right" : "timeline-connector-left"}`}
                 />
 
                 {/* 年代マーカー */}
-                <div className="absolute top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-1 rounded-full text-xs font-bold shadow-lg z-10 whitespace-nowrap max-w-[90%] overflow-hidden text-ellipsis">
+                <div className="absolute top-2 xs:top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-600 to-purple-600 px-3 xs:px-4 py-0.5 xs:py-1 rounded-full text-[11px] xs:text-xs font-bold shadow-lg z-10 whitespace-nowrap max-w-[90%] overflow-hidden text-ellipsis">
                   {item.period}
                 </div>
 
-                <div className="card-content h-full flex flex-col p-7 pt-9">
-                  <div className="title-container mb-2">
-                    <h3 className="text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
+                <div className="card-content h-full flex flex-col p-3 xs:p-4 sm:p-7 pt-8 xs:pt-9">
+                  <div className="title-container mb-1 xs:mb-2">
+                    <h3 className="text-sm xs:text-base sm:text-lg md:text-xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300">
                       {item.title}
                     </h3>
-                    <div className="w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mt-1 rounded-full"></div>
+                    <div className="w-6 xs:w-8 sm:w-12 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mt-1 rounded-full"></div>
                   </div>
 
                   {item.description && (
-                    <div className="description-container overflow-auto pr-2 flex-1 text-xs">
+                    <div className="description-container overflow-auto pr-1 xs:pr-2 flex-1 text-xs xs:text-sm">
                       <p className="text-gray-300 leading-relaxed">
                         {item.description}
                       </p>
@@ -73,10 +78,10 @@ export default function PlanetTimeline({ items }: PlanetTimelineProps) {
 
                   {item.technologies && (
                     <div
-                      className={`tech-container flex flex-wrap gap-1.5 justify-start ${item.description ? "mt-3" : "mt-auto"}`}
+                      className={`tech-container flex flex-wrap gap-1 xs:gap-1.5 justify-start ${item.description ? "mt-2 xs:mt-3" : "mt-auto"}`}
                     >
                       {item.technologies.map((tech, i) => (
-                        <span key={i} className="tech-badge">
+                        <span key={i} className="tech-badge text-[10px] xs:text-xs px-1.5 xs:px-2 py-0.5 bg-indigo-700/30 rounded-full text-indigo-200 border border-indigo-500/20">
                           {tech}
                         </span>
                       ))}
@@ -218,6 +223,18 @@ export default function PlanetTimeline({ items }: PlanetTimelineProps) {
         .tech-badge:hover {
           background: rgba(99, 102, 241, 0.2);
           transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+          .timeline-track {
+            display: none;
+          }
+          .timeline-connector {
+            display: none;
+          }
+          .timeline-item::before {
+            display: none;
+          }
         }
       `}</style>
     </>

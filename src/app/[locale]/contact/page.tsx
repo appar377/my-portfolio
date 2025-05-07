@@ -61,27 +61,27 @@ export default function Contact() {
   };
 
   return (
-    <div className="container py-20">
+    <div className="container max-w-full px-2 sm:px-4 md:px-6 py-10 sm:py-16 md:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-4xl mx-auto px-6"
+        className="max-w-2xl md:max-w-4xl mx-auto px-0 sm:px-4"
       >
         {/* Back Button */}
         <button
           type="button"
           onClick={() => router.back()}
-          className="inline-flex items-center gap-2 px-5 py-2 mb-6 rounded-full bg-white/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:text-rose-500 hover:shadow-lg transition-all duration-200 font-medium backdrop-blur-sm"
+          className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-white/10 border border-rose-500/30 text-rose-400 hover:bg-rose-500/10 hover:text-rose-500 hover:shadow-lg transition-all duration-200 font-medium backdrop-blur-sm text-sm sm:text-base"
         >
-          <FaArrowLeft className="text-lg" />
-          <span className="text-base">{t("contact.back")}</span>
+          <FaArrowLeft className="text-base sm:text-lg" />
+          <span>{t("contact.back")}</span>
         </button>
-        <h1 className="text-4xl md:text-5xl font-display text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600">
+        <h1 className="text-3xl xs:text-4xl md:text-5xl font-display text-center mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-rose-500 to-pink-600 leading-tight">
           {t("contact.title")}
         </h1>
 
-        <p className="text-center text-lg text-white/70 max-w-2xl mx-auto mb-12">
+        <p className="text-center text-base sm:text-lg text-white/70 max-w-xl sm:max-w-2xl mx-auto mb-8 sm:mb-12 px-2">
           {t("contact.description")}
         </p>
 
@@ -90,45 +90,47 @@ export default function Contact() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-foreground/5 backdrop-blur-sm border border-rose-500/20 rounded-xl p-8 mb-12"
+          className="bg-foreground/5 backdrop-blur-sm border border-rose-500/20 rounded-xl p-4 xs:p-6 sm:p-8 mb-8 sm:mb-12 shadow-lg"
         >
-          <h2 className="text-2xl font-display mb-6 text-center">
+          <h2 className="text-xl sm:text-2xl font-display mb-4 sm:mb-6 text-center">
             {t("contact.formTitle")}
           </h2>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+            <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-6">
               <div>
-                <label htmlFor="name" className="block mb-2 text-white/80">
+                <label htmlFor="name" className="block mb-2 text-white/80 text-sm sm:text-base">
                   {t("contact.name")}
                 </label>
                 <input
                   id="name"
                   type="text"
                   {...register("name")}
-                  className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                   placeholder={t("contact.name")}
+                  autoComplete="name"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-red-500 text-xs sm:text-sm">
                     {t("contact.nameRequired")}
                   </p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block mb-2 text-white/80">
+                <label htmlFor="email" className="block mb-2 text-white/80 text-sm sm:text-base">
                   {t("contact.email")}
                 </label>
                 <input
                   id="email"
                   type="email"
                   {...register("email")}
-                  className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                  className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200 text-sm sm:text-base"
                   placeholder={t("contact.email")}
+                  autoComplete="email"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-red-500 text-sm">
+                  <p className="mt-1 text-red-500 text-xs sm:text-sm">
                     {t("contact.emailInvalid")}
                   </p>
                 )}
@@ -136,27 +138,27 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="message" className="block mb-2 text-white/80">
+              <label htmlFor="message" className="block mb-2 text-white/80 text-sm sm:text-base">
                 {t("contact.message")}
               </label>
               <textarea
                 id="message"
                 {...register("message")}
-                rows={6}
-                className="w-full px-4 py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200"
+                rows={5}
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-transparent transition-all duration-200 text-sm sm:text-base resize-none"
                 placeholder={t("contact.message")}
               />
               {errors.message && (
-                <p className="mt-1 text-red-500 text-sm">
+                <p className="mt-1 text-red-500 text-xs sm:text-sm">
                   {t("contact.messageMin")}
                 </p>
               )}
             </div>
 
-            <div className="flex justify-center mt-8">
+            <div className="flex justify-center mt-6 sm:mt-8">
               <motion.button
                 type="submit"
-                className="px-8 py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed text-base sm:text-lg min-w-[120px]"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}
@@ -193,15 +195,15 @@ export default function Contact() {
               </motion.button>
             </div>
 
-            <p className="text-center text-xs text-white/50 mt-4">
+            <p className="text-center text-xs sm:text-sm text-white/50 mt-4">
               {t("contact.note")}
             </p>
           </form>
         </motion.div>
 
         {/* プライバシーノート */}
-        <div className="mt-12 text-center">
-          <p className="text-white/50 text-sm">{t("contact.privacy")}</p>
+        <div className="mt-8 sm:mt-12 text-center px-2">
+          <p className="text-white/50 text-xs sm:text-sm">{t("contact.privacy")}</p>
         </div>
       </motion.div>
 
@@ -209,20 +211,20 @@ export default function Contact() {
       <Dialog.Root open={isSuccess} onOpenChange={setIsSuccess}>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 p-8 rounded-xl shadow-xl max-w-md w-full border border-rose-500/30 z-50">
+          <Dialog.Content className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 p-4 xs:p-6 sm:p-8 rounded-xl shadow-xl max-w-xs xs:max-w-sm sm:max-w-md w-full border border-rose-500/30 z-50">
             <div className="text-center">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 mb-6">
-                <FaPaperPlane className="text-white text-xl" />
+              <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-r from-rose-500 to-pink-600 mb-4 sm:mb-6">
+                <FaPaperPlane className="text-white text-lg sm:text-xl" />
               </div>
-              <Dialog.Title className="text-2xl font-display mb-3">
+              <Dialog.Title className="text-lg sm:text-2xl font-display mb-2 sm:mb-3">
                 {t("contact.success")}
               </Dialog.Title>
-              <p className="text-white/70 mb-6">
+              <p className="text-white/70 mb-4 sm:mb-6 text-sm sm:text-base">
                 {t("contact.successMessage")}
               </p>
               <Dialog.Close asChild>
                 <motion.button
-                  className="px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300"
+                  className="px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-full hover:shadow-lg hover:shadow-rose-500/20 transition-all duration-300 text-base sm:text-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -127,7 +127,7 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="container py-20">
+    <div className="container max-w-full px-2 sm:px-4 md:px-6 py-10 sm:py-16 md:py-20">
       <BackButton />
       <motion.div
         initial={{ opacity: 0 }}
@@ -136,18 +136,18 @@ export default function BlogPost() {
       >
         <Link
           href="/blog"
-          className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-8 transition-colors duration-200"
+          className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-4 sm:mb-8 transition-colors duration-200 text-sm sm:text-base"
         >
           <FaArrowLeft className="mr-2" /> {t("blog.detail.backToList")}
         </Link>
 
-        <article className="max-w-4xl mx-auto">
-          <header className="mb-8">
-            <h1 className="text-3xl md:text-5xl font-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600">
+        <article className="max-w-xl sm:max-w-2xl md:max-w-4xl mx-auto">
+          <header className="mb-6 sm:mb-8">
+            <h1 className="text-2xl xs:text-3xl md:text-5xl font-display mb-2 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600 leading-tight">
               {post.title}
             </h1>
 
-            <div className="flex items-center text-amber-300 mb-6">
+            <div className="flex items-center text-amber-300 mb-4 sm:mb-6 text-xs sm:text-base">
               <FaCalendarAlt className="w-4 h-4 mr-2" />
               <time dateTime={post.date}>
                 {new Date(post.date).toLocaleDateString()}
@@ -155,7 +155,7 @@ export default function BlogPost() {
             </div>
           </header>
 
-          <div className="aspect-w-16 aspect-h-9 relative h-72 md:h-96 mb-8 overflow-hidden rounded-xl">
+          <div className="relative w-full h-40 xs:h-56 sm:h-72 md:h-96 mb-6 sm:mb-8 overflow-hidden rounded-xl">
             <Image
               src={post.placeholderImage}
               alt={post.title}
@@ -167,7 +167,7 @@ export default function BlogPost() {
           </div>
 
           <div
-            className="prose prose-lg max-w-none prose-headings:text-amber-300 prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-p:text-gray-200"
+            className="prose prose-base xs:prose-lg max-w-none prose-headings:text-amber-300 prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-p:text-gray-200 px-1 xs:px-0"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </article>

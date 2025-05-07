@@ -604,16 +604,16 @@ export default function Home() {
                 ))}
                 {/* タイトル本体 */}
                 <motion.h1
-                  className="font-display mb-4 md:mb-6 py-8 md:py-12 leading-tight overflow-hidden text-center
-                    text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+                  className="font-display mb-4 md:mb-6 py-6 md:py-12 leading-tight overflow-hidden text-center
+                    text-xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl
                     bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 tracking-tight drop-shadow-lg relative z-10"
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, ease: "easeOut" }}
                 >
-                  <span className="block">{t("home.hero.title")}</span>
+                  <span className="block break-words max-w-full">{t("home.hero.title")}</span>
                   <span
-                    className="block text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold
+                    className="block text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold
                       bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-blue-400
                       mt-2"
                   >
@@ -771,7 +771,7 @@ export default function Home() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="grid md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8 max-w-6xl mx-auto"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-8 max-w-full md:max-w-6xl mx-auto"
             >
               {navigationItems.map((item, index) => {
                 const Icon = item.icon;
@@ -889,7 +889,7 @@ export default function Home() {
                 {t("home.featured.description")}
               </p>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {/* フィーチャードプロジェクト カード (例示用) */}
                 {[1, 2, 3].map((item) => (
                   <motion.div
@@ -1079,19 +1079,13 @@ export default function Home() {
               >
                 <Link
                   href={`/${locale}/contact`}
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+                  className="inline-flex items-center gap-3 px-6 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-medium shadow-md hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300 w-full sm:w-auto justify-center text-base sm:text-lg"
                 >
                   <span>{t("home.contact.cta")}</span>
                   <span className="bg-white/20 rounded-full p-2 flex items-center justify-center">
                     <motion.span
-                      animate={{
-                        y: [0, -3, 0],
-                      }}
-                      transition={{
-                        duration: 1.8,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                      }}
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 1.8, repeat: Infinity, repeatType: "loop" }}
                     >
                       <FaClipboardList className="text-white" />
                     </motion.span>
