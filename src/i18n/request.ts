@@ -1,7 +1,8 @@
-import { getRequestConfig } from "next-intl/server";
+import { getRequestConfig, setRequestLocale } from "next-intl/server";
 import { locales } from "../app/i18n";
 
 export default getRequestConfig(async ({ locale }) => {
+  setRequestLocale(locale);
   if (!locales.includes(locale as 'en' | 'ja')) {
     throw new Error(`Invalid locale: ${locale}`);
   }
