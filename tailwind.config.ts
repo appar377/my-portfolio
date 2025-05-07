@@ -23,8 +23,8 @@ const config: Config = {
         'accent-hover': '#0060D3',
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        display: ['var(--font-playfair)'],
+        sans: ['Montserrat', 'Noto Sans JP', 'var(--font-inter)', 'sans-serif'],
+        display: ['Montserrat', 'Noto Sans JP', 'var(--font-playfair)', 'sans-serif'],
       },
       spacing: {
         '4.5': '1.125rem',

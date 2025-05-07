@@ -130,7 +130,7 @@ export default function Creations() {
         </h1>
         
         <p className="text-lg text-center text-cyan-200/80 max-w-2xl mx-auto mb-12">
-          これまでに取り組んだプロジェクトや作品をご紹介します。様々な技術スタックを活用して制作しています。
+          これまでに個人で開発した作品や制作物をまとめています。
         </p>
 
         {/* カテゴリータブ */}

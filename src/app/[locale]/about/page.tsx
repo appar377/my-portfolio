@@ -13,7 +13,7 @@ export default function AboutPage() {
     birthdate: '2000年7月7日',
     birthplace: '広島県広島市',
     education: '工業高等学校 化学科卒業',
-    introduction: '学ぶことが好きで、現在は英語を少し話し、韓国語も勉強中です。美しいコードを書くことにこだわり、常に読みやすさと拡張性を意識して開発に取り組んでいます。AIを積極的に活用することで、作業の効率化や品質向上にも力を入れています。',
+    introduction: 'AIを積極的に活用し、UI/UXデザインを含む幅広いタスクに対応できるフルスタックエンジニアです。美しいコードと使いやすいデザインの両立を追求し、効率化や品質向上にも力を入れています。現在は英語を少し話し、韓国語も勉強中です。',
     skills: ['HTML/CSS', 'JavaScript/TypeScript', 'React', 'Vue.js/Nuxt.js', 'Python', 'Streamlit', 'Flask', 'pyinstaller(デスクトップアプリ化)', 'GitHub', 'MySQL', 'バッチ処理', 'Docker', 'AWS', 'PHP/Laravel', 'GitHub', 'Playwright' ,'テスト', 'コードレビュー', '仕様作成'],
     hobbies: ['読書', '歌', '筋トレ', 'テニス'],
   };

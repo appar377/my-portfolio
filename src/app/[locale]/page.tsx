@@ -182,17 +182,38 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
                   ))}
                 </motion.div>
 
-                {/* 未来的なディバイダー */}
-                <motion.div 
-                  className="flex items-center justify-center gap-1 mx-auto"
-                  initial={{ opacity: 0, width: 0 }}
-                  animate={{ opacity: 1, width: "100%" }}
-                  transition={{ duration: 0.8, delay: 1.1 }}
-                >
-                  <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-grow max-w-[80px]"></div>
-                  <div className="w-2 h-2 rounded-full bg-cyan-500"></div>
-                  <div className="h-px bg-gradient-to-r from-transparent via-cyan-500 to-transparent flex-grow max-w-[80px]"></div>
-                </motion.div>
+                {/* ダイナミックなサイバー回転リングアクセント */}
+                <span className="flex items-center justify-center mt-6 select-none relative h-16 sm:h-20 md:h-24">
+                  {/* リング1 */}
+                  <motion.span
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full border-2 border-cyan-400/60"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                  />
+                  {/* リング2 */}
+                  <motion.span
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full border-2 border-blue-400/40"
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 12, repeat: Infinity, ease: 'linear' }}
+                  />
+                  {/* リング3（グラデーション） */}
+                  <motion.span
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-full border-2 border-transparent"
+                    style={{
+                      background: 'conic-gradient(from 0deg, #06b6d4 0%, #6366f1 40%, #a21caf 80%, #06b6d4 100%)',
+                      WebkitMaskImage: 'radial-gradient(circle, white 60%, transparent 100%)',
+                      maskImage: 'radial-gradient(circle, white 60%, transparent 100%)',
+                    }}
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                  />
+                  {/* リング4（細い・速い） */}
+                  <motion.span
+                    className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full border border-indigo-400/30"
+                    animate={{ rotate: -720 }}
+                    transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+                  />
+                </span>
                 
                 {/* タイプライターエフェクト */}
                 <div className="text-lg sm:text-xl text-center h-6 font-mono tracking-wide">
@@ -458,66 +479,99 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="text-center max-w-full mx-auto"
             >
-              <motion.h1
-                className="font-display mb-6 leading-tight overflow-hidden"
-              >
-                {/* 名前のタイトル - サイズを調整して確実に収まるようにする */}
+              {/* タイトル全体を包み込むグラデーションオーラ＋パーティクル＋サイバーグリッド */}
+              <div className="relative flex flex-col items-center justify-center">
+                {/* サイバーグリッド（斜めライン） */}
+                <div className="absolute inset-0 pointer-events-none z-0">
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <span
+                      key={i}
+                      className="absolute w-[2px] h-full bg-gradient-to-b from-cyan-500/10 via-blue-500/10 to-indigo-500/0"
+                      style={{
+                        left: `${(i + 1) * 7}%`,
+                        transform: `rotate(-18deg)`
+                      }}
+                    />
+                  ))}
+                </div>
+                {/* グラデーションオーラ（複数重ねる） */}
                 <motion.div
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[220px] sm:w-[600px] sm:h-[320px] rounded-full bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-indigo-500/10 blur-3xl"
+                  initial={{ scale: 0.95, opacity: 0.7 }}
+                  animate={{ scale: [0.95, 1.05, 0.95], opacity: [0.7, 0.9, 0.7] }}
+                  transition={{ duration: 8, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+                  style={{ zIndex: 1 }}
+                />
+                <motion.div
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[120px] sm:w-[420px] sm:h-[180px] rounded-full bg-gradient-to-br from-indigo-400/20 via-cyan-400/10 to-blue-400/10 blur-2xl"
+                  initial={{ scale: 1.1, opacity: 0.5 }}
+                  animate={{ scale: [1.1, 0.95, 1.1], opacity: [0.5, 0.7, 0.5] }}
+                  transition={{ duration: 10, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+                  style={{ zIndex: 1 }}
+                />
+                {/* パーティクル */}
+                {Array.from({ length: 10 }).map((_, i) => (
+                  <motion.span
+                    key={i}
+                    className="absolute rounded-full bg-white/60 shadow-lg"
+                    style={{
+                      width: `${8 + Math.random() * 8}px`,
+                      height: `${8 + Math.random() * 8}px`,
+                      left: `${10 + Math.random() * 80}%`,
+                      top: `${10 + Math.random() * 80}%`,
+                      zIndex: 2,
+                    }}
+                    animate={{
+                      y: [0, Math.random() * 30 - 15, 0],
+                      x: [0, Math.random() * 30 - 15, 0],
+                      opacity: [0.7, 1, 0.7],
+                    }}
+                    transition={{
+                      duration: 6 + Math.random() * 4,
+                      repeat: Infinity,
+                      repeatType: 'loop',
+                      ease: 'easeInOut',
+                      delay: Math.random() * 2
+                    }}
+                  />
+                ))}
+                {/* タイトル本体 */}
+                <motion.h1
+                  className="font-display mb-4 md:mb-6 py-8 md:py-12 leading-tight overflow-hidden text-center
+                    text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
+                    bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500 tracking-tight drop-shadow-lg relative z-10"
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1, ease: 'easeOut' }}
+                >
+                  <span className="block">
+                    Yusuke Uwagaich
+                  </span>
+                  <span
+                    className="block text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold
+                      bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-blue-400
+                      mt-2"
+                  >
+                    Full Stack Engineer × Designer
+                  </span>
+                </motion.h1>
+                {/* サブタイトルをオシャレに */}
+                <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="relative px-4 py-2 mx-auto overflow-x-hidden max-w-full"
+                  transition={{ duration: 1, delay: 1.1 }}
+                  className="text-base xs:text-lg md:text-2xl text-center font-semibold tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-blue-200 to-indigo-300 drop-shadow-md mb-6 max-w-2xl mx-auto animate-float"
+                  style={{ textShadow: '0 2px 16px #0ff6, 0 1px 2px #0ff2' }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 via-cyan-500/10 to-blue-600/10 rounded-lg blur-xl"></div>
-                  {/* スマホでは2行に分ける、大きい画面では1行 */}
-                  <div className="relative z-10 grid grid-cols-7 sm:flex sm:justify-center sm:items-center text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
-                    {["上", "垣", "内", "裕", "介", "の", ""].map((char, index) => (
-                      <motion.span
-                        key={`first-${index}`}
-                        className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-300 to-blue-300"
-                        initial={{ opacity: 0, y: 40, rotateX: -90 }}
-                        animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                        transition={{ 
-                          duration: 0.7, 
-                          delay: 0.05 * index,
-                          ease: [0.215, 0.61, 0.355, 1] 
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                    {["ポ", "ー", "ト", "フ", "ォ", "リ", "オ"].map((char, index) => (
-                      <motion.span
-                        key={`second-${index}`}
-                        className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-300 to-blue-300"
-                        initial={{ opacity: 0, y: 40, rotateX: -90 }}
-                        animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                        transition={{ 
-                          duration: 0.7, 
-                          delay: 0.05 * (index + 7),
-                          ease: [0.215, 0.61, 0.355, 1] 
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.5 }}
-                className="text-xl md:text-2xl text-white/80 mb-12"
-              >
-                {t('home.hero.subtitle')}
-              </motion.p>
-              
+                  {t('home.hero.subtitle')}
+                </motion.p>
+                {/* サブタイトル下のグラデーションライン */}
+                <span className="block mx-auto w-24 h-1 rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 opacity-70 mb-2" />
+              </div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
                 className="flex flex-wrap gap-6 justify-center"
               >
                 <motion.div
