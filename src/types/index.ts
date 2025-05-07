@@ -1,3 +1,3 @@
-import { LangType } from '@/types/LangType'
+import { LangType } from "@/types/LangType";
 
-export type { LangType }
+export type { LangType };

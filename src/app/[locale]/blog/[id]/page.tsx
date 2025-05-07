@@ -1,29 +1,30 @@
-'use client';
+"use client";
 
-import { useParams, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaCalendarAlt, FaArrowLeft } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
-import BackButton from '@/components/BackButton';
-import { useTranslations } from 'next-intl';
+import { useParams, useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import { FaCalendarAlt, FaArrowLeft } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import BackButton from "@/components/BackButton";
+import { useTranslations } from "next-intl";
 
 // ダミーの画像パス（実際の画像がない場合のフォールバック用）
 const placeholderImages = [
-  'https://placehold.co/1200x600/5271ff/ffffff?text=Next.js',
-  'https://placehold.co/1200x600/52c1ff/ffffff?text=Mobile+Dev',
-  'https://placehold.co/1200x600/52ffb8/ffffff?text=Accessibility'
+  "https://placehold.co/1200x600/5271ff/ffffff?text=Next.js",
+  "https://placehold.co/1200x600/52c1ff/ffffff?text=Mobile+Dev",
+  "https://placehold.co/1200x600/52ffb8/ffffff?text=Accessibility",
 ];
 
 // Sample blog data - replace with your actual blog posts
 const blogPosts = [
   {
     id: "1",
-    title: 'Building Modern Web Applications with Next.js',
-    excerpt: 'Learn how to build scalable and performant web applications using Next.js and modern development practices.',
-    date: '2024-03-15',
-    image: '/blog/nextjs.jpg',
+    title: "Building Modern Web Applications with Next.js",
+    excerpt:
+      "Learn how to build scalable and performant web applications using Next.js and modern development practices.",
+    date: "2024-03-15",
+    image: "/blog/nextjs.jpg",
     placeholderImage: placeholderImages[0],
     content: `
       <p>Next.js has revolutionized the way we build React applications, offering a powerful framework for creating modern web experiences. In this article, we'll explore the key features that make Next.js a top choice for developers.</p>
@@ -39,14 +40,15 @@ const blogPosts = [
       
       <h2>File-Based Routing</h2>
       <p>Next.js uses a file-based routing system that simplifies navigation in your application. Simply create files in your pages directory, and Next.js automatically creates corresponding routes.</p>
-    `
+    `,
   },
   {
     id: "2",
-    title: 'The Future of Mobile Development',
-    excerpt: 'Exploring the latest trends and technologies in mobile application development.',
-    date: '2024-03-10',
-    image: '/blog/mobile.jpg',
+    title: "The Future of Mobile Development",
+    excerpt:
+      "Exploring the latest trends and technologies in mobile application development.",
+    date: "2024-03-10",
+    image: "/blog/mobile.jpg",
     placeholderImage: placeholderImages[1],
     content: `
       <p>Mobile development continues to evolve rapidly, with new technologies and approaches emerging regularly. This article examines some of the key trends shaping the future of mobile app development.</p>
@@ -62,14 +64,15 @@ const blogPosts = [
       
       <h2>5G Connectivity</h2>
       <p>The rollout of 5G networks is opening up new possibilities for mobile apps. Higher speeds and lower latency will enable more complex, data-intensive applications and features.</p>
-    `
+    `,
   },
   {
     id: "3",
-    title: 'Designing for Accessibility',
-    excerpt: 'Best practices for creating accessible and inclusive user interfaces.',
-    date: '2024-03-05',
-    image: '/blog/accessibility.jpg',
+    title: "Designing for Accessibility",
+    excerpt:
+      "Best practices for creating accessible and inclusive user interfaces.",
+    date: "2024-03-05",
+    image: "/blog/accessibility.jpg",
     placeholderImage: placeholderImages[2],
     content: `
       <p>Accessibility in web design is not just a nice-to-have feature; it's a necessity. This article outlines essential practices for creating interfaces that are accessible to all users, regardless of their abilities.</p>
@@ -85,8 +88,8 @@ const blogPosts = [
       
       <h2>Alternative Text</h2>
       <p>Providing descriptive alternative text for images ensures that users who cannot see them can still understand their content and purpose. This is particularly important for images that convey information.</p>
-    `
-  }
+    `,
+  },
 ];
 
 export default function BlogPost() {
@@ -100,7 +103,7 @@ export default function BlogPost() {
   }, []);
 
   const postId = params.id as string;
-  const post = blogPosts.find(post => post.id === postId);
+  const post = blogPosts.find((post) => post.id === postId);
 
   if (!mounted) {
     return <div className="container mx-auto px-6 py-20">Loading...</div>;
@@ -109,10 +112,15 @@ export default function BlogPost() {
   if (!post) {
     return (
       <div className="container mx-auto px-6 py-20 text-center">
-        <h1 className="text-4xl text-amber-500 mb-4">{t('blog.detail.notFoundTitle')}</h1>
-        <p className="mb-8">{t('blog.detail.notFoundDescription')}</p>
-        <Link href="/blog" className="inline-flex items-center text-amber-400 hover:text-amber-300">
-          <FaArrowLeft className="mr-2" /> {t('blog.detail.backToList')}
+        <h1 className="text-4xl text-amber-500 mb-4">
+          {t("blog.detail.notFoundTitle")}
+        </h1>
+        <p className="mb-8">{t("blog.detail.notFoundDescription")}</p>
+        <Link
+          href="/blog"
+          className="inline-flex items-center text-amber-400 hover:text-amber-300"
+        >
+          <FaArrowLeft className="mr-2" /> {t("blog.detail.backToList")}
         </Link>
       </div>
     );
@@ -126,11 +134,11 @@ export default function BlogPost() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
-        <Link 
-          href="/blog" 
+        <Link
+          href="/blog"
           className="inline-flex items-center text-amber-400 hover:text-amber-300 mb-8 transition-colors duration-200"
         >
-          <FaArrowLeft className="mr-2" /> {t('blog.detail.backToList')}
+          <FaArrowLeft className="mr-2" /> {t("blog.detail.backToList")}
         </Link>
 
         <article className="max-w-4xl mx-auto">
@@ -138,7 +146,7 @@ export default function BlogPost() {
             <h1 className="text-3xl md:text-5xl font-display mb-4 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-orange-600">
               {post.title}
             </h1>
-            
+
             <div className="flex items-center text-amber-300 mb-6">
               <FaCalendarAlt className="w-4 h-4 mr-2" />
               <time dateTime={post.date}>
@@ -158,7 +166,7 @@ export default function BlogPost() {
             />
           </div>
 
-          <div 
+          <div
             className="prose prose-lg max-w-none prose-headings:text-amber-300 prose-a:text-amber-400 hover:prose-a:text-amber-300 prose-p:text-gray-200"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
@@ -166,4 +174,4 @@ export default function BlogPost() {
       </motion.div>
     </div>
   );
-} 
+}

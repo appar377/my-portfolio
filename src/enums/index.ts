@@ -1,3 +1,3 @@
-import { LangEnum } from './LangEnum'
+import { LangEnum } from "./LangEnum";
 
-export { LangEnum }
+export { LangEnum };

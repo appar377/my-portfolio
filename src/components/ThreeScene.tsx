@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { Canvas, useFrame } from '@react-three/fiber';
-import { useRef, ReactNode } from 'react';
-import * as THREE from 'three';
-import { useSpring, a } from '@react-spring/three';
-import { useEffect, useState } from 'react';
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useRef, ReactNode } from "react";
+import * as THREE from "three";
+import { useSpring, a } from "@react-spring/three";
+import { useEffect, useState } from "react";
 
 // Props for ThreeScene to receive scroll section index
 export type ThreeSceneProps = { activeSection: number };
@@ -32,9 +32,9 @@ export default function ThreeScene({ activeSection }: ThreeSceneProps) {
 // Single mesh that smoothly transitions rotation, scale, color per section
 function DynamicMesh({ activeSection }: { activeSection: number }) {
   const geometries = [
-    { type: 'icosahedron', args: [1.5, 0] },
-    { type: 'box', args: [2, 2, 2] },
-    { type: 'octahedron', args: [1.5, 0] },
+    { type: "icosahedron", args: [1.5, 0] },
+    { type: "box", args: [2, 2, 2] },
+    { type: "octahedron", args: [1.5, 0] },
   ];
   const geometryIndex = activeSection % geometries.length;
 
@@ -45,7 +45,7 @@ function DynamicMesh({ activeSection }: { activeSection: number }) {
 
   // クロスフェード用
   const [prevGeometry, setPrevGeometry] = useState(geometryIndex);
-  const [nextGeometry, setNextGeometry] = useState<number|null>(null);
+  const [nextGeometry, setNextGeometry] = useState<number | null>(null);
   const [isFading, setIsFading] = useState(false);
   const fadeDuration = 600; // ms
 
@@ -89,7 +89,8 @@ function DynamicMesh({ activeSection }: { activeSection: number }) {
         const t = state.clock.getElapsedTime();
         const pulse = 1 + 0.15 * Math.sin(t * 2 + activeSection);
         const currentScale = ref.current.scale.x;
-        const newScale = currentScale + ((targetScale * pulse) - currentScale) * delta * 3;
+        const newScale =
+          currentScale + (targetScale * pulse - currentScale) * delta * 3;
         ref.current.scale.set(newScale, newScale, newScale);
       }
     };
@@ -100,26 +101,43 @@ function DynamicMesh({ activeSection }: { activeSection: number }) {
   // geometryノード
   const getGeometryNode = (idx: number) => {
     const g = geometries[idx];
-    if (g.type === 'icosahedron') return <icosahedronGeometry args={g.args as [number, number]} />;
-    if (g.type === 'box') return <boxGeometry args={g.args as [number, number, number]} />;
-    if (g.type === 'octahedron') return <octahedronGeometry args={g.args as [number, number]} />;
+    if (g.type === "icosahedron")
+      return <icosahedronGeometry args={g.args as [number, number]} />;
+    if (g.type === "box")
+      return <boxGeometry args={g.args as [number, number, number]} />;
+    if (g.type === "octahedron")
+      return <octahedronGeometry args={g.args as [number, number]} />;
     return null;
   };
 
   return (
     <>
       {/* 前のgeometry（fade out） */}
-      <a.mesh ref={prevRef} scale={prevSpring.scale} visible={prevGeometry !== null}>
+      <a.mesh
+        ref={prevRef}
+        scale={prevSpring.scale}
+        visible={prevGeometry !== null}
+      >
         {getGeometryNode(prevGeometry)}
-        <a.meshBasicMaterial color={prevSpring.color} wireframe opacity={prevSpring.opacity} transparent />
+        <a.meshBasicMaterial
+          color={prevSpring.color}
+          wireframe
+          opacity={prevSpring.opacity}
+          transparent
+        />
       </a.mesh>
       {/* 新しいgeometry（fade in） */}
       {nextGeometry !== null && (
         <a.mesh ref={nextRef} scale={nextSpring.scale}>
           {getGeometryNode(nextGeometry)}
-          <a.meshBasicMaterial color={nextSpring.color} wireframe opacity={nextSpring.opacity} transparent />
+          <a.meshBasicMaterial
+            color={nextSpring.color}
+            wireframe
+            opacity={nextSpring.opacity}
+            transparent
+          />
         </a.mesh>
       )}
     </>
   );
-} 
+}

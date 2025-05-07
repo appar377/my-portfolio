@@ -77,20 +77,76 @@
       "introduction": "AI-driven full stack engineer with a passion for beautiful code and user-friendly design. Skilled in a wide range of tasks including UI/UX design. Always striving for efficiency and quality. Currently learning English and Korean."
     },
     "timeline": {
-      "0": { "title": "Born in Hiroshima", "period": "2000.7", "description": "Born in Hiroshima City, a place rich in history and culture. Grew up with curiosity in an environment where nature and technology coexist." },
-      "1": { "title": "Specialized Education in Chemistry", "period": "2016.4-2019.3", "description": "Fascinated by chemistry, chose a technical high school chemistry course. Acquired experimental and analytical skills, logical thinking, and scientific approach. Obtained several certifications and deepened expertise." },
-      "2": { "title": "Career Start at Chemical Plant", "period": "2019.4-2021.7", "description": "Applied knowledge and skills at a local chemical plant. Engaged in quality control and process optimization, realizing the importance of data analysis and teamwork." },
-      "3": { "title": "Awakening to the Digital World", "period": "2019.10-", "description": "Inspired by data analysis at the plant, became fascinated by programming. Started self-study using online resources, coding late into the night." },
-      "4": { "title": "Seeking Systematic Learning", "period": "2020.10-2021.3", "description": "Joined a programming school for systematic knowledge and skills in web development. Broadened perspective through competition with peers." },
-      "5": { "title": "Period of Stagnation and Introspection", "period": "2021.3-2021.7", "description": "After graduation, faced a period of uncertainty and introspection, which became an opportunity to reconsider true aspirations." },
-      "6": { "title": "Decision and Career Change", "period": "2021.7", "description": "After much deliberation, decided to leave the chemical plant to pursue a passion for programming, stepping into a new path with both anxiety and hope." },
-      "7": { "title": "Balancing Study and Life", "period": "2021.8-2022.2", "description": "Continued programming studies while working part-time, steadily improving skills." },
-      "8": { "title": "Retry - Full-Fledged Engineer Training", "period": "2022.2-2022.7", "description": "Re-enrolled in a programming school for advanced practical curriculum, focusing on modern tech stack and team development." },
-      "9": { "title": "Steady Growth and Confidence", "period": "2022.7", "description": "Graduated with clear growth and confidence, improving problem-solving and communication skills." },
-      "10": { "title": "First Professional Experience - Investment Info Service", "period": "2022.8-2022.10", "description": "Participated in a project for investor information services, handling design and implementation of new features using Vue.js, and learning professional development processes." },
-      "11": { "title": "Challenge and Trial for Independence", "period": "2022.11-2023.3", "description": "Sought projects via crowdsourcing and agents, gaining valuable experience despite initial setbacks, clarifying direction for self-improvement." },
-      "12": { "title": "First Project - Automated Management System", "period": "2023.4-2024.1", "description": "Joined a web automation service project as a frontend engineer, handling UI/UX design and implementation, optimizing state management, and building CI/CD pipelines." },
-      "13": { "title": "Planning and Development of Web Card Game", "period": "2024.2-2025.5", "description": "Handled everything from planning and UI/UX design to frontend and backend integration, overcoming technical challenges and focusing on creating an intuitive and enjoyable game experience." }
+      "0": {
+        "title": "Born in Hiroshima",
+        "period": "2000.7",
+        "description": "Born in Hiroshima City, a place rich in history and culture. Grew up with curiosity in an environment where nature and technology coexist."
+      },
+      "1": {
+        "title": "Specialized Education in Chemistry",
+        "period": "2016.4-2019.3",
+        "description": "Fascinated by chemistry, chose a technical high school chemistry course. Acquired experimental and analytical skills, logical thinking, and scientific approach. Obtained several certifications and deepened expertise."
+      },
+      "2": {
+        "title": "Career Start at Chemical Plant",
+        "period": "2019.4-2021.7",
+        "description": "Applied knowledge and skills at a local chemical plant. Engaged in quality control and process optimization, realizing the importance of data analysis and teamwork."
+      },
+      "3": {
+        "title": "Awakening to the Digital World",
+        "period": "2019.10-",
+        "description": "Inspired by data analysis at the plant, became fascinated by programming. Started self-study using online resources, coding late into the night."
+      },
+      "4": {
+        "title": "Seeking Systematic Learning",
+        "period": "2020.10-2021.3",
+        "description": "Joined a programming school for systematic knowledge and skills in web development. Broadened perspective through competition with peers."
+      },
+      "5": {
+        "title": "Period of Stagnation and Introspection",
+        "period": "2021.3-2021.7",
+        "description": "After graduation, faced a period of uncertainty and introspection, which became an opportunity to reconsider true aspirations."
+      },
+      "6": {
+        "title": "Decision and Career Change",
+        "period": "2021.7",
+        "description": "After much deliberation, decided to leave the chemical plant to pursue a passion for programming, stepping into a new path with both anxiety and hope."
+      },
+      "7": {
+        "title": "Balancing Study and Life",
+        "period": "2021.8-2022.2",
+        "description": "Continued programming studies while working part-time, steadily improving skills."
+      },
+      "8": {
+        "title": "Retry - Full-Fledged Engineer Training",
+        "period": "2022.2-2022.7",
+        "description": "Re-enrolled in a programming school for advanced practical curriculum, focusing on modern tech stack and team development."
+      },
+      "9": {
+        "title": "Steady Growth and Confidence",
+        "period": "2022.7",
+        "description": "Graduated with clear growth and confidence, improving problem-solving and communication skills."
+      },
+      "10": {
+        "title": "First Professional Experience - Investment Info Service",
+        "period": "2022.8-2022.10",
+        "description": "Participated in a project for investor information services, handling design and implementation of new features using Vue.js, and learning professional development processes."
+      },
+      "11": {
+        "title": "Challenge and Trial for Independence",
+        "period": "2022.11-2023.3",
+        "description": "Sought projects via crowdsourcing and agents, gaining valuable experience despite initial setbacks, clarifying direction for self-improvement."
+      },
+      "12": {
+        "title": "First Project - Automated Management System",
+        "period": "2023.4-2024.1",
+        "description": "Joined a web automation service project as a frontend engineer, handling UI/UX design and implementation, optimizing state management, and building CI/CD pipelines."
+      },
+      "13": {
+        "title": "Planning and Development of Web Card Game",
+        "period": "2024.2-2025.5",
+        "description": "Handled everything from planning and UI/UX design to frontend and backend integration, overcoming technical challenges and focusing on creating an intuitive and enjoyable game experience."
+      }
     },
     "careerTimeline": "Career Timeline"
   },
@@ -200,4 +256,4 @@
       "backToList": "Back to Blog"
     }
   }
-} 
+}

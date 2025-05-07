@@ -1,3 +1,3 @@
-import { LangEnum } from '../enums'
+import { LangEnum } from "../enums";
 
-export type LangType = LangEnum.EN | LangEnum.JA
+export type LangType = LangEnum.EN | LangEnum.JA;
