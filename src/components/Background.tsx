@@ -125,7 +125,7 @@ const lightRays = [
   },
 ];
 
-const Background = () => {
+const Background = ({ className = "" }: { className?: string }) => {
   const [activeSection, setActiveSection] = useState(0);
   const pathname = usePathname();
   const [isMounted, setIsMounted] = useState(false);
@@ -162,7 +162,7 @@ const Background = () => {
   // 基本的な背景要素のみを最初にレンダリング
   if (!isMounted) {
     return (
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className={`fixed inset-0 -z-10 overflow-hidden ${className}`}>
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 to-background/80 opacity-60"></div>
         <div className="absolute inset-0 bg-radial-gradient pointer-events-none"></div>
       </div>
@@ -171,7 +171,7 @@ const Background = () => {
 
   return (
     <>
-      <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className={`fixed inset-0 -z-10 overflow-hidden ${className}`}>
         {/* 3D Scene with section-based variation */}
         <ThreeScene activeSection={activeSection} />
 

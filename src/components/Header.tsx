@@ -27,10 +27,11 @@ const navItems = [
     textColor: "text-emerald-200",
   },
   {
-    path: "/blog",
+    path: "https://rootscope.blog/",
     label: "Blog",
     color: "gradient-to-r from-amber-500 to-orange-600",
     textColor: "text-amber-200",
+    external: true,
   },
   {
     path: "/contact",
@@ -84,7 +85,7 @@ export default function Header() {
 
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
-              const isActive = pathname?.includes(item.path);
+              const isActive = !item.external && pathname?.includes(item.path);
               return (
                 <motion.div
                   key={item.path}
@@ -94,6 +95,8 @@ export default function Header() {
                 >
                   <Link
                     href={item.path}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noopener noreferrer" : undefined}
                     className={`${item.textColor} font-medium relative group transition-all duration-300`}
                   >
                     <span>{item.label}</span>

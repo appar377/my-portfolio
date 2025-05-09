@@ -320,10 +320,11 @@ const navigationItems = [
     color: "from-emerald-500 to-teal-600",
   },
   {
-    path: "/blog",
+    path: "https://rootscope.blog/",
     icon: FaBlog,
     labelKey: "home.navigation.blog",
     color: "from-amber-500 to-orange-600",
+    external: true,
   },
   {
     path: "/contact",
@@ -776,6 +777,8 @@ export default function Home() {
                   >
                     <Link
                       href={item.path}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
                       className="flex flex-col items-center justify-center h-40 md:h-52 w-full bg-gray-900/60 backdrop-blur-md rounded-2xl border-2 border-gray-800/50 hover:border-transparent transition-all duration-300 overflow-hidden relative"
                     >
                       {/* 背景グラデーション */}
