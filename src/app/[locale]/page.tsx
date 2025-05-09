@@ -10,9 +10,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import {
-  FaArrowRight,
   FaUserAlt,
-  FaLaptopCode,
   FaBriefcase,
   FaBlog,
   FaComments,
@@ -307,12 +305,12 @@ const navigationItems = [
     labelKey: "home.navigation.about",
     color: "from-purple-500 to-indigo-600",
   },
-  {
-    path: "/creations",
-    icon: FaLaptopCode,
-    labelKey: "home.navigation.creations",
-    color: "from-cyan-500 to-blue-600",
-  },
+  // {
+  //   path: "/creations",
+  //   icon: FaLaptopCode,
+  //   labelKey: "home.navigation.creations",
+  //   color: "from-cyan-500 to-blue-600",
+  // },
   {
     path: "/services",
     icon: FaBriefcase,
@@ -622,7 +620,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 1.1 }}
                 className="flex flex-wrap gap-6 justify-center"
               >
-                <motion.div
+                {/* <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -642,7 +640,7 @@ export default function Home() {
                       <FaArrowRight />
                     </motion.span>
                   </Link>
-                </motion.div>
+                </motion.div> */}
 
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -826,163 +824,6 @@ export default function Home() {
         </section>
 
         {/* フィーチャーセクション */}
-        <section className="py-24 relative">
-          {/* 装飾的な背景 */}
-          <div className="absolute inset-0 pointer-events-none">
-            <motion.div
-              className="absolute right-0 top-0 w-1/3 h-1/2 bg-cyan-500/5 blur-3xl rounded-full"
-              animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.2, 0.4, 0.2],
-                y: [0, -20, 0],
-              }}
-              transition={{
-                duration: 18,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-
-            <motion.div
-              className="absolute left-0 bottom-0 w-1/4 h-1/3 bg-blue-500/5 blur-3xl rounded-full"
-              animate={{
-                scale: [1.1, 1, 1.1],
-                opacity: [0.3, 0.5, 0.3],
-                x: [0, 20, 0],
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 3,
-              }}
-            />
-          </div>
-
-          <div className="container mx-auto px-6 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="max-w-6xl mx-auto"
-            >
-              <h2 className="text-3xl md:text-4xl font-display text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-                {t("home.featured.title")}
-              </h2>
-              <p className="text-center text-white/70 max-w-2xl mx-auto mb-12">
-                {t("home.featured.description")}
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {/* フィーチャードプロジェクト カード (例示用) */}
-                {[1, 2, 3].map((item) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: item * 0.1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    whileHover={{
-                      y: -10,
-                      transition: {
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 10,
-                      },
-                    }}
-                    className="bg-gray-900/40 backdrop-blur-sm rounded-xl overflow-hidden group hover:shadow-lg hover:shadow-cyan-500/10 border border-gray-800/50 hover:border-cyan-500/30 transition-all duration-300"
-                  >
-                    <div className="h-48 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 relative overflow-hidden">
-                      <motion.div
-                        className="absolute inset-0 bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-all duration-500"
-                        whileHover={{
-                          background:
-                            "radial-gradient(circle at center, rgba(6, 182, 212, 0.3) 0%, rgba(6, 182, 212, 0.1) 70%)",
-                        }}
-                      />
-                      <motion.div
-                        className="absolute inset-0 flex items-center justify-center"
-                        whileHover={{ scale: 1.2, rotate: 10 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 300,
-                          damping: 10,
-                        }}
-                      >
-                        <FaLaptopCode className="text-5xl text-white/50 group-hover:text-white/80 transition-all duration-300" />
-                      </motion.div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-display text-white mb-2">
-                        {t("home.featured.projectTitle", { item })}
-                      </h3>
-                      <p className="text-white/60 text-sm mb-4">
-                        {t("home.featured.projectDescription")}
-                      </p>
-                      <div className="flex items-center">
-                        <motion.div
-                          whileHover={{ x: 5 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 10,
-                          }}
-                        >
-                          <Link
-                            href="/creations/1"
-                            className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition-colors"
-                          >
-                            {t("home.featured.detail")}
-                            <motion.span
-                              className="inline-block ml-2"
-                              animate={{ x: [0, 4, 0] }}
-                              transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                repeatType: "loop",
-                                ease: "easeInOut",
-                              }}
-                            >
-                              <FaArrowRight className="text-sm" />
-                            </motion.span>
-                          </Link>
-                        </motion.div>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="text-center mt-12">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <Link
-                    href="/creations"
-                    className="inline-flex items-center px-6 py-3 rounded-full border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 hover:text-cyan-300 transition-all duration-300"
-                  >
-                    {t("home.featured.all")}
-                    <motion.span
-                      className="inline-block ml-2"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <FaArrowRight />
-                    </motion.span>
-                  </Link>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
 
         {/* お問い合わせセクション - 新規追加 */}
         <section className="py-24 bg-gradient-to-b from-gray-900/30 to-blue-900/20 backdrop-blur-lg relative overflow-hidden">
