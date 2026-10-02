@@ -1,42 +1,61 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { z } from "zod";
+import { contactFormEnabled } from "@/config/contact";
+
+const enquirySchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1)
+    .max(100)
+    .regex(/^[^\r\n]+$/),
+  email: z.string().trim().email().max(254),
+  message: z.string().trim().min(10).max(5000),
+});
 
 export async function POST(req: NextRequest) {
-  const { name, email, message } = await req.json();
-
-  if (!name || !email || !message) {
+  if (!contactFormEnabled) {
     return NextResponse.json(
-      { message: "Missing required fields" },
-      { status: 400 },
+      { message: "Enquiries are not available yet" },
+      { status: 503 },
     );
   }
+  const body = await req.json().catch(() => null);
+  const enquiry = enquirySchema.safeParse(body);
+  if (!enquiry.success)
+    return NextResponse.json({ message: "Invalid enquiry" }, { status: 400 });
 
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
-    },
-  });
-
-  console.log(transporter);
-
-  try {
-    await transporter.sendMail({
-      from: `"${name}" <${process.env.GMAIL_USER}>`,
-      replyTo: email,
-      to: "riku.ren.sou@gmail.com",
-      subject: `お問い合わせ from ${name}`,
-      text: `名前: ${name}\nメール: ${email}\n\n${message}`,
-    });
-
+  const { GMAIL_USER, GMAIL_PASS, CONTACT_TO, CONTACT_FORM_ENABLED } =
+    process.env;
+  if (
+    CONTACT_FORM_ENABLED !== "true" ||
+    !GMAIL_USER ||
+    !GMAIL_PASS ||
+    !CONTACT_TO
+  ) {
     return NextResponse.json(
-      { message: "メールが送信されました" },
-      { status: 200 },
+      { message: "Enquiries are not available yet" },
+      { status: 503 },
     );
-  } catch (error) {
+  }
+  const { name, email, message } = enquiry.data;
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user: GMAIL_USER, pass: GMAIL_PASS },
+    });
+    await transporter.sendMail({
+      from: GMAIL_USER,
+      replyTo: email,
+      to: CONTACT_TO,
+      subject: `Portfolio enquiry from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+    });
+    return NextResponse.json({ message: "Enquiry received" });
+  } catch {
     return NextResponse.json(
-      { message: "メール送信に失敗しました", error: String(error) },
+      { message: "Unable to send enquiry" },
       { status: 500 },
     );
   }

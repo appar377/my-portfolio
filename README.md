@@ -1,106 +1,56 @@
-# Modern Portfolio Website
+# Abocado / Yusuke Portfolio
 
-A modern, responsive, bilingual (Japanese/English) portfolio website built with Next.js, Tailwind CSS, and Framer Motion.
+Rails・Flutterを中心とした開発経験を紹介する、日英対応のポートフォリオです。Next.js 15 / React 19 / TypeScript / Tailwind CSS 3を使用します。
 
-## Features
+## ローカル起動
 
-- 🌐 Bilingual support (English/Japanese)
-- 📱 Fully responsive design
-- 🎨 Modern UI with smooth animations
-- 📝 Blog integration
-- 📊 Portfolio showcase with category filtering
-- 📧 Contact form with validation
-- 🔗 Social media integration
+Node.js 22.13以降を使用します。
 
-## Tech Stack
-
-- Next.js 14
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- React Hook Form
-- Zod
-- Radix UI
-- next-intl
-
-## Getting Started
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/my-portfolio.git
-   cd my-portfolio
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   pnpm install
-   ```
-
-3. Create a `.env.local` file and add your environment variables:
-
-   ```env
-   NEXT_PUBLIC_SITE_URL=http://localhost:3000
-   ```
-
-4. Run the development server:
-
-   ```bash
-   pnpm dev
-   ```
-
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── [locale]/
-│   │   ├── page.tsx
-│   │   ├── portfolio/
-│   │   ├── services/
-│   │   ├── blog/
-│   │   └── contact/
-│   ├── globals.css
-│   └── layout.tsx
-├── components/
-│   ├── layout/
-│   │   ├── Header.tsx
-│   │   └── Layout.tsx
-│   └── ui/
-├── messages/
-│   ├── en.json
-│   └── ja.json
-└── middleware.ts
+```sh
+npm ci
+npm run dev
 ```
 
-## Adding New Content
+日本語は `/ja`、英語は `/en`。言語指定のないアクセスはブラウザの言語を判定し、日本語を既定値にします。
 
-### Translations
+## 構成
 
-1. Add new translations to `src/messages/en.json` and `src/messages/ja.json`
-2. Use the `useTranslations` hook in your components:
-   ```tsx
-   const t = useTranslations();
-   <h1>{t("your.translation.key")}</h1>;
-   ```
+| 場所 | 内容 |
+| --- | --- |
+| `src/content/work.ts` | 実績・担当内容・日英の説明 |
+| `src/content/site.ts` | サイトの文章・対応分野・技術ノートのURL |
+| `src/components/` | 共通ヘッダー、言語切替、実績の表示と絞り込み |
+| `src/app/[locale]/` | トップ、実績一覧・詳細、プロフィール、サービス、技術ノート、問い合わせ |
+| `src/app/globals.css` | 色、余白、文字、レスポンシブ表示、動きを減らす設定 |
+| `src/middleware.ts` / `src/i18n/` | 言語のルーティング |
 
-### Portfolio Items
+実績は本人の公開プロフィールと確認された内容をもとに整理しています。未確認の顧客名、担当責任、数値成果、サンプル作品は追加しません。Rails・Flutterの業務開発は匿名で記載し、案件名・画面・ソースの公開範囲は別途確認します。
 
-1. Add new portfolio items to the `projects` array in `src/app/[locale]/portfolio/page.tsx`
-2. Add corresponding images to the `public/projects` directory
+## 検証
 
-### Blog Posts
+```sh
+npm run typecheck
+npm run lint
+npm run build
+```
 
-1. Add new blog posts to the `blogPosts` array in `src/app/[locale]/blog/page.tsx`
-2. Add corresponding images to the `public/blog` directory
+既存の自動テストはありません。画面では日英のルート、実績の絞り込み、詳細表示、スマホのメニュー、Escape操作、言語切替、404、横スクロール、キーボードのフォーカスを確認します。
 
-## Deployment
+## 問い合わせ
 
-The project can be deployed to Vercel, Netlify, or any other platform that supports Next.js applications.
+公開する連絡方法が未確定の間は、受付準備中と表示します。`src/config/contact.ts`で受付を停止しているため、既存のSMTP設定があっても送信しません。フォームの公開を承認された後にこの停止設定を変更し、実行環境で次の値を設定します。
 
-## License
+- `CONTACT_FORM_ENABLED=true`
+- `GMAIL_USER`
+- `GMAIL_PASS`
+- `CONTACT_TO`
 
-MIT
+認証値をソースや公開される環境変数へ保存しないでください。送信先のメールアドレスもソースには含めません。受付停止中はAPIが503を返します。有効化後はSMTP設定がない場合に503、入力不正に400を返します。
+
+送信の有効化前にNodemailerの依存更新とテスト用SMTPでの検証を行います。
+
+## 公開
+
+既存のVercelプロジェクトとGitHubのmainが連携しています。公開承認後、型・lint・buildと画面を確認してmainへpushします。連絡先の公開は別途確認します。
+
+依存関係は`package-lock.json`で固定し、`npm ci`でインストールします。Next.js内包分も含めてPostCSSを8.5.23へ揃えています。

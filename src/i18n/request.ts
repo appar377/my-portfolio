@@ -1,20 +1,10 @@
-import { getRequestConfig, setRequestLocale } from "next-intl/server";
-import { locales } from "../app/i18n";
+import { getRequestConfig } from "next-intl/server";
+import { routing, type Locale } from "./routing";
 
-export default getRequestConfig(async ({ locale }) => {
-  setRequestLocale(locale);
-  if (!locales.includes(locale as 'en' | 'ja')) {
-    throw new Error(`Invalid locale: ${locale}`);
-  }
-
-  return {
-    messages: (await import(`./messages/${locale}.json`)).default,
-    timeZone: "Asia/Tokyo",
-    locale,
-  };
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale = routing.locales.includes(requested as Locale)
+    ? (requested as Locale)
+    : routing.defaultLocale;
+  return { locale, messages: {}, timeZone: "Asia/Tokyo" };
 });
-
-export async function request<T = unknown>(): Promise<T> {
-  // Implementation of the function
-  return undefined as unknown as T;
-}

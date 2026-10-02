@@ -1,138 +1,104 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import SettingLang from "@/components/SettingLang";
-import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
+import type { Locale } from "@/i18n/routing";
+import { siteCopy } from "@/content/site";
+import SettingLang from "./SettingLang";
 
-// ナビゲーションアイテム定義
-const navItems = [
-  {
-    path: "/about",
-    label: "About",
-    color: "gradient-to-r from-purple-500 to-indigo-600",
-    textColor: "text-purple-200",
-  },
-  {
-    path: "/creations",
-    label: "Creations",
-    color: "gradient-to-r from-cyan-500 to-blue-600",
-    textColor: "text-cyan-200",
-  },
-  {
-    path: "/services",
-    label: "Services",
-    color: "gradient-to-r from-emerald-500 to-teal-600",
-    textColor: "text-emerald-200",
-  },
-  {
-    path: "https://rootscope.blog/",
-    label: "Blog",
-    color: "gradient-to-r from-amber-500 to-orange-600",
-    textColor: "text-amber-200",
-    external: true,
-  },
-  {
-    path: "/contact",
-    label: "Contact",
-    color: "gradient-to-r from-rose-500 to-pink-600",
-    textColor: "text-rose-200",
-  },
-];
+const destinations = ["creations", "about", "services", "blog", "contact"];
 
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [menuPath, setMenuPath] = useState<string | null>(null);
+  const menuOpen = menuPath === pathname;
+  const toggle = useRef<HTMLButtonElement>(null);
+  const c = siteCopy[locale];
 
-  // スクロール位置に応じてヘッダーの背景を変更
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  function closeMenu() {
+    setMenuPath(null);
+  }
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/90 backdrop-blur-lg shadow-xl"
-          : "bg-transparent"
-      }`}
+    <header
+      className="site-header"
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          closeMenu();
+          toggle.current?.focus();
+        }
+      }}
     >
-      <div className="container mx-auto px-4 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
+      <div className="header-inner">
+        <Link
+          href={`/${locale}`}
+          className="wordmark"
+          onClick={closeMenu}
+          aria-label={`Abocado / Yusuke · ${c.home}`}
+        >
+          <span className="brand-mark" aria-hidden="true">
+            a
+          </span>
+          <span>
+            abocado<span className="brand-dot">.</span>
+          </span>
+        </Link>
+        <nav
+          aria-label={
+            locale === "ja" ? "メインナビゲーション" : "Main navigation"
+          }
+          className="desktop-nav"
+        >
+          {destinations.map((path, index) => (
             <Link
-              href="/"
-              className="text-2xl font-display text-white hover:text-accent transition-colors duration-300"
+              href={`/${locale}/${path}`}
+              key={path}
+              aria-current={
+                pathname.startsWith(`/${locale}/${path}`) ? "page" : undefined
+              }
             >
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">
-                Yusuke Uwagaichi
-              </span>
+              {c.nav[index]}
             </Link>
-          </motion.div>
-
-          <nav className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => {
-              const isActive = !item.external && pathname?.includes(item.path);
-              return (
-                <motion.div
-                  key={item.path}
-                  className="relative"
-                  whileHover={{ y: -2 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <Link
-                    href={item.path}
-                    target={item.external ? "_blank" : undefined}
-                    rel={item.external ? "noopener noreferrer" : undefined}
-                    className={`${item.textColor} font-medium relative group transition-all duration-300`}
-                  >
-                    <span>{item.label}</span>
-                    <motion.span
-                      className="absolute -bottom-1 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-300"
-                      initial={{
-                        width: isActive ? "100%" : "30%",
-                        opacity: isActive ? 1 : 0.4,
-                      }}
-                      whileHover={{
-                        width: "100%",
-                        opacity: 1,
-                        transition: { duration: 0.3 },
-                      }}
-                      style={{
-                        background: `linear-gradient(to right, ${
-                          item.color.includes("purple")
-                            ? "#8B5CF6, #6366F1"
-                            : item.color.includes("cyan")
-                              ? "#06B6D4, #2563EB"
-                              : item.color.includes("emerald")
-                                ? "#10B981, #0D9488"
-                                : item.color.includes("amber")
-                                  ? "#F59E0B, #EA580C"
-                                  : "#F43F5E, #DB2777"
-                        })`,
-                      }}
-                    />
-                  </Link>
-                </motion.div>
-              );
-            })}
-            <SettingLang />
-          </nav>
+          ))}
+        </nav>
+        <div className="header-controls">
+          <SettingLang locale={locale} onNavigate={closeMenu} />
+          <button
+            className="menu-toggle"
+            ref={toggle}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? c.closeMenu : c.menu}
+            onClick={() => setMenuPath(menuOpen ? null : pathname)}
+          >
+            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
-    </motion.header>
+      <nav
+        id="mobile-menu"
+        className="mobile-nav"
+        hidden={!menuOpen}
+        aria-label={
+          locale === "ja" ? "モバイルナビゲーション" : "Mobile navigation"
+        }
+      >
+        {destinations.map((path, index) => (
+          <Link
+            href={`/${locale}/${path}`}
+            key={path}
+            onClick={closeMenu}
+            aria-current={
+              pathname.startsWith(`/${locale}/${path}`) ? "page" : undefined
+            }
+          >
+            {c.nav[index]}
+            <span aria-hidden="true">↗</span>
+          </Link>
+        ))}
+      </nav>
+    </header>
   );
 }

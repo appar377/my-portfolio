@@ -6,7 +6,10 @@ import { LangEnum } from "../enums";
 export const routing = defineRouting({
   locales: [LangEnum.EN, LangEnum.JA],
   defaultLocale: LangEnum.JA,
+  localePrefix: "always",
 });
+
+export type Locale = (typeof routing.locales)[number];
 
 // ナビゲーション用のユーティリティを作成
 export const { Link, redirect, usePathname, useRouter, getPathname } =
