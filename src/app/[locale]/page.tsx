@@ -3,6 +3,8 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { workCases } from "@/content/work";
+import HeroGeometry from "@/components/HeroGeometry";
+import HomeDestinations from "@/components/HomeDestinations";
 import {
   Capabilities,
   ContactCallout,
@@ -15,17 +17,20 @@ export default async function Home({ params }: LocalePageProps) {
   const c = siteCopy[locale];
   return (
     <>
-      <section className="hero page-width">
-        <div className="hero-copy">
+      <section className="hero">
+        <HeroGeometry />
+        <div className="hero-copy page-width">
           <p className="eyebrow">
             <span className="status-dot" />
-            YUSUKE / {c.role}
+            ABOCADO / {c.role}
           </p>
-          <h1>
-            {c.heroTitle[0]}
-            <br />
-            <span>{c.heroTitle[1]}</span>
-          </h1>
+          <h1>Yusuke</h1>
+          <p className="hero-role">
+            <span>Full Stack Engineer</span>
+            <span className="hero-role-separator">×</span>
+            <span>Designer</span>
+          </p>
+          <p className="hero-statement">{c.heroTitle.join(" ")}</p>
           <p className="lead">{c.heroBody}</p>
           <div className="actions">
             <Link
@@ -39,25 +44,6 @@ export default async function Home({ params }: LocalePageProps) {
               {c.servicesCta}
               <ArrowUpRight size={18} aria-hidden="true" />
             </Link>
-          </div>
-          <div className="hero-signature">
-            <span>Abocado</span>
-            <span>WEB / MOBILE / AUTOMATION</span>
-          </div>
-        </div>
-        <div className="hero-art">
-          <div className="connection-art" aria-hidden="true">
-            <span className="connection-ring ring-one" />
-            <span className="connection-ring ring-two" />
-            <span className="connection-ring ring-three" />
-            <span className="art-cross cross-one">+</span>
-            <span className="art-cross cross-two">+</span>
-            <span className="art-node node-web">Web</span>
-            <span className="art-node node-mobile">Mobile</span>
-            <span className="art-core">
-              a<span>.</span>
-            </span>
-            <span className="art-caption">IDEA → INTERFACE → OPERATION</span>
           </div>
           <Link
             className="focus-card"
@@ -82,6 +68,7 @@ export default async function Home({ params }: LocalePageProps) {
           <span>Vue.js</span>
         </div>
       </div>
+      <HomeDestinations locale={locale} />
       <section className="page-width section" id="work">
         <div className="section-heading">
           <div>

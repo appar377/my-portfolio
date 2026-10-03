@@ -8,6 +8,7 @@ export const siteCopy = {
     menu: "メニュー",
     closeMenu: "メニューを閉じる",
     role: "フリーランス開発者",
+    destinationsTitle: "ここから、詳しく。",
     heroTitle: ["業務を理解して、", "使えるかたちへ。"],
     heroBody:
       "Webからモバイル、業務の自動化まで。Rails・Flutterを軸に、仕様の整理と使いやすい画面、日々の運用をつなぐ開発に取り組んでいます。",
@@ -74,6 +75,7 @@ export const siteCopy = {
     menu: "Menu",
     closeMenu: "Close menu",
     role: "Freelance developer",
+    destinationsTitle: "Explore the portfolio.",
     heroTitle: ["Understand the work.", "Build what works."],
     heroBody:
       "From web and mobile apps to workflow automation. I work with Rails and Flutter to connect clear requirements, usable interfaces and everyday operations.",
