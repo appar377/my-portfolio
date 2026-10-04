@@ -9,14 +9,14 @@ import {
 } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
-import { workCases, type WorkCase } from "@/content/work";
+import type { WorkCase, WorkCategory } from "@/content/work";
 
 export const workCategories = [
   "business",
   "automation",
   "game",
   "frontend",
-] as const;
+] as const satisfies readonly WorkCategory[];
 
 export function Tags({ items }: { items: readonly string[] }) {
   return (
@@ -28,9 +28,19 @@ export function Tags({ items }: { items: readonly string[] }) {
   );
 }
 
-export function WorkGraphic({ index }: { index: number }) {
+export function WorkGraphic({ work }: { work: WorkCase }) {
+  const index = workCategories.indexOf(work.category);
   const icons = [Layers, Workflow, Code2, Layers];
   const Icon = icons[index];
+  const label =
+    work.id === "recruitment-matching"
+      ? "WEB + BACKEND"
+      : [
+          "WEB + MOBILE",
+          "WORKFLOW + UI",
+          "PLAY + INTERACTION",
+          "DATA + INTERFACE",
+        ][index];
   return (
     <div className={`work-graphic work-graphic-${index}`} aria-hidden="true">
       <span className="graphic-orbit" />
@@ -38,31 +48,25 @@ export function WorkGraphic({ index }: { index: number }) {
       <div className="graphic-center">
         <Icon size={48} strokeWidth={1.3} />
       </div>
-      <span className="graphic-label">
-        {
-          [
-            "WEB + MOBILE",
-            "WORKFLOW + UI",
-            "PLAY + INTERACTION",
-            "DATA + INTERFACE",
-          ][index]
-        }
-      </span>
-      <span className="graphic-index">0{index + 1}</span>
+      <span className="graphic-label">{label}</span>
+      <span className="graphic-index">{work.number}</span>
     </div>
   );
 }
 
 export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
-  const index = workCases.indexOf(work);
   const c = siteCopy[locale];
   return (
     <article className="work-card">
       <Link className="work-card-link" href={`/${locale}/creations/${work.id}`}>
-        <WorkGraphic index={index} />
         <div className="work-card-body">
-          <p className="eyebrow">{c[workCategories[index]]}</p>
+          <div className="work-card-meta">
+            <span className="work-number">{work.number}</span>
+            <span className="work-period">{work.period[locale]}</span>
+          </div>
+          <p className="eyebrow">{c[work.category]}</p>
           <h3>{work.title[locale]}</h3>
+          <p className="work-kind">{work.kind[locale]}</p>
           <p>{work.summary[locale]}</p>
           {work.technologies.length > 0 && (
             <Tags items={work.technologies.slice(0, 4)} />

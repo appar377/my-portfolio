@@ -1472,6 +1472,252 @@ main {
     padding: 28px;
   }
 }
+/* Selected B composition: copy and portrait, followed by compact work cards. */
+.hero-b {
+  min-height: 0;
+  padding: 58px 0 52px;
+}
+.hero-b .hero-geometry {
+  opacity: 0.16;
+}
+.hero-b-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.9fr);
+  gap: 24px 48px;
+  align-items: center;
+  width: 100%;
+}
+.hero-b .hero-copy {
+  grid-column: 1;
+  grid-row: 1;
+  max-width: none;
+  text-align: left;
+}
+.hero-b h1 {
+  width: fit-content;
+  font-size: clamp(80px, 8vw, 112px);
+}
+.hero-b .hero-role {
+  justify-content: flex-start;
+  font-size: clamp(22px, 2.2vw, 30px);
+}
+.hero-b .hero-statement {
+  margin-top: 22px;
+  font-size: clamp(23px, 2.2vw, 32px);
+  text-wrap: pretty;
+}
+.hero-b .lead {
+  max-width: 620px;
+  margin: 12px 0 0;
+}
+.hero-b .hero-b-actions {
+  grid-column: 1;
+  grid-row: 2;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-top: 0;
+}
+.hero-b-actions .button {
+  min-height: 54px;
+}
+.hero-b .button-primary {
+  background: linear-gradient(110deg, #38cee9, #a396ff);
+  color: #06131d;
+}
+.hero-b .button-primary:hover {
+  background: linear-gradient(110deg, #70e6f5, #c2b8ff);
+}
+.button-secondary {
+  background: #101a2b;
+  border-color: #577799;
+}
+.button-secondary:hover {
+  background: #1b2941;
+  border-color: #8acaff;
+}
+.hero-portrait {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 5 / 4;
+}
+.portrait-tile {
+  position: absolute;
+  left: 23%;
+  top: 8%;
+  width: 62%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 65% 75%, #28234c, #0f1c31 75%);
+  border: 1px solid #6c91cb;
+  border-radius: 36px;
+  box-shadow:
+    0 0 45px #3769d733,
+    0 18px 55px #7554ef26;
+}
+.portrait-tile span {
+  padding-right: 0.07em;
+  padding-bottom: 0.09em;
+  font-size: clamp(112px, 13vw, 190px);
+  font-weight: 600;
+  letter-spacing: -0.1em;
+  line-height: 1;
+  color: #8acaff;
+  background: linear-gradient(125deg, #67e8f9 20%, #b3a0ff 80%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.portrait-path {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.portrait-route {
+  fill: none;
+  stroke: url(#portrait-route);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.portrait-node {
+  fill: #101428;
+  stroke: #b8a3ff;
+  stroke-width: 2.5;
+}
+.hero-b + #work {
+  padding-top: 60px;
+}
+.work-card {
+  position: relative;
+}
+.work-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, #67e8f9, #9383f5);
+}
+.work-card-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.work-number {
+  color: #8acaff;
+  font-family: Georgia, serif;
+  font-size: 30px;
+  line-height: 1;
+}
+.work-period {
+  max-width: 200px;
+  color: var(--muted);
+  font-size: 11px;
+  text-align: right;
+}
+.work-kind,
+.work-card-body > p.work-kind {
+  color: #b5c5e2;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.profile-name {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+.other-experience .work-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (min-width: 701px) and (max-width: 1050px) {
+  .hero-b-layout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr);
+    gap: 24px;
+  }
+  .hero-b h1 {
+    font-size: 80px;
+  }
+  .hero-b .hero-role {
+    font-size: 22px;
+  }
+  .hero-b .hero-statement {
+    font-size: 25px;
+  }
+  .portrait-tile {
+    border-radius: 25px;
+  }
+  .portrait-tile span {
+    font-size: 13vw;
+  }
+}
+@media (max-width: 700px) {
+  .hero-b {
+    padding: 32px 0;
+  }
+  .hero-b-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+  .hero-b h1 {
+    font-size: clamp(58px, 18vw, 78px);
+  }
+  .hero-b .hero-role {
+    font-size: 20px;
+    gap: 0 7px;
+  }
+  .hero-b .hero-statement {
+    font-size: 22px;
+    margin-top: 20px;
+  }
+  .hero-b .hero-statement span {
+    display: block;
+  }
+  .hero-b .lead {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .hero-portrait {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: center;
+    max-width: 330px;
+    height: 178px;
+    aspect-ratio: auto;
+  }
+  .portrait-tile {
+    left: 21%;
+    top: 7px;
+    width: 130px;
+    border-radius: 24px;
+  }
+  .portrait-tile span {
+    font-size: 104px;
+  }
+  .hero-b .hero-b-actions {
+    grid-column: 1;
+    grid-row: 3;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hero-b-actions .button {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .hero-b + #work {
+    padding-top: 45px;
+  }
+  .other-experience .work-grid {
+    grid-template-columns: 1fr;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

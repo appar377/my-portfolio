@@ -26,6 +26,9 @@ export default async function CreationDetail({ params }: Props) {
   if (!work) notFound();
   const c = siteCopy[locale];
   const labels = workLabels[locale];
+  const sections = (["context", "role", "approach", "output"] as const).filter(
+    (field) => work[field],
+  );
   return (
     <div className="page-width">
       <header className="detail-intro">
@@ -35,24 +38,23 @@ export default async function CreationDetail({ params }: Props) {
         </Link>
         <p className="eyebrow">WORK / {work.number}</p>
         <h1>{work.title[locale]}</h1>
+        <p className="work-kind">{work.kind[locale]}</p>
         <p className="lead">{work.summary[locale]}</p>
       </header>
       <div className="detail-layout">
         <div className="detail-content">
-          {(["context", "role", "approach", "output"] as const).map(
-            (field, index) => (
-              <section className="detail-section" key={field}>
-                <span className="eyebrow">0{index + 1}</span>
-                <div>
-                  <h2>{labels[field]}</h2>
-                  <p>{work[field][locale]}</p>
-                </div>
-              </section>
-            ),
-          )}
+          {sections.map((field, index) => (
+            <section className="detail-section" key={field}>
+              <span className="eyebrow">0{index + 1}</span>
+              <div>
+                <h2>{labels[field]}</h2>
+                <p>{work[field]?.[locale]}</p>
+              </div>
+            </section>
+          ))}
         </div>
         <aside className="detail-sidebar">
-          <WorkGraphic index={workCases.indexOf(work)} />
+          <WorkGraphic work={work} />
           <dl>
             <dt>{c.period}</dt>
             <dd>{work.period[locale]}</dd>
