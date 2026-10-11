@@ -7,7 +7,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteCopy } from "@/content/site";
 import SettingLang from "./SettingLang";
-import PortfolioIllustration, { BrandMark } from "./PortfolioIllustration";
+import BrandMark from "./BrandMark";
 
 const destinations = ["creations", "about", "services", "blog", "contact"];
 
@@ -156,7 +156,6 @@ export default function Header({ locale }: { locale: Locale }) {
           ))}
         </div>
         <SettingLang locale={locale} onNavigate={closeMenu} />
-        <PortfolioIllustration kind="profile" />
       </nav>
     </header>
   );

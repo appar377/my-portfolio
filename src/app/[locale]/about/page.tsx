@@ -23,7 +23,7 @@ export default async function About({ params }: LocalePageProps) {
         eyebrow="ABOUT / YUSUKE"
         title={c.aboutTitle}
         body={c.aboutIntro}
-        illustration="profile"
+        artwork="none"
       >
         <div className="profile-section">
           <p className="profile-name">{c.profileName}</p>

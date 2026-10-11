@@ -24,7 +24,6 @@ export default async function Contact({ params }: LocalePageProps) {
   return (
     <div className="page-width">
       <PageIntro
-        composed
         className="contact-intro"
         eyebrow="CONTACT"
         title={c.contactTitle}

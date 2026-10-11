@@ -195,14 +195,14 @@ textarea {
 .footer-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-weight: 800;
-  font-size: 29px;
-  letter-spacing: -0.05em;
+  font-size: 30px;
+  letter-spacing: -0.045em;
   line-height: 1;
 }
 .brand-mark {
-  width: 45px;
+  width: 42px;
   height: 42px;
   color: var(--blue);
 }
@@ -288,30 +288,6 @@ textarea {
   z-index: -1;
   overflow: clip;
   pointer-events: none;
-}
-.portfolio-illustration {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  width: var(--art-width, 660px);
-  height: auto;
-  max-width: none;
-  top: var(--art-top, 50%);
-  right: var(--art-right, -140px);
-  transform: translateY(-50%);
-  opacity: var(--art-opacity, 0.48);
-  color: var(--blue);
-  mask-image: var(--art-mask, linear-gradient(100deg, #0001 8%, #0005 45%, #000 85%));
-  -webkit-mask-image: var(--art-mask, linear-gradient(100deg, #0001 8%, #0005 45%, #000 85%));
-}
-.portfolio-illustration .diagram-paper {
-  fill: transparent;
-}
-.portfolio-illustration .diagram-shade {
-  fill: #dce5eb66;
-}
-.portfolio-illustration .diagram-label {
-  display: none;
 }
 /* Composition study: complete silhouettes, with quiet space around copy. */
 .portfolio-artwork {
@@ -421,7 +397,7 @@ textarea {
     font-size: clamp(24px, 7.4vw, 28px);
   }
 }
-/* Use navy copy where the blue art crosses text; keep the art's full scale. */
+/* Foreground copy retains the portfolio navy. */
 .hero-copy .lead,
 .page-intro-copy p:not(.eyebrow),
 .callout-copy p:not(.eyebrow),
@@ -433,49 +409,10 @@ textarea {
 .work-card-body > p {
   color: var(--ink);
 }
-.diagram-paper {
-  fill: var(--paper);
-}
-.diagram-shade {
-  fill: #e9edf0;
-  stroke: #d7dde2;
-}
-.diagram-gray {
-  color: #d1d7da;
-  stroke: currentColor;
-}
-.diagram-route {
-  stroke: var(--blue);
-  stroke-width: 3;
-}
-.diagram-node {
-  fill: var(--paper);
-  stroke: var(--red);
-  stroke-width: 2.5;
-}
-.diagram-red-fill {
-  fill: var(--red);
-  stroke: none;
-}
-.diagram-node-blue {
-  fill: var(--paper);
-  stroke: var(--blue);
-}
-.diagram-label {
-  font-size: 8px;
-  letter-spacing: 1px;
-}
 
 /* Home */
 .hero {
   padding: 70px 0 55px;
-}
-.hero-layout {
-  --art-width: 850px;
-  --art-right: -120px;
-  --art-top: 48%;
-  --art-opacity: 0.65;
-  --art-mask: linear-gradient(100deg, #0001 15%, #0005 48%, #000 80%);
 }
 .hero-copy {
   min-width: 0;
@@ -520,12 +457,6 @@ textarea {
   margin-top: 20px;
   max-width: 550px;
   font-size: 16px;
-}
-.hero-art-desktop {
-  pointer-events: none;
-}
-.hero-art-mobile {
-  display: none;
 }
 .hero-actions {
   margin-top: 28px;
@@ -615,19 +546,6 @@ textarea {
 .work-card-content {
   display: block;
 }
-.work-card-link {
-  --art-width: 300px;
-  --art-right: -76px;
-  --art-top: 58%;
-  --art-opacity: 0.25;
-  --art-mask: linear-gradient(100deg, #0001 10%, #0006 55%, #000 100%);
-}
-.work-grid-all .work-card-link {
-  --art-width: 370px;
-  --art-right: -70px;
-  --art-top: 52%;
-  --art-opacity: 0.28;
-}
 .work-card-link > .text-link {
   margin-top: auto;
 }
@@ -705,18 +623,6 @@ textarea {
   margin-bottom: 16px;
   color: var(--blue);
 }
-.capability-art {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  top: 18px;
-  right: -20px;
-  width: 150px;
-  height: 150px;
-  opacity: 0.16;
-  mask-image: linear-gradient(100deg, #0002, #000);
-  -webkit-mask-image: linear-gradient(100deg, #0002, #000);
-}
 .capability h3 {
   font-size: 20px;
 }
@@ -728,10 +634,6 @@ textarea {
   margin-top: 20px;
 }
 .notes-section {
-  --art-width: 510px;
-  --art-right: -35px;
-  --art-top: 54%;
-  --art-opacity: 0.55;
   padding: 38px 45px;
   margin-top: 30px;
   background: var(--white);
@@ -751,22 +653,7 @@ textarea {
 .notes-section > div:not(.decoration-layer) {
   max-width: 710px;
 }
-.notes-word {
-  color: var(--blue);
-  font-weight: 800;
-  font-size: clamp(60px, 7vw, 94px);
-  line-height: 1;
-  letter-spacing: -0.07em;
-}
-.notes-word > span {
-  margin-left: 36px;
-}
 .contact-callout {
-  --art-width: 730px;
-  --art-right: -90px;
-  --art-top: 54%;
-  --art-opacity: 0.6;
-  --art-mask: linear-gradient(100deg, #0001 8%, #0006 50%, #000 85%);
   padding: 62px 0;
   border-top: 1px solid var(--line);
   margin-top: 72px;
@@ -787,10 +674,6 @@ textarea {
 
 /* Interior pages */
 .page-intro {
-  --art-width: 740px;
-  --art-right: -95px;
-  --art-top: 52%;
-  --art-opacity: 0.58;
   padding: 58px 0 48px;
 }
 .page-intro h1 {
@@ -804,12 +687,6 @@ textarea {
 }
 .page-intro-copy {
   max-width: 760px;
-}
-.page-intro:has(.profile-section) {
-  --art-width: 820px;
-  --art-right: -180px;
-  --art-top: 48%;
-  --art-opacity: 0.46;
 }
 .filters {
   display: flex;
@@ -934,13 +811,6 @@ textarea {
 .services-page .capability-top {
   margin-bottom: 22px;
 }
-.services-page .capability-art {
-  width: 190px;
-  height: 190px;
-  top: 20px;
-  right: -28px;
-  opacity: 0.18;
-}
 .services-page .capability h3 {
   font-size: 24px;
 }
@@ -964,19 +834,6 @@ textarea {
   position: absolute;
   display: none;
 }
-.process-icon {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  top: 3px;
-  right: -14px;
-  width: 125px;
-  height: 125px;
-  color: var(--blue);
-  opacity: 0.16;
-  mask-image: linear-gradient(100deg, #0003, #000);
-  -webkit-mask-image: linear-gradient(100deg, #0003, #000);
-}
 .process-number {
   display: block;
   margin: 0 0 8px;
@@ -996,18 +853,6 @@ textarea {
   border-radius: 6px;
   background: var(--white);
   padding: 52px;
-}
-.writing-card .notes-word {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  right: 0;
-  bottom: -45px;
-  font-size: 190px;
-  opacity: 0.1;
-  transform: rotate(-6deg);
-  mask-image: linear-gradient(100deg, #0003, #000);
-  -webkit-mask-image: linear-gradient(100deg, #0003, #000);
 }
 .writing-card > div:not(.decoration-layer) {
   max-width: 730px;
@@ -1052,11 +897,6 @@ textarea {
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 6px;
-  --art-width: 500px;
-  --art-right: -150px;
-  --art-top: 48%;
-  --art-opacity: 0.58;
-  --art-mask: linear-gradient(100deg, #0001 15%, #0008 60%, #000 100%);
   padding: 32px 34px 36px;
 }
 .contact-pending .eyebrow {
@@ -1075,10 +915,6 @@ textarea {
   margin-top: 17px;
 }
 .detail-intro {
-  --art-width: 690px;
-  --art-right: -100px;
-  --art-top: 57%;
-  --art-opacity: 0.5;
   padding: 48px 0 50px;
 }
 .detail-intro .eyebrow {
@@ -1269,17 +1105,6 @@ textarea {
     margin-top: 32px;
     align-self: flex-start;
   }
-  .mobile-nav .portfolio-illustration {
-    --art-width: 560px;
-    --art-right: -190px;
-    --art-top: 67%;
-    --art-opacity: 0.32;
-  }
-  .hero-layout {
-    --art-width: 740px;
-    --art-right: -205px;
-    --art-opacity: 0.48;
-  }
   .hero-role {
     font-size: 19px;
     gap: 7px;
@@ -1296,10 +1121,6 @@ textarea {
   .work-card h3 {
     font-size: 19px;
   }
-  .work-grid-all .work-card-link {
-    --art-width: 320px;
-    --art-right: -100px;
-  }
   .capability-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 35px;
@@ -1309,10 +1130,6 @@ textarea {
   }
   .destination-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .page-intro,
-  .detail-intro {
-    --art-right: -205px;
   }
   .detail-layout {
     grid-template-columns: minmax(0, 1fr) 260px;
@@ -1401,26 +1218,6 @@ textarea {
     font-size: 14px;
     margin-top: 17px;
   }
-  .hero-art-desktop {
-    display: none;
-  }
-  .hero-art-mobile {
-    position: absolute;
-    display: block;
-    z-index: -1;
-    pointer-events: none;
-    width: 610px;
-    height: 250px;
-    right: -140px;
-    top: 58%;
-    transform: translateY(-50%);
-    opacity: 0.3;
-    mask-image: linear-gradient(100deg, #0002, #000 80%);
-    -webkit-mask-image: linear-gradient(100deg, #0002, #000 80%);
-  }
-  .hero-art-mobile .diagram-gray {
-    display: none;
-  }
   .hero-actions {
     margin-top: 24px;
     flex-direction: column;
@@ -1457,13 +1254,6 @@ textarea {
   }
   .work-card h3 {
     font-size: 21px;
-  }
-  .work-card-link,
-  .work-grid-all .work-card-link {
-    --art-width: 340px;
-    --art-right: -122px;
-    --art-top: 59%;
-    --art-opacity: 0.25;
   }
   .work-card-body > p {
     font-size: 14px;
@@ -1507,18 +1297,10 @@ textarea {
     border-bottom: 0;
     padding-bottom: 0;
   }
-  .capability-art {
-    top: 3px;
-    right: -8px;
-  }
   .capability > p {
     font-size: 14px;
   }
   .notes-section {
-    --art-width: 390px;
-    --art-right: -154px;
-    --art-top: 63%;
-    --art-opacity: 0.5;
     padding: 28px 24px;
     margin-top: 8px;
   }
@@ -1526,10 +1308,6 @@ textarea {
     font-size: 25px;
   }
   .contact-callout {
-    --art-width: 560px;
-    --art-right: -160px;
-    --art-top: 46%;
-    --art-opacity: 0.46;
     padding: 40px 0;
     margin-top: 42px;
   }
@@ -1540,10 +1318,6 @@ textarea {
     width: 100%;
   }
   .page-intro {
-    --art-width: 520px;
-    --art-right: -165px;
-    --art-top: 50%;
-    --art-opacity: 0.48;
     padding: 34px 0 30px;
   }
   .page-intro h1 {
@@ -1556,12 +1330,6 @@ textarea {
   }
   .contact-intro h1 {
     font-size: clamp(28px, 8vw, 32px);
-  }
-  .page-intro:has(.profile-section) {
-    --art-width: 660px;
-    --art-right: -295px;
-    --art-top: 40%;
-    --art-opacity: 0.38;
   }
   .filters {
     gap: 9px;
@@ -1628,10 +1396,6 @@ textarea {
   .process-grid li {
     padding-left: 0;
   }
-  .process-icon {
-    right: 0;
-    top: -5px;
-  }
   .process-number {
     margin-top: 0;
   }
@@ -1640,12 +1404,6 @@ textarea {
   }
   .writing-card {
     padding: 32px 25px;
-  }
-  .writing-card .notes-word {
-    right: -80px;
-    bottom: -20px;
-    font-size: 160px;
-    opacity: 0.09;
   }
   .writing-card .actions {
     flex-direction: column;
@@ -1670,20 +1428,12 @@ textarea {
     font-size: 13px;
   }
   .contact-pending {
-    --art-width: 460px;
-    --art-right: -186px;
-    --art-top: 56%;
-    --art-opacity: 0.5;
     padding: 28px 24px 30px;
   }
   .contact-pending h2 {
     font-size: 22px;
   }
   .detail-intro {
-    --art-width: 540px;
-    --art-right: -200px;
-    --art-top: 58%;
-    --art-opacity: 0.43;
     padding: 30px 0;
   }
   .detail-intro h1 {
@@ -1737,5 +1487,93 @@ textarea {
   *::before,
   *::after {
     transition: none !important;
+  }
+}
+
+/* Each composition has its own scale and a quiet area for the copy. */
+.hero-art {
+  top: 35px;
+  right: 0;
+  width: 43%;
+  height: auto;
+  stroke-opacity: 0.6;
+}
+.hero-route-mobile {
+  display: none;
+}
+.hero-copy {
+  max-width: 56%;
+}
+.hero-art .art-surface {
+  fill: var(--paper);
+}
+.page-intro-with-art .page-intro-copy {
+  max-width: 65%;
+}
+.page-intro-with-art .route-art {
+  width: 38%;
+}
+.callout-art {
+  top: 55px;
+  right: 0;
+  width: 280px;
+  height: 180px;
+  stroke-opacity: 0.5;
+}
+.callout-art .art-node {
+  fill: var(--paper);
+  stroke: var(--red);
+}
+.callout-copy {
+  max-width: calc(100% - 310px);
+}
+.detail-intro > div:not(.decoration-layer) {
+  max-width: calc(100% - 365px);
+}
+.detail-art {
+  top: 90px;
+  right: 0;
+  width: 340px;
+  height: 227px;
+  stroke-opacity: 0.55;
+}
+.detail-art .art-surface {
+  fill: var(--paper);
+}
+@media (max-width: 900px) {
+  .detail-art {
+    display: none;
+  }
+  .detail-intro > div:not(.decoration-layer) {
+    max-width: none;
+  }
+  .callout-copy {
+    max-width: calc(100% - 220px);
+  }
+  .callout-art {
+    width: 200px;
+    height: 150px;
+  }
+}
+@media (max-width: 600px) {
+  .hero-copy,
+  .page-intro-with-art .page-intro-copy,
+  .callout-copy {
+    max-width: none;
+  }
+  .hero-art,
+  .callout-art {
+    display: none;
+  }
+  .route-art-narrow.hero-route-mobile {
+    display: block;
+    width: 30%;
+    height: 40px;
+    top: 0;
+  }
+  .page-intro-with-art .route-art {
+    width: 30%;
+    height: 64px;
+    top: 0;
   }
 }

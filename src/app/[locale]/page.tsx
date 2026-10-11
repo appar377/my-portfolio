@@ -3,9 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { workCases } from "@/content/work";
-import PortfolioIllustration, {
-  HeroTrail,
-} from "@/components/PortfolioIllustration";
+import { HeroArtwork } from "@/components/PortfolioArtwork";
 import HomeDestinations from "@/components/HomeDestinations";
 import {
   Capabilities,
@@ -35,8 +33,7 @@ export default async function Home({ params }: LocalePageProps) {
             </p>
             <p className="lead">{c.heroBody}</p>
           </div>
-          <PortfolioIllustration kind="hero" className="hero-art-desktop" />
-          <HeroTrail />
+          <HeroArtwork />
           <div className="actions hero-actions">
             <Link
               className="button button-primary"
@@ -66,7 +63,7 @@ export default async function Home({ params }: LocalePageProps) {
         </div>
         <div className="work-grid">
           {workCases.slice(0, 3).map((work) => (
-            <WorkCard key={work.id} work={work} locale={locale} contained />
+            <WorkCard key={work.id} work={work} locale={locale} />
           ))}
         </div>
       </section>
@@ -98,7 +95,6 @@ export default async function Home({ params }: LocalePageProps) {
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
-        <PortfolioIllustration kind="notes" />
       </section>
       <div className="page-width">
         <ContactCallout locale={locale} />

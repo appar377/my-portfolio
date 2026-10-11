@@ -42,7 +42,7 @@ export default async function CreationDetail({ params }: Props) {
           <p className="work-kind">{work.kind[locale]}</p>
           <p className="lead">{work.summary[locale]}</p>
         </div>
-        <WorkGraphic work={work} />
+        <WorkGraphic work={work} context="detail" />
       </header>
       <div className="detail-layout">
         <div className="detail-content">

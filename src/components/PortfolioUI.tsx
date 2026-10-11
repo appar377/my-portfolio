@@ -1,22 +1,13 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Code2,
-  Layers,
-  Smartphone,
-  Workflow,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
 import type { WorkCase, WorkCategory } from "@/content/work";
-import PortfolioIllustration, {
-  DecorationLayer,
-  type IllustrationKind,
-} from "./PortfolioIllustration";
 import {
   CardArtwork,
+  CalloutArtwork,
+  DetailArtwork,
   RouteArtwork,
   type WorkArtworkKind,
 } from "./PortfolioArtwork";
@@ -40,12 +31,12 @@ export function Tags({ items }: { items: readonly string[] }) {
 
 export function WorkGraphic({
   work,
-  contained = false,
+  context = "card",
 }: {
   work: WorkCase;
-  contained?: boolean;
+  context?: "card" | "detail";
 }) {
-  const kinds: Record<string, IllustrationKind> = {
+  const kinds: Record<string, WorkArtworkKind> = {
     "business-web-mobile": "business",
     "workflow-automation": "automation",
     "investment-information": "frontend",
@@ -53,27 +44,18 @@ export function WorkGraphic({
     "messaging-automation": "messaging",
     "web-card-game": "game",
   };
-  const kind = kinds[work.id];
-  if (contained && ["business", "automation", "frontend"].includes(kind)) {
-    return <CardArtwork kind={kind as WorkArtworkKind} />;
-  }
-  return (
-    <PortfolioIllustration kind={kinds[work.id]} className="work-graphic" />
+  const kind = kinds[work.id] ?? "business";
+  return context === "detail" ? (
+    <DetailArtwork kind={kind} />
+  ) : (
+    <CardArtwork kind={kind} />
   );
 }
 
-export function WorkCard({
-  work,
-  locale,
-  contained = false,
-}: {
-  work: WorkCase;
-  locale: Locale;
-  contained?: boolean;
-}) {
+export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
   const c = siteCopy[locale];
   return (
-    <article className={`work-card${contained ? " work-card-composed" : ""}`}>
+    <article className="work-card work-card-composed">
       <Link className="work-card-link" href={`/${locale}/creations/${work.id}`}>
         <div className="work-card-meta">
           <span className="work-number">{work.number}</span>
@@ -86,7 +68,7 @@ export function WorkCard({
             <h3>{work.title[locale]}</h3>
             <p>{work.summary[locale]}</p>
           </div>
-          <WorkGraphic work={work} contained={contained} />
+          <WorkGraphic work={work} />
         </div>
         {work.technologies.length > 0 && (
           <Tags items={work.technologies.slice(0, 4)} />
@@ -101,23 +83,13 @@ export function WorkCard({
 }
 
 export function Capabilities({ locale }: { locale: Locale }) {
-  const icons = [Code2, Smartphone, Layers, Workflow];
   return (
     <div className="capability-grid">
-      {capabilities.map((item, index) => {
-        const Icon = icons[index];
+      {capabilities.map((item) => {
         return (
           <article className="capability" key={item.code}>
             <div className="capability-top">
               <span className="eyebrow">{item.code}</span>
-              <DecorationLayer>
-                <Icon
-                  className="capability-art"
-                  size={40}
-                  strokeWidth={1.2}
-                  aria-hidden="true"
-                />
-              </DecorationLayer>
             </div>
             <h3>{item.title[locale]}</h3>
             <p>{item.body[locale]}</p>
@@ -133,28 +105,28 @@ export function PageIntro({
   eyebrow,
   title,
   body,
-  illustration = "route",
+  artwork = "route",
   className = "",
-  composed = false,
   children,
 }: {
   eyebrow: string;
   title: string;
   body: string;
-  illustration?: IllustrationKind;
+  artwork?: "route" | "none";
   className?: string;
-  composed?: boolean;
   children?: ReactNode;
 }) {
   return (
-    <header className={`page-intro ${className}${composed ? " page-intro-composed" : ""}`}>
+    <header
+      className={`page-intro page-intro-composed ${artwork === "route" ? "page-intro-with-art" : ""} ${className}`}
+    >
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         <p className="lead">{body}</p>
         {children}
       </div>
-      {composed ? <RouteArtwork /> : <PortfolioIllustration kind={illustration} />}
+      {artwork === "route" ? <RouteArtwork /> : null}
     </header>
   );
 }
@@ -172,7 +144,7 @@ export function ContactCallout({ locale }: { locale: Locale }) {
           <ArrowRight size={18} aria-hidden="true" />
         </Link>
       </div>
-      <PortfolioIllustration kind="route" />
+      <CalloutArtwork />
     </section>
   );
 }
