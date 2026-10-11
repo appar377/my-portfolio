@@ -37,9 +37,11 @@ export default function Header({ locale }: { locale: Locale }) {
     const closeOnHistory = () => setMenuPath(null);
     desktop.addEventListener("change", closeOnDesktop);
     window.addEventListener("popstate", closeOnHistory);
+    window.addEventListener("pageshow", closeOnHistory);
     return () => {
       desktop.removeEventListener("change", closeOnDesktop);
       window.removeEventListener("popstate", closeOnHistory);
+      window.removeEventListener("pageshow", closeOnHistory);
     };
   }, []);
 
