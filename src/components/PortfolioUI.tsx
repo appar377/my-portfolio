@@ -15,6 +15,11 @@ import PortfolioIllustration, {
   DecorationLayer,
   type IllustrationKind,
 } from "./PortfolioIllustration";
+import {
+  CardArtwork,
+  RouteArtwork,
+  type WorkArtworkKind,
+} from "./PortfolioArtwork";
 
 export const workCategories = [
   "business",
@@ -33,7 +38,13 @@ export function Tags({ items }: { items: readonly string[] }) {
   );
 }
 
-export function WorkGraphic({ work }: { work: WorkCase }) {
+export function WorkGraphic({
+  work,
+  contained = false,
+}: {
+  work: WorkCase;
+  contained?: boolean;
+}) {
   const kinds: Record<string, IllustrationKind> = {
     "business-web-mobile": "business",
     "workflow-automation": "automation",
@@ -42,15 +53,27 @@ export function WorkGraphic({ work }: { work: WorkCase }) {
     "messaging-automation": "messaging",
     "web-card-game": "game",
   };
+  const kind = kinds[work.id];
+  if (contained && ["business", "automation", "frontend"].includes(kind)) {
+    return <CardArtwork kind={kind as WorkArtworkKind} />;
+  }
   return (
     <PortfolioIllustration kind={kinds[work.id]} className="work-graphic" />
   );
 }
 
-export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
+export function WorkCard({
+  work,
+  locale,
+  contained = false,
+}: {
+  work: WorkCase;
+  locale: Locale;
+  contained?: boolean;
+}) {
   const c = siteCopy[locale];
   return (
-    <article className="work-card">
+    <article className={`work-card${contained ? " work-card-composed" : ""}`}>
       <Link className="work-card-link" href={`/${locale}/creations/${work.id}`}>
         <div className="work-card-meta">
           <span className="work-number">{work.number}</span>
@@ -63,7 +86,7 @@ export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
             <h3>{work.title[locale]}</h3>
             <p>{work.summary[locale]}</p>
           </div>
-          <WorkGraphic work={work} />
+          <WorkGraphic work={work} contained={contained} />
         </div>
         {work.technologies.length > 0 && (
           <Tags items={work.technologies.slice(0, 4)} />
@@ -112,6 +135,7 @@ export function PageIntro({
   body,
   illustration = "route",
   className = "",
+  composed = false,
   children,
 }: {
   eyebrow: string;
@@ -119,17 +143,18 @@ export function PageIntro({
   body: string;
   illustration?: IllustrationKind;
   className?: string;
+  composed?: boolean;
   children?: ReactNode;
 }) {
   return (
-    <header className={`page-intro ${className}`}>
+    <header className={`page-intro ${className}${composed ? " page-intro-composed" : ""}`}>
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>
         <p className="lead">{body}</p>
         {children}
       </div>
-      <PortfolioIllustration kind={illustration} />
+      {composed ? <RouteArtwork /> : <PortfolioIllustration kind={illustration} />}
     </header>
   );
 }

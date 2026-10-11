@@ -12,6 +12,7 @@ export default async function Creations({ params }: LocalePageProps) {
   return (
     <div className="page-width">
       <PageIntro
+        composed
         eyebrow="WORK / EXPERIENCE"
         title={c.workTitle}
         body={c.workIntro}

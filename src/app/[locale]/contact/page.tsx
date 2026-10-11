@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendarDays, FileText, Layers } from "lucide-react";
-import PortfolioIllustration from "@/components/PortfolioIllustration";
+import { ContactArtwork } from "@/components/PortfolioArtwork";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
 import { PageIntro } from "@/components/PortfolioUI";
@@ -24,6 +24,7 @@ export default async function Contact({ params }: LocalePageProps) {
   return (
     <div className="page-width">
       <PageIntro
+        composed
         className="contact-intro"
         eyebrow="CONTACT"
         title={c.contactTitle}
@@ -64,8 +65,8 @@ export default async function Contact({ params }: LocalePageProps) {
           {acceptingEnquiries ? (
             <ContactForm locale={locale} />
           ) : (
-            <div className="contact-pending">
-              <PortfolioIllustration kind="contact" />
+            <div className="contact-pending contact-pending-composed">
+              <ContactArtwork />
               <p className="eyebrow">
                 {locale === "ja" ? "受付準備中" : "ENQUIRIES"}
               </p>

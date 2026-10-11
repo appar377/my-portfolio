@@ -313,6 +313,114 @@ textarea {
 .portfolio-illustration .diagram-label {
   display: none;
 }
+/* Composition study: complete silhouettes, with quiet space around copy. */
+.portfolio-artwork {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  color: var(--blue);
+}
+.portfolio-artwork .art-surface {
+  fill: var(--white);
+}
+.portfolio-artwork .art-accent {
+  fill: var(--red);
+  stroke: none;
+}
+.portfolio-artwork .art-guide {
+  stroke-opacity: 0.2;
+  stroke-width: 1.6;
+}
+.work-card-composed .tags,
+.work-card-composed .work-card-link > .text-link {
+  max-width: calc(100% - 132px);
+}
+.work-card-composed .text-link > svg {
+  flex-shrink: 0;
+}
+.card-art {
+  width: 120px;
+  height: 80px;
+  right: 23px;
+  bottom: 23px;
+  stroke-opacity: 0.72;
+}
+.card-art-narrow,
+.route-art-narrow {
+  display: none;
+}
+.route-art {
+  top: 0;
+  right: 0;
+  width: min(72%, 780px);
+  height: 100%;
+}
+.route-art .art-route {
+  stroke-width: 2.2;
+  stroke-opacity: 0.42;
+}
+.route-art .art-node {
+  fill: var(--paper);
+  stroke: var(--red);
+  stroke-width: 2.1;
+  stroke-opacity: 0.65;
+}
+.route-art .art-node-secondary {
+  stroke: var(--blue);
+  stroke-opacity: 0.3;
+}
+.pending-art {
+  width: 146px;
+  height: 110px;
+  right: 28px;
+  bottom: 28px;
+  stroke-opacity: 0.68;
+  stroke-width: 2;
+}
+.contact-pending-composed h2,
+.contact-pending-composed > p:last-child {
+  max-width: calc(100% - 158px);
+  text-wrap: balance;
+}
+@media (max-width: 600px) {
+  .work-card-composed .tags,
+  .work-card-composed .work-card-link > .text-link {
+    max-width: calc(100% - 94px);
+  }
+  .card-art {
+    width: 80px;
+    height: 65px;
+    right: 22px;
+    bottom: 22px;
+  }
+  .card-art-wide,
+  .route-art-wide,
+  .card-art .art-support {
+    display: none;
+  }
+  .card-art-narrow,
+  .route-art-narrow {
+    display: block;
+  }
+  .route-art {
+    width: 100%;
+  }
+  .pending-art {
+    width: 84px;
+    height: 63px;
+    right: 22px;
+    bottom: 30px;
+  }
+  .contact-pending-composed h2 {
+    max-width: none;
+  }
+  .contact-pending-composed > p:last-child {
+    max-width: calc(100% - 94px);
+  }
+  .contact-intro.page-intro-composed h1 {
+    font-size: clamp(24px, 7.4vw, 28px);
+  }
+}
 /* Use navy copy where the blue art crosses text; keep the art's full scale. */
 .hero-copy .lead,
 .page-intro-copy p:not(.eyebrow),

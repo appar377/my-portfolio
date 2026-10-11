@@ -66,7 +66,7 @@ export default async function Home({ params }: LocalePageProps) {
         </div>
         <div className="work-grid">
           {workCases.slice(0, 3).map((work) => (
-            <WorkCard key={work.id} work={work} locale={locale} />
+            <WorkCard key={work.id} work={work} locale={locale} contained />
           ))}
         </div>
       </section>
