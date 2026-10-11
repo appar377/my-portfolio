@@ -147,6 +147,15 @@ textarea {
 .button-secondary:hover {
   background: var(--white);
 }
+/* Keep keyboard focus inside buttons at the edge of clipped background art. */
+.hero-actions .button:focus-visible,
+.contact-callout .button:focus-visible {
+  outline-offset: -7px;
+}
+.hero-actions .button-primary:focus-visible,
+.contact-callout .button-primary:focus-visible {
+  outline-color: var(--white);
+}
 .text-link {
   display: inline-flex;
   align-items: center;
