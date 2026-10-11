@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CalendarDays, FileText, Layers } from "lucide-react";
+import PortfolioIllustration from "@/components/PortfolioIllustration";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
 import { PageIntro } from "@/components/PortfolioUI";
@@ -12,6 +14,7 @@ export const dynamic = "force-dynamic";
 export default async function Contact({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
   const c = siteCopy[locale];
+  const consultationIcons = [FileText, Layers, CalendarDays];
   const acceptingEnquiries =
     contactFormEnabled &&
     process.env.CONTACT_FORM_ENABLED === "true" &&
@@ -42,9 +45,15 @@ export default async function Contact({ params }: LocalePageProps) {
                   "Your current setup and required features",
                   "Timing and the contribution you need",
                 ]
-            ).map((item) => (
-              <li key={item}>{item}</li>
-            ))}
+            ).map((item, index) => {
+              const Icon = consultationIcons[index];
+              return (
+                <li key={item}>
+                  <Icon size={24} strokeWidth={1.3} aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              );
+            })}
           </ul>
           <Link className="text-link" href={`/${locale}/services`}>
             {c.servicesCta} ↗
@@ -55,6 +64,7 @@ export default async function Contact({ params }: LocalePageProps) {
             <ContactForm locale={locale} />
           ) : (
             <div className="contact-pending">
+              <PortfolioIllustration kind="contact" />
               <p className="eyebrow">
                 {locale === "ja" ? "受付準備中" : "ENQUIRIES"}
               </p>

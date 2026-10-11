@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
+import { BrandMark } from "@/components/PortfolioIllustration";
 import { routing } from "@/i18n/routing";
 import { setPageLocale } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
@@ -45,12 +46,16 @@ export default async function LocaleLayout({ children, params }: Props) {
         <footer className="site-footer">
           <div>
             <Link className="footer-brand" href={`/${locale}`}>
-              abocado.
+              <BrandMark /> Abocado
             </Link>
             <p>Yusuke / {c.footer}</p>
           </div>
           <div className="footer-links">
             <Link href={`/${locale}/creations`}>{c.nav[0]}</Link>
+            <Link href={`/${locale}/about`}>{c.nav[1]}</Link>
+            <Link href={`/${locale}/services`}>{c.nav[2]}</Link>
+            <Link href={`/${locale}/blog`}>{c.nav[3]}</Link>
+            <Link href={`/${locale}/contact`}>{c.nav[4]}</Link>
             <a
               href={technicalNotesUrl}
               target="_blank"

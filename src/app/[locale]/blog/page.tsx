@@ -15,6 +15,7 @@ export default async function Blog({ params }: LocalePageProps) {
         eyebrow="TECHNICAL NOTES"
         title={c.notesTitle}
         body={c.notesBody}
+        illustration="notes"
       />
       <section className="writing-card">
         <span className="notes-word" aria-hidden="true">

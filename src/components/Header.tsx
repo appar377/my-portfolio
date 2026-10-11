@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteCopy } from "@/content/site";
 import SettingLang from "./SettingLang";
+import PortfolioIllustration, { BrandMark } from "./PortfolioIllustration";
 
 const destinations = ["creations", "about", "services", "blog", "contact"];
 
@@ -15,19 +16,76 @@ export default function Header({ locale }: { locale: Locale }) {
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const menuOpen = menuPath === pathname;
   const toggle = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
   const c = siteCopy[locale];
 
   function closeMenu() {
     setMenuPath(null);
   }
+  function isCurrent(path: string) {
+    return (
+      pathname === `/${locale}/${path}` ||
+      pathname.startsWith(`/${locale}/${path}/`)
+    );
+  }
+
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1051px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setMenuPath(null);
+    };
+    const closeOnHistory = () => setMenuPath(null);
+    desktop.addEventListener("change", closeOnDesktop);
+    window.addEventListener("popstate", closeOnHistory);
+    return () => {
+      desktop.removeEventListener("change", closeOnDesktop);
+      window.removeEventListener("popstate", closeOnHistory);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const content = Array.from(
+      document.querySelectorAll<HTMLElement>("main, .site-footer"),
+    );
+    const previousInert = content.map((element) => element.inert);
+    const previousOverflow = document.body.style.overflow;
+    content.forEach((element) => {
+      element.inert = true;
+    });
+    document.body.style.overflow = "hidden";
+    return () => {
+      content.forEach((element, index) => {
+        element.inert = previousInert[index];
+      });
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
 
   return (
     <header
+      ref={header}
       className="site-header"
       onKeyDown={(event) => {
-        if (event.key === "Escape" && menuOpen) {
+        if (!menuOpen) return;
+        if (event.key === "Escape") {
           closeMenu();
           toggle.current?.focus();
+        }
+        if (event.key === "Tab") {
+          const controls = Array.from(
+            header.current?.querySelectorAll<HTMLElement>("a, button") ?? [],
+          ).filter((element) => element.getClientRects().length > 0);
+          const first = controls[0],
+            last = controls[controls.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last?.focus();
+          }
+          if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first?.focus();
+          }
         }
       }}
     >
@@ -38,12 +96,8 @@ export default function Header({ locale }: { locale: Locale }) {
           onClick={closeMenu}
           aria-label={`Abocado / Yusuke · ${c.home}`}
         >
-          <span className="brand-mark" aria-hidden="true">
-            a
-          </span>
-          <span>
-            abocado<span className="brand-dot">.</span>
-          </span>
+          <BrandMark />
+          <span>Abocado</span>
         </Link>
         <nav
           aria-label={
@@ -55,9 +109,7 @@ export default function Header({ locale }: { locale: Locale }) {
             <Link
               href={`/${locale}/${path}`}
               key={path}
-              aria-current={
-                pathname.startsWith(`/${locale}/${path}`) ? "page" : undefined
-              }
+              aria-current={isCurrent(path) ? "page" : undefined}
             >
               {c.nav[index]}
             </Link>
@@ -73,7 +125,7 @@ export default function Header({ locale }: { locale: Locale }) {
             aria-label={menuOpen ? c.closeMenu : c.menu}
             onClick={() => setMenuPath(menuOpen ? null : pathname)}
           >
-            {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
@@ -85,19 +137,24 @@ export default function Header({ locale }: { locale: Locale }) {
           locale === "ja" ? "モバイルナビゲーション" : "Mobile navigation"
         }
       >
-        {destinations.map((path, index) => (
-          <Link
-            href={`/${locale}/${path}`}
-            key={path}
-            onClick={closeMenu}
-            aria-current={
-              pathname.startsWith(`/${locale}/${path}`) ? "page" : undefined
-            }
-          >
-            {c.nav[index]}
-            <span aria-hidden="true">↗</span>
-          </Link>
-        ))}
+        <div className="mobile-destinations">
+          {destinations.map((path, index) => (
+            <Link
+              href={`/${locale}/${path}`}
+              key={path}
+              onClick={closeMenu}
+              aria-current={isCurrent(path) ? "page" : undefined}
+            >
+              <span className="menu-number" aria-hidden="true">
+                0{index + 1}
+              </span>
+              <span>{c.nav[index]}</span>
+              <ArrowUpRight size={26} aria-hidden="true" />
+            </Link>
+          ))}
+        </div>
+        <SettingLang locale={locale} onNavigate={closeMenu} />
+        <PortfolioIllustration kind="profile" />
       </nav>
     </header>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Search, ListChecks, Code2, ChartNoAxesCombined } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
 import {
@@ -12,12 +13,14 @@ export const metadata: Metadata = { title: "Services / できること" };
 export default async function Services({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
   const c = siteCopy[locale];
+  const processIcons = [Search, ListChecks, Code2, ChartNoAxesCombined];
   return (
-    <div className="page-width">
+    <div className="page-width services-page">
       <PageIntro
         eyebrow="SERVICES / CAPABILITIES"
         title={c.servicesTitle}
         body={c.servicesIntro}
+        illustration="business"
       />
       <Capabilities locale={locale} />
       <section className="section">
@@ -28,13 +31,19 @@ export default async function Services({ params }: LocalePageProps) {
           </div>
         </div>
         <ol className="process-grid">
-          {c.steps.map(([title, body], index) => (
-            <li key={title}>
-              <span className="process-number">0{index + 1}</span>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </li>
-          ))}
+          {c.steps.map(([title, body], index) => {
+            const Icon = processIcons[index];
+            return (
+              <li key={title}>
+                <span className="process-icon">
+                  <Icon size={32} strokeWidth={1.3} aria-hidden="true" />
+                </span>
+                <span className="process-number">0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </li>
+            );
+          })}
         </ol>
       </section>
       <ContactCallout locale={locale} />

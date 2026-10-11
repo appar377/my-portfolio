@@ -23,12 +23,9 @@ export default async function About({ params }: LocalePageProps) {
         eyebrow="ABOUT / YUSUKE"
         title={c.aboutTitle}
         body={c.aboutIntro}
-      />
-      <section className="profile-section">
-        <div className="profile-monogram" aria-hidden="true">
-          y<span>.</span>
-        </div>
-        <div>
+        illustration="profile"
+      >
+        <div className="profile-section">
           <p className="profile-name">{c.profileName}</p>
           <h2>
             {locale === "ja"
@@ -41,7 +38,7 @@ export default async function About({ params }: LocalePageProps) {
             <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
         </div>
-      </section>
+      </PageIntro>
       <section className="section career-section">
         <h2>{c.career}</h2>
         <ol className="career-list">
@@ -69,7 +66,7 @@ export default async function About({ params }: LocalePageProps) {
         <div className="section-heading">
           <h2>{c.otherExperience}</h2>
         </div>
-        <div className="work-grid">
+        <div className="work-grid work-grid-all">
           {workCases
             .filter((work) =>
               ["recruitment-matching", "messaging-automation"].includes(

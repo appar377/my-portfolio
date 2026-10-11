@@ -32,14 +32,17 @@ export default async function CreationDetail({ params }: Props) {
   return (
     <div className="page-width">
       <header className="detail-intro">
-        <Link className="text-link" href={`/${locale}/creations`}>
-          <ArrowLeft size={18} aria-hidden="true" />
-          {c.back}
-        </Link>
-        <p className="eyebrow">WORK / {work.number}</p>
-        <h1>{work.title[locale]}</h1>
-        <p className="work-kind">{work.kind[locale]}</p>
-        <p className="lead">{work.summary[locale]}</p>
+        <div>
+          <Link className="text-link" href={`/${locale}/creations`}>
+            <ArrowLeft size={18} aria-hidden="true" />
+            {c.back}
+          </Link>
+          <p className="eyebrow">WORK / {work.number}</p>
+          <h1>{work.title[locale]}</h1>
+          <p className="work-kind">{work.kind[locale]}</p>
+          <p className="lead">{work.summary[locale]}</p>
+        </div>
+        <WorkGraphic work={work} />
       </header>
       <div className="detail-layout">
         <div className="detail-content">
@@ -54,8 +57,10 @@ export default async function CreationDetail({ params }: Props) {
           ))}
         </div>
         <aside className="detail-sidebar">
-          <WorkGraphic work={work} />
+          <p className="eyebrow">PROJECT INFORMATION</p>
           <dl>
+            <dt>{locale === "ja" ? "制作区分" : "Project type"}</dt>
+            <dd>{work.kind[locale]}</dd>
             <dt>{c.period}</dt>
             <dd>{work.period[locale]}</dd>
             <dt>{c.tech}</dt>
@@ -69,9 +74,13 @@ export default async function CreationDetail({ params }: Props) {
               )}
             </dd>
           </dl>
-          <p className="scope-note">{c.sourceUnavailable}</p>
         </aside>
       </div>
+      <p className="scope-note">{c.sourceUnavailable}</p>
+      <Link className="text-link detail-back" href={`/${locale}/creations`}>
+        <ArrowLeft size={18} aria-hidden="true" />
+        {c.back}
+      </Link>
       <ContactCallout locale={locale} />
     </div>
   );

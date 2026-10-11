@@ -3,8 +3,9 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { workCases } from "@/content/work";
-import HeroGeometry from "@/components/HeroGeometry";
-import HeroPortrait from "@/components/HeroPortrait";
+import PortfolioIllustration, {
+  HeroTrail,
+} from "@/components/PortfolioIllustration";
 import HomeDestinations from "@/components/HomeDestinations";
 import {
   Capabilities,
@@ -17,14 +18,10 @@ export default async function Home({ params }: LocalePageProps) {
   const c = siteCopy[locale];
   return (
     <>
-      <section className="hero hero-b">
-        <HeroGeometry />
-        <div className="page-width hero-b-layout">
+      <section className="hero">
+        <div className="page-width hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow">
-              <span className="status-dot" />
-              ABOCADO / {c.role}
-            </p>
+            <p className="eyebrow">ABOCADO / {c.role}</p>
             <h1>Yusuke</h1>
             <p className="hero-role">
               <span>Full Stack Engineer</span>
@@ -38,8 +35,9 @@ export default async function Home({ params }: LocalePageProps) {
             </p>
             <p className="lead">{c.heroBody}</p>
           </div>
-          <HeroPortrait />
-          <div className="actions hero-b-actions">
+          <PortfolioIllustration kind="hero" className="hero-art-desktop" />
+          <HeroTrail />
+          <div className="actions hero-actions">
             <Link
               className="button button-primary"
               href={`/${locale}/creations`}
@@ -100,11 +98,7 @@ export default async function Home({ params }: LocalePageProps) {
             <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         </div>
-        <span className="notes-word" aria-hidden="true">
-          tech
-          <br />
-          <span>note.</span>
-        </span>
+        <PortfolioIllustration kind="notes" />
       </section>
       <div className="page-width">
         <ContactCallout locale={locale} />

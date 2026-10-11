@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Check } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteCopy } from "@/content/site";
 import { workCases, type WorkCategory } from "@/content/work";
@@ -26,14 +27,15 @@ export default function WorkExplorer({ locale }: { locale: Locale }) {
             onClick={() => setCategory(item)}
             aria-pressed={category === item}
           >
+            {category === item && <Check size={16} aria-hidden="true" />}
             {c[item]}
           </button>
         ))}
       </div>
       <p className="result-count" role="status">
         {locale === "ja"
-          ? `${visible.length}件の開発経験を紹介`
-          : `${visible.length} work ${visible.length === 1 ? "summary" : "summaries"}`}
+          ? `${visible.length}件を表示 / 全${workCases.length}件`
+          : `Showing ${visible.length} of ${workCases.length} projects`}
       </p>
       <div className="work-grid work-grid-all">
         {visible.map((work) => (
