@@ -103,16 +103,18 @@ export function PageIntro({
   title,
   body,
   illustration = "route",
+  className = "",
   children,
 }: {
   eyebrow: string;
   title: string;
   body: string;
   illustration?: IllustrationKind;
+  className?: string;
   children?: ReactNode;
 }) {
   return (
-    <header className="page-intro">
+    <header className={`page-intro ${className}`}>
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
         <h1>{title}</h1>

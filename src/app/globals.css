@@ -60,6 +60,7 @@ h3 {
   line-height: 1.4;
   letter-spacing: -0.025em;
   overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 h1 {
   font-size: clamp(42px, 4.5vw, 64px);
@@ -267,12 +268,44 @@ textarea {
   display: none;
 }
 
-/* Explanatory line illustrations */
+/* Decorative art stays behind content and never creates a layout track. */
+.hero-layout,
+.work-card-link,
+.notes-section,
+.contact-callout,
+.page-intro,
+.contact-pending,
+.detail-intro,
+.capability,
+.writing-card,
+.process-grid li {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+}
 .portfolio-illustration {
-  width: 100%;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  width: var(--art-width, 660px);
   height: auto;
-  color: var(--ink);
-  overflow: visible;
+  max-width: none;
+  top: var(--art-top, 50%);
+  right: var(--art-right, -140px);
+  transform: translateY(-50%);
+  opacity: var(--art-opacity, 0.48);
+  color: var(--blue);
+  mask-image: var(--art-mask, linear-gradient(100deg, #0001 8%, #0005 45%, #000 85%));
+  -webkit-mask-image: var(--art-mask, linear-gradient(100deg, #0001 8%, #0005 45%, #000 85%));
+}
+.portfolio-illustration .diagram-paper {
+  fill: transparent;
+}
+.portfolio-illustration .diagram-shade {
+  fill: #dce5eb66;
+}
+.portfolio-illustration .diagram-label {
+  display: none;
 }
 .diagram-paper {
   fill: var(--paper);
@@ -312,13 +345,15 @@ textarea {
   padding: 70px 0 55px;
 }
 .hero-layout {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  align-items: center;
-  column-gap: 60px;
+  --art-width: 850px;
+  --art-right: -120px;
+  --art-top: 48%;
+  --art-opacity: 0.65;
+  --art-mask: linear-gradient(100deg, #0001 15%, #0005 48%, #000 80%);
 }
 .hero-copy {
   min-width: 0;
+  max-width: 670px;
 }
 .hero h1 {
   font-size: clamp(76px, 8vw, 106px);
@@ -361,14 +396,12 @@ textarea {
   font-size: 16px;
 }
 .hero-art-desktop {
-  grid-column: 2;
-  grid-row: 1 / 3;
+  pointer-events: none;
 }
 .hero-art-mobile {
   display: none;
 }
 .hero-actions {
-  grid-column: 1;
   margin-top: 28px;
 }
 .section-heading {
@@ -454,23 +487,20 @@ textarea {
   line-height: 1.9;
 }
 .work-card-content {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: block;
 }
-.work-card .work-graphic {
-  width: 155px;
-  height: 125px;
-  align-self: flex-end;
+.work-card-link {
+  --art-width: 300px;
+  --art-right: -76px;
+  --art-top: 58%;
+  --art-opacity: 0.25;
+  --art-mask: linear-gradient(100deg, #0001 10%, #0006 55%, #000 100%);
 }
-.work-grid-all .work-card-content {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 125px;
-  align-items: center;
-}
-.work-grid-all .work-card .work-graphic {
-  width: 125px;
-  height: auto;
+.work-grid-all .work-card-link {
+  --art-width: 370px;
+  --art-right: -70px;
+  --art-top: 52%;
+  --art-opacity: 0.28;
 }
 .work-card-link > .text-link {
   margin-top: auto;
@@ -546,11 +576,20 @@ textarea {
   border-right: 0;
 }
 .capability-top {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
   margin-bottom: 16px;
   color: var(--blue);
+}
+.capability-top > svg {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 18px;
+  right: -20px;
+  width: 150px;
+  height: 150px;
+  opacity: 0.16;
+  mask-image: linear-gradient(100deg, #0002, #000);
+  -webkit-mask-image: linear-gradient(100deg, #0002, #000);
 }
 .capability h3 {
   font-size: 20px;
@@ -563,9 +602,10 @@ textarea {
   margin-top: 20px;
 }
 .notes-section {
-  display: grid;
-  grid-template-columns: 1.45fr 1fr;
-  align-items: center;
+  --art-width: 510px;
+  --art-right: -35px;
+  --art-top: 54%;
+  --art-opacity: 0.55;
   padding: 38px 45px;
   margin-top: 30px;
   background: var(--white);
@@ -582,9 +622,8 @@ textarea {
 .notes-section .text-link {
   margin-top: 22px;
 }
-.notes-section .portfolio-illustration {
-  max-width: 300px;
-  justify-self: end;
+.notes-section > div {
+  max-width: 710px;
 }
 .notes-word {
   color: var(--blue);
@@ -597,11 +636,12 @@ textarea {
   margin-left: 36px;
 }
 .contact-callout {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  align-items: center;
-  gap: 60px;
-  padding: 76px 0;
+  --art-width: 730px;
+  --art-right: -90px;
+  --art-top: 54%;
+  --art-opacity: 0.6;
+  --art-mask: linear-gradient(100deg, #0001 8%, #0006 50%, #000 85%);
+  padding: 62px 0;
   border-top: 1px solid var(--line);
   margin-top: 72px;
 }
@@ -615,18 +655,17 @@ textarea {
 .contact-callout .button {
   margin-top: 26px;
 }
-.contact-callout .portfolio-illustration {
-  max-width: 310px;
-  justify-self: end;
+.callout-copy {
+  max-width: 720px;
 }
 
 /* Interior pages */
 .page-intro {
-  padding: 65px 0 55px;
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  align-items: center;
-  gap: 65px;
+  --art-width: 740px;
+  --art-right: -95px;
+  --art-top: 52%;
+  --art-opacity: 0.58;
+  padding: 58px 0 48px;
 }
 .page-intro h1 {
   margin-top: 12px;
@@ -637,9 +676,14 @@ textarea {
   font-size: 21px;
   font-weight: 600;
 }
-.page-intro > .portfolio-illustration {
-  max-width: 370px;
-  justify-self: end;
+.page-intro-copy {
+  max-width: 760px;
+}
+.page-intro:has(.profile-section) {
+  --art-width: 820px;
+  --art-right: -180px;
+  --art-top: 48%;
+  --art-opacity: 0.46;
 }
 .filters {
   display: flex;
@@ -762,10 +806,14 @@ textarea {
   background: var(--white);
 }
 .services-page .capability-top {
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 22px;
+}
+.services-page .capability-top > svg {
+  width: 190px;
+  height: 190px;
+  top: 20px;
+  right: -28px;
+  opacity: 0.18;
 }
 .services-page .capability h3 {
   font-size: 24px;
@@ -788,27 +836,26 @@ textarea {
 .process-grid li:not(:last-child)::after {
   content: "";
   position: absolute;
-  top: 36px;
-  left: 74px;
-  width: calc(100% - 36px);
-  height: 1px;
-  background: var(--blue);
-  opacity: 0.45;
+  display: none;
 }
 .process-icon {
-  display: flex;
-  width: 74px;
-  height: 74px;
-  border: 1px solid var(--blue);
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  top: 3px;
+  right: -14px;
   color: var(--blue);
-  background: var(--paper);
+  opacity: 0.16;
+  mask-image: linear-gradient(100deg, #0003, #000);
+  -webkit-mask-image: linear-gradient(100deg, #0003, #000);
+}
+.process-icon svg {
+  width: 125px;
+  height: 125px;
 }
 .process-number {
   display: block;
-  margin: 19px 0 8px;
+  margin: 0 0 8px;
   color: var(--red);
   font-size: 13px;
   font-weight: 700;
@@ -821,17 +868,25 @@ textarea {
   margin-top: 12px;
 }
 .writing-card {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 60px;
-  align-items: center;
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--white);
   padding: 52px;
 }
 .writing-card .notes-word {
-  justify-self: center;
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  right: 0;
+  bottom: -45px;
+  font-size: 190px;
+  opacity: 0.1;
+  transform: rotate(-6deg);
+  mask-image: linear-gradient(100deg, #0003, #000);
+  -webkit-mask-image: linear-gradient(100deg, #0003, #000);
+}
+.writing-card > div {
+  max-width: 730px;
 }
 .writing-card h2 {
   margin-top: 14px;
@@ -873,14 +928,12 @@ textarea {
   border: 1px solid var(--line);
   background: var(--white);
   border-radius: 6px;
-  padding: 30px 38px 42px;
-  text-align: center;
-}
-.contact-pending .portfolio-illustration {
-  width: 240px;
-  max-width: 100%;
-  height: 175px;
-  margin-inline: auto;
+  --art-width: 500px;
+  --art-right: -150px;
+  --art-top: 48%;
+  --art-opacity: 0.58;
+  --art-mask: linear-gradient(100deg, #0001 15%, #0008 60%, #000 100%);
+  padding: 32px 34px 36px;
 }
 .contact-pending .eyebrow {
   display: inline-block;
@@ -888,7 +941,7 @@ textarea {
   color: var(--red);
   border-radius: 4px;
   padding: 5px 12px;
-  margin: 15px 0;
+  margin: 0 0 16px;
 }
 .contact-pending h2 {
   font-size: 24px;
@@ -898,11 +951,11 @@ textarea {
   margin-top: 17px;
 }
 .detail-intro {
-  display: grid;
-  grid-template-columns: 1.65fr 1fr;
-  align-items: center;
-  gap: 65px;
-  padding: 54px 0 62px;
+  --art-width: 690px;
+  --art-right: -100px;
+  --art-top: 57%;
+  --art-opacity: 0.5;
+  padding: 48px 0 50px;
 }
 .detail-intro .eyebrow {
   margin-top: 38px;
@@ -920,8 +973,12 @@ textarea {
   margin-top: 18px;
 }
 .detail-intro .lead {
+  max-width: 760px;
   margin-top: 24px;
   font-size: 16px;
+}
+.detail-intro h1 {
+  max-width: 930px;
 }
 .detail-layout {
   display: grid;
@@ -1059,6 +1116,8 @@ textarea {
     background: var(--paper);
     padding: 30px max(28px, calc((100% - 680px) / 2));
     overflow-y: auto;
+    overflow-x: clip;
+    isolation: isolate;
     overscroll-behavior: contain;
   }
   .mobile-destinations {
@@ -1087,13 +1146,15 @@ textarea {
     align-self: flex-start;
   }
   .mobile-nav > .portfolio-illustration {
-    width: 210px;
-    min-height: 150px;
-    align-self: flex-end;
-    margin-top: 10px;
+    --art-width: 560px;
+    --art-right: -190px;
+    --art-top: 67%;
+    --art-opacity: 0.32;
   }
   .hero-layout {
-    column-gap: 30px;
+    --art-width: 740px;
+    --art-right: -205px;
+    --art-opacity: 0.48;
   }
   .hero-role {
     font-size: 19px;
@@ -1111,11 +1172,9 @@ textarea {
   .work-card h3 {
     font-size: 19px;
   }
-  .work-grid-all .work-card-content {
-    grid-template-columns: 1fr;
-  }
-  .work-grid-all .work-card .work-graphic {
-    justify-self: end;
+  .work-grid-all .work-card-link {
+    --art-width: 320px;
+    --art-right: -100px;
   }
   .capability-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1129,7 +1188,7 @@ textarea {
   }
   .page-intro,
   .detail-intro {
-    gap: 35px;
+    --art-right: -205px;
   }
   .detail-layout {
     grid-template-columns: minmax(0, 1fr) 260px;
@@ -1140,7 +1199,6 @@ textarea {
   }
   .writing-card {
     padding: 36px;
-    gap: 35px;
   }
 }
 
@@ -1194,10 +1252,7 @@ textarea {
     padding: 34px 0 25px;
   }
   .hero-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
+    display: block;
   }
   .hero .eyebrow {
     font-size: 9px;
@@ -1226,16 +1281,24 @@ textarea {
     display: none;
   }
   .hero-art-mobile {
+    position: absolute;
     display: block;
-    width: 100%;
-    height: 105px;
-    margin: 8px 0 14px;
+    z-index: -1;
+    pointer-events: none;
+    width: 610px;
+    height: 250px;
+    right: -140px;
+    top: 58%;
+    transform: translateY(-50%);
+    opacity: 0.3;
+    mask-image: linear-gradient(100deg, #0002, #000 80%);
+    -webkit-mask-image: linear-gradient(100deg, #0002, #000 80%);
   }
   .hero-art-mobile .diagram-gray {
     display: none;
   }
   .hero-actions {
-    margin-top: 0;
+    margin-top: 24px;
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
@@ -1271,12 +1334,12 @@ textarea {
   .work-card h3 {
     font-size: 21px;
   }
-  .work-card .work-graphic {
-    display: none;
-  }
-  .work-card-content,
-  .work-grid-all .work-card-content {
-    display: block;
+  .work-card-link,
+  .work-grid-all .work-card-link {
+    --art-width: 340px;
+    --art-right: -122px;
+    --art-top: 59%;
+    --art-opacity: 0.25;
   }
   .work-card-body > p {
     font-size: 14px;
@@ -1320,47 +1383,44 @@ textarea {
     border-bottom: 0;
     padding-bottom: 0;
   }
-  .capability-top {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
+  .capability-top > svg {
+    top: 3px;
+    right: -8px;
   }
   .capability > p {
     font-size: 14px;
   }
   .notes-section {
-    grid-template-columns: 1fr;
+    --art-width: 390px;
+    --art-right: -154px;
+    --art-top: 63%;
+    --art-opacity: 0.5;
     padding: 28px 24px;
-    gap: 15px;
     margin-top: 8px;
   }
   .notes-section h2 {
     font-size: 25px;
   }
-  .notes-section .portfolio-illustration {
-    width: 170px;
-  }
   .contact-callout {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 46px 0;
-    margin-top: 48px;
+    --art-width: 560px;
+    --art-right: -160px;
+    --art-top: 46%;
+    --art-opacity: 0.46;
+    padding: 40px 0;
+    margin-top: 42px;
   }
   .contact-callout h2 {
-    font-size: 26px;
-  }
-  .contact-callout .portfolio-illustration {
-    width: 180px;
-    height: 140px;
+    font-size: clamp(24px, 6.7vw, 28px);
   }
   .contact-callout .button {
     width: 100%;
   }
   .page-intro {
-    grid-template-columns: 1fr;
-    padding: 36px 0 32px;
-    gap: 12px;
+    --art-width: 520px;
+    --art-right: -165px;
+    --art-top: 50%;
+    --art-opacity: 0.48;
+    padding: 34px 0 30px;
   }
   .page-intro h1 {
     font-size: 38px;
@@ -1370,9 +1430,14 @@ textarea {
     font-size: 19px;
     margin-top: 18px;
   }
-  .page-intro > .portfolio-illustration {
-    width: 185px;
-    height: 120px;
+  .contact-intro h1 {
+    font-size: clamp(28px, 8vw, 32px);
+  }
+  .page-intro:has(.profile-section) {
+    --art-width: 660px;
+    --art-right: -295px;
+    --art-top: 40%;
+    --art-opacity: 0.38;
   }
   .filters {
     gap: 9px;
@@ -1437,21 +1502,11 @@ textarea {
     margin-top: 25px;
   }
   .process-grid li {
-    padding-left: 88px;
-    min-height: 85px;
+    padding-left: 0;
   }
   .process-icon {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 63px;
-    height: 63px;
-  }
-  .process-grid li:not(:last-child)::after {
-    top: 63px;
-    left: 31px;
-    height: calc(100% - 38px);
-    width: 1px;
+    right: 0;
+    top: -5px;
   }
   .process-number {
     margin-top: 0;
@@ -1460,13 +1515,13 @@ textarea {
     font-size: 14px;
   }
   .writing-card {
-    grid-template-columns: 1fr;
-    gap: 32px;
     padding: 32px 25px;
   }
   .writing-card .notes-word {
-    justify-self: start;
-    font-size: 72px;
+    right: -80px;
+    bottom: -20px;
+    font-size: 160px;
+    opacity: 0.09;
   }
   .writing-card .actions {
     flex-direction: column;
@@ -1491,15 +1546,21 @@ textarea {
     font-size: 13px;
   }
   .contact-pending {
-    padding: 25px 24px 32px;
+    --art-width: 460px;
+    --art-right: -186px;
+    --art-top: 56%;
+    --art-opacity: 0.5;
+    padding: 28px 24px 30px;
   }
   .contact-pending h2 {
     font-size: 22px;
   }
   .detail-intro {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 34px 0;
+    --art-width: 540px;
+    --art-right: -200px;
+    --art-top: 58%;
+    --art-opacity: 0.43;
+    padding: 30px 0;
   }
   .detail-intro h1 {
     font-size: 30px;
@@ -1510,11 +1571,6 @@ textarea {
   .detail-intro .lead {
     font-size: 14px;
     margin-top: 20px;
-  }
-  .detail-intro .work-graphic {
-    width: 195px;
-    height: 145px;
-    justify-self: end;
   }
   .detail-layout {
     grid-template-columns: 1fr;

@@ -35,7 +35,7 @@ export default async function Services({ params }: LocalePageProps) {
             const Icon = processIcons[index];
             return (
               <li key={title}>
-                <span className="process-icon">
+                <span className="process-icon" aria-hidden="true">
                   <Icon size={32} strokeWidth={1.3} aria-hidden="true" />
                 </span>
                 <span className="process-number">0{index + 1}</span>
