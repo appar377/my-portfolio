@@ -12,6 +12,7 @@ import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
 import type { WorkCase, WorkCategory } from "@/content/work";
 import PortfolioIllustration, {
+  DecorationLayer,
   type IllustrationKind,
 } from "./PortfolioIllustration";
 
@@ -86,7 +87,14 @@ export function Capabilities({ locale }: { locale: Locale }) {
           <article className="capability" key={item.code}>
             <div className="capability-top">
               <span className="eyebrow">{item.code}</span>
-              <Icon size={40} strokeWidth={1.2} aria-hidden="true" />
+              <DecorationLayer>
+                <Icon
+                  className="capability-art"
+                  size={40}
+                  strokeWidth={1.2}
+                  aria-hidden="true"
+                />
+              </DecorationLayer>
             </div>
             <h3>{item.title[locale]}</h3>
             <p>{item.body[locale]}</p>

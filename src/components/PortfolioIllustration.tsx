@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   CarFront,
   ChartColumn,
@@ -24,6 +25,14 @@ export type IllustrationKind =
   | "game"
   | "notes"
   | "contact";
+
+export function DecorationLayer({ children }: { children: ReactNode }) {
+  return (
+    <div className="decoration-layer" aria-hidden="true">
+      {children}
+    </div>
+  );
+}
 
 function WindowOutline({
   x,
@@ -123,7 +132,7 @@ export default function PortfolioIllustration({
   kind?: IllustrationKind;
   className?: string;
 }) {
-  return (
+  const illustration = (
     <svg
       viewBox="0 0 480 420"
       className={
@@ -386,10 +395,11 @@ export default function PortfolioIllustration({
       <circle cx="345" cy="352" r="4" className="diagram-node-blue" />
     </svg>
   );
+  return <DecorationLayer>{illustration}</DecorationLayer>;
 }
 
 export function HeroTrail() {
-  return (
+  const trail = (
     <svg
       viewBox="0 0 400 110"
       className="hero-art-mobile"
@@ -407,6 +417,7 @@ export function HeroTrail() {
       <circle cx="261" cy="34" r="5" className="diagram-node" />
     </svg>
   );
+  return <DecorationLayer>{trail}</DecorationLayer>;
 }
 
 export function BrandMark() {

@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { ContactCallout, PageIntro } from "@/components/PortfolioUI";
+import { DecorationLayer } from "@/components/PortfolioIllustration";
 
 export const metadata: Metadata = { title: "Technical notes / 技術ノート" };
 
@@ -18,11 +19,13 @@ export default async function Blog({ params }: LocalePageProps) {
         illustration="notes"
       />
       <section className="writing-card">
-        <span className="notes-word" aria-hidden="true">
-          tech
-          <br />
-          <span>note.</span>
-        </span>
+        <DecorationLayer>
+          <span className="notes-word" aria-hidden="true">
+            tech
+            <br />
+            <span>note.</span>
+          </span>
+        </DecorationLayer>
         <div>
           <p className="eyebrow">YUSUKE / DEVELOPMENT NOTES</p>
           <h2>tech-note</h2>
