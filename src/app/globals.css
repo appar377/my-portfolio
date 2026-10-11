@@ -509,6 +509,10 @@ textarea {
   outline: 1px solid var(--blue);
   outline-offset: -1px;
 }
+.work-card-link:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 5px;
+}
 .work-card-meta {
   display: flex;
   align-items: center;
