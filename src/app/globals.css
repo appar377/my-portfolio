@@ -313,6 +313,18 @@ textarea {
 .portfolio-illustration .diagram-label {
   display: none;
 }
+/* Use navy copy where the blue art crosses text; keep the art's full scale. */
+.hero-copy .lead,
+.page-intro-copy p:not(.eyebrow),
+.callout-copy p:not(.eyebrow),
+.detail-intro .lead,
+.contact-pending > p:last-child,
+.capability > p,
+.notes-section p:not(.eyebrow),
+.writing-card p:not(.eyebrow),
+.work-card-body > p {
+  color: var(--ink);
+}
 .diagram-paper {
   fill: var(--paper);
 }
