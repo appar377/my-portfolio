@@ -301,6 +301,15 @@ svg {
 .hero-content h1 span {
   display: block;
 }
+.hero-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-profile-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 html[lang="ja"] .hero-content h1 {
   font-weight: 700;
   font-size: clamp(32px, calc(42 * var(--u)), 59px);
@@ -569,27 +578,6 @@ html[lang="ja"] .hero-artwork {
   font-size: clamp(14px, calc(14 * var(--u)), 20px);
   line-height: 1.6;
 }
-/* The approved full-copy includes this introduction, absent from the raster
-   preview. Keep it as a small real section and disclose its added height. */
-.home-about-summary {
-  display: grid;
-  grid-template-columns: 22% 1fr auto;
-  align-items: center;
-  gap: 28px;
-  padding-block: calc(20 * var(--u));
-}
-.home-about-summary h2 {
-  font-size: clamp(24px, calc(26 * var(--u)), 37px);
-}
-.home-about-summary p {
-  font-size: 14px;
-  line-height: 1.6;
-}
-.home-about-summary .text-link {
-  font-size: 14px;
-  white-space: nowrap;
-}
-
 .contact-callout {
   border-top: 1px solid var(--line);
   padding-block: calc(16 * var(--u)) calc(22 * var(--u));
@@ -1339,11 +1327,6 @@ html[lang="en"] .process-grid h3 {
   }
   .work-card-preview .image-caption {
     font-size: 12px;
-  }
-  .home-about-summary {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding-block: 26px;
   }
   .work-process {
     padding-block: 28px;

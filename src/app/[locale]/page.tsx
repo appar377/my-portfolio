@@ -17,6 +17,10 @@ export default async function Home({ params }: LocalePageProps) {
   const copy = portfolioCopy.home;
   const global = portfolioCopy.global;
   const headline = copy.headline[locale];
+  const heroSummary =
+    locale === "ja"
+      ? "日本を拠点に、業務システムの機能追加とWeb・モバイルアプリの開発をしています。"
+      : copy.body[locale];
   const splitAt = headline.indexOf(locale === "ja" ? "アプリ" : "mobile");
   const headlineLines =
     splitAt > 0
@@ -36,13 +40,22 @@ export default async function Home({ params }: LocalePageProps) {
           />
         </div>
         <div className="page-width hero-content">
-          <p className="eyebrow">{copy.eyebrow[locale]}</p>
+          <p className="eyebrow">
+            <Link
+              className="hero-profile-link"
+              href={`/${locale}/about`}
+              aria-label={`${global.nav.about[locale]}: ${copy.eyebrow[locale]}`}
+            >
+              {copy.eyebrow[locale]}
+              <ArrowRight size={12} aria-hidden="true" />
+            </Link>
+          </p>
           <h1>
             {headlineLines.map((line) => (
               <span key={line}>{line}</span>
             ))}
           </h1>
-          <p className="lead">{copy.body[locale]}</p>
+          <p className="lead">{heroSummary}</p>
           <div className="actions">
             <Link
               className="button button-primary"
@@ -95,14 +108,6 @@ export default async function Home({ params }: LocalePageProps) {
           </div>
         </section>
         <WorkProcess locale={locale} />
-        <section className="home-about-summary">
-          <h2>{copy.about_heading[locale]}</h2>
-          <p>{copy.about_body[locale]}</p>
-          <Link className="text-link" href={`/${locale}/about`}>
-            {global.nav.about[locale]}
-            <ArrowRight size={18} aria-hidden="true" />
-          </Link>
-        </section>
         <ContactCallout locale={locale} context="home" />
       </div>
     </>
