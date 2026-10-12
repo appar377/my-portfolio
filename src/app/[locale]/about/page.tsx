@@ -1,45 +1,47 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
+import { portfolioCopy } from "@/content/portfolio-copy";
 import { siteCopy } from "@/content/site";
-import { workCases } from "@/content/work";
 import { careerItems } from "@/content/career";
-import {
-  ContactCallout,
-  PageIntro,
-  Tags,
-  WorkCard,
-} from "@/components/PortfolioUI";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ContactCallout, PageIntro } from "@/components/PortfolioUI";
 
-export const metadata: Metadata = { title: "About / プロフィール" };
-
+export async function generateMetadata({
+  params,
+}: LocalePageProps): Promise<Metadata> {
+  const locale = await setPageLocale(params);
+  return {
+    title: portfolioCopy.about.headline[locale],
+    description: portfolioCopy.about.body[locale],
+  };
+}
 export default async function About({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
+  const copy = portfolioCopy.about;
   const c = siteCopy[locale];
   return (
-    <div className="page-width">
-      <PageIntro
-        eyebrow="ABOUT / YUSUKE"
-        title={c.aboutTitle}
-        body={c.aboutIntro}
-        artwork="none"
-      >
-        <div className="profile-section">
-          <p className="profile-name">{c.profileName}</p>
-          <h2>
-            {locale === "ja"
-              ? "現場の経験を、開発へ。"
-              : "From hands-on work to development."}
-          </h2>
-          <p className="lead">{c.aboutBody}</p>
+    <div className="page-width about-page">
+      <PageIntro title={copy.headline[locale]} body={copy.body[locale]}>
+        <p className="profile-name">{c.profileName}</p>
+      </PageIntro>
+      <section className="profile-overview">
+        <div>
+          <h2>{copy.experience_heading[locale]}</h2>
+          <p>{copy.experience_body[locale]}</p>
           <Link className="text-link" href={`/${locale}/creations`}>
             {c.workCta}
-            <ArrowUpRight size={18} aria-hidden="true" />
+            <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
-      </PageIntro>
-      <section className="section career-section">
+        <div>
+          <h2>{copy.ai_heading[locale]}</h2>
+          <p>{copy.ai_body[locale]}</p>
+          <h3>{copy.location_heading[locale]}</h3>
+          <p>{copy.location_body[locale]}</p>
+        </div>
+      </section>
+      <section className="career-section">
         <h2>{c.career}</h2>
         <ol className="career-list">
           {careerItems.map((item) => (
@@ -48,54 +50,19 @@ export default async function About({ params }: LocalePageProps) {
               <div>
                 <h3>{item.title[locale]}</h3>
                 <p>{item.body[locale]}</p>
-                {item.workId && (
+                {item.workId ? (
                   <Link
                     className="text-link"
                     href={`/${locale}/creations/${item.workId}`}
                   >
                     {c.explore}
-                    <ArrowUpRight size={16} aria-hidden="true" />
+                    <ArrowRight size={16} aria-hidden="true" />
                   </Link>
-                )}
+                ) : null}
               </div>
             </li>
           ))}
         </ol>
-      </section>
-      <section className="section other-experience">
-        <div className="section-heading">
-          <h2>{c.otherExperience}</h2>
-        </div>
-        <div className="work-grid work-grid-all">
-          {workCases
-            .filter((work) =>
-              ["recruitment-matching", "messaging-automation"].includes(
-                work.id,
-              ),
-            )
-            .map((work) => (
-              <WorkCard key={work.id} work={work} locale={locale} />
-            ))}
-        </div>
-      </section>
-      <section className="skills-section">
-        <h2>{c.coreSkills}</h2>
-        <Tags
-          items={[
-            "Ruby on Rails",
-            "Hotwire / Stimulus",
-            "Flutter / Dart",
-            "Riverpod / GoRouter",
-            "React / TypeScript",
-            "Vue.js",
-            "Python / Selenium",
-            "Laravel / MySQL",
-            "Streamlit / Flask",
-            "PyInstaller",
-            "AWS / Docker",
-            "Playwright / E2E",
-          ]}
-        />
       </section>
       <ContactCallout locale={locale} />
     </div>

@@ -1,87 +1,112 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { setPageLocale } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
-import { workCases, workLabels } from "@/content/work";
+import { portfolioCopy } from "@/content/portfolio-copy";
+import { findDisplayWork, findNextWork } from "@/content/work-copy";
+import {
+  projectRelatedImageRegion,
+  workImageRegion,
+} from "@/content/reference-artwork";
+import ReferenceImageRegion from "@/components/ReferenceImageRegion";
 import { ContactCallout, Tags, WorkGraphic } from "@/components/PortfolioUI";
 
 type Props = { params: Promise<{ locale: Locale; id: string }> };
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, id } = await params;
-  const work = workCases.find((item) => item.id === id);
+  const work = findDisplayWork(id);
   return {
     title: work?.title[locale] ?? "Work",
     description: work?.summary[locale],
   };
 }
-
 export default async function CreationDetail({ params }: Props) {
   const { id } = await params;
   const locale = await setPageLocale(params);
-  const work = workCases.find((item) => item.id === id);
+  const work = findDisplayWork(id);
   if (!work) notFound();
+  const next = findNextWork(id);
+  const copy = work.copy;
+  const labels = portfolioCopy.project_template;
   const c = siteCopy[locale];
-  const labels = workLabels[locale];
-  const sections = (["context", "role", "approach", "output"] as const).filter(
-    (field) => work[field],
-  );
   return (
-    <div className="page-width">
-      <header className="detail-intro">
+    <div className="page-width project-page">
+      <header
+        className={`detail-intro ${workImageRegion(id, locale, true) ? "" : "detail-without-image"} ${locale === "en" && id === "recruitment-matching" ? "detail-direct-reference" : ""}`}
+      >
         <div className="detail-copy">
-          <Link className="text-link" href={`/${locale}/creations`}>
-            <ArrowLeft size={18} aria-hidden="true" />
+          <p className="breadcrumbs">
+            {portfolioCopy.global.nav.work[locale]} / {copy.title[locale]}
+          </p>
+          <Link className="text-link detail-back" href={`/${locale}/creations`}>
+            <ArrowLeft size={17} aria-hidden="true" />
             {c.back}
           </Link>
-          <p className="eyebrow">WORK / {work.number}</p>
-          <h1>{work.title[locale]}</h1>
-          <p className="work-kind">{work.kind[locale]}</p>
-          <p className="lead">{work.summary[locale]}</p>
+          <h1>{copy.title[locale]}</h1>
+          <p className="lead">{copy.overview[locale]}</p>
+          <Tags items={copy.stack} />
+          <p className="project-meta">
+            {work.kind[locale]} · {work.period[locale]}
+          </p>
         </div>
         <WorkGraphic work={work} locale={locale} context="detail" />
       </header>
       <div className="detail-layout">
         <div className="detail-content">
-          {sections.map((field, index) => (
-            <section className="detail-section" key={field}>
-              <span className="eyebrow">0{index + 1}</span>
-              <div>
-                <h2>{labels[field]}</h2>
-                <p>{work[field]?.[locale]}</p>
-              </div>
-            </section>
-          ))}
+          <section className="detail-section">
+            <h2>{labels.overview_heading[locale]}</h2>
+            <p>{copy.overview[locale]}</p>
+          </section>
+          <section className="detail-section">
+            <h2>{labels.role_heading[locale]}</h2>
+            <p>{copy.role[locale]}</p>
+            <ul
+              className="implementation-list"
+              aria-label={labels.implementation_heading[locale]}
+            >
+              {copy.sections.map((section) => (
+                <li key={section.title.en}>
+                  <strong>{section.title[locale]}</strong>
+                  <p>{section.body[locale]}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
         <aside className="detail-sidebar">
-          <p className="eyebrow">PROJECT INFORMATION</p>
+          <h2>{locale === "ja" ? "プロジェクト情報" : "Project details"}</h2>
           <dl>
-            <dt>{locale === "ja" ? "制作区分" : "Project type"}</dt>
-            <dd>{work.kind[locale]}</dd>
-            <dt>{c.period}</dt>
-            <dd>{work.period[locale]}</dd>
-            <dt>{c.tech}</dt>
-            <dd>
-              {work.technologies.length ? (
-                <Tags items={work.technologies} />
-              ) : locale === "ja" ? (
-                "ゲームの状態管理・リアルタイム通信"
-              ) : (
-                "Game state and real-time communication"
-              )}
-            </dd>
+            <dt>{labels.implementation_heading[locale]}</dt>
+            <dd>{copy.role[locale]}</dd>
+            <dt>{labels.stack_heading[locale]}</dt>
+            <dd>{copy.stack.join(" · ")}</dd>
           </dl>
         </aside>
       </div>
-      <p className="scope-note">{c.sourceUnavailable}</p>
-      <Link className="text-link detail-back" href={`/${locale}/creations`}>
-        <ArrowLeft size={18} aria-hidden="true" />
-        {c.back}
-      </Link>
+      <section
+        className={`more-work ${locale === "en" && id === "recruitment-matching" ? "more-work-direct-reference" : ""}`}
+      >
+        <div>
+          <h2>{labels.next_heading[locale]}</h2>
+          <Link className="text-link" href={`/${locale}/creations/${next.id}`}>
+            {next.title[locale]}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+        {locale === "en" && id === "recruitment-matching" ? (
+          <ReferenceImageRegion
+            region={projectRelatedImageRegion}
+            className="related-image"
+          />
+        ) : (
+          <WorkGraphic work={next} locale={locale} />
+        )}
+      </section>
       <ContactCallout locale={locale} />
+      <p className="scope-note">{c.sourceUnavailable}</p>
     </div>
   );
 }

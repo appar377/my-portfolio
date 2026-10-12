@@ -6,6 +6,9 @@ import BrandMark from "@/components/BrandMark";
 import { routing } from "@/i18n/routing";
 import { setPageLocale } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
+import { portfolioCopy } from "@/content/portfolio-copy";
+import { navigationItems } from "@/content/navigation";
+import SettingLang from "@/components/SettingLang";
 import "@/app/globals.css";
 
 type Props = { children: ReactNode; params: Promise<{ locale: string }> };
@@ -23,10 +26,7 @@ export async function generateMetadata({
       default: "Abocado / Yusuke — Web & Mobile Development",
       template: "%s | Abocado / Yusuke",
     },
-    description:
-      locale === "ja"
-        ? "Rails・Flutterを軸に、業務Web・モバイル・自動化の開発に取り組むYusukeのポートフォリオ。"
-        : "Yusuke's portfolio: business web and mobile development with Rails and Flutter, frontend interfaces and workflow automation.",
+    description: portfolioCopy.home.body[locale === "en" ? "en" : "ja"],
   };
 }
 
@@ -48,14 +48,15 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Link className="footer-brand" href={`/${locale}`}>
               <BrandMark /> <span>Abocado</span>
             </Link>
-            <p>Yusuke / {c.footer}</p>
+            <p>{c.footer}</p>
           </div>
           <div className="footer-links">
-            <Link href={`/${locale}/creations`}>{c.nav[0]}</Link>
-            <Link href={`/${locale}/about`}>{c.nav[1]}</Link>
-            <Link href={`/${locale}/services`}>{c.nav[2]}</Link>
-            <Link href={`/${locale}/blog`}>{c.nav[3]}</Link>
-            <Link href={`/${locale}/contact`}>{c.nav[4]}</Link>
+            {navigationItems.map(({ path, label }) => (
+              <Link key={path} href={`/${locale}/${path}`}>
+                {label[locale]}
+              </Link>
+            ))}
+            <SettingLang locale={locale} />
             <a
               href={technicalNotesUrl}
               target="_blank"

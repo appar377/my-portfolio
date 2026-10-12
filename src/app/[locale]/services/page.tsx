@@ -1,47 +1,31 @@
 import type { Metadata } from "next";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
-import { siteCopy } from "@/content/site";
-import DevelopmentApproach from "@/components/DevelopmentApproach";
+import { portfolioCopy } from "@/content/portfolio-copy";
+import WorkProcess from "@/components/WorkProcess";
 import {
   Capabilities,
   ContactCallout,
   PageIntro,
 } from "@/components/PortfolioUI";
 
-export const metadata: Metadata = { title: "Services / できること" };
-
+export async function generateMetadata({
+  params,
+}: LocalePageProps): Promise<Metadata> {
+  const locale = await setPageLocale(params);
+  return {
+    title: portfolioCopy.services.headline[locale],
+    description: portfolioCopy.services.body[locale],
+  };
+}
 export default async function Services({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
-  const c = siteCopy[locale];
+  const copy = portfolioCopy.services;
   return (
     <div className="page-width services-page">
-      <PageIntro
-        eyebrow="SERVICES / CAPABILITIES"
-        title={c.servicesTitle}
-        body={c.servicesIntro}
-      />
+      <PageIntro title={copy.headline[locale]} body={copy.body[locale]} />
       <Capabilities locale={locale} />
-      <DevelopmentApproach locale={locale} />
-      <section className="section">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow">PROCESS</p>
-            <h2>{c.processTitle}</h2>
-          </div>
-        </div>
-        <ol className="process-grid">
-          {c.steps.map(([title, body], index) => {
-            return (
-              <li key={title}>
-                <span className="process-number">0{index + 1}</span>
-                <h3>{title}</h3>
-                <p>{body}</p>
-              </li>
-            );
-          })}
-        </ol>
-      </section>
-      <ContactCallout locale={locale} />
+      <WorkProcess locale={locale} />
+      <ContactCallout locale={locale} context="services" />
     </div>
   );
 }

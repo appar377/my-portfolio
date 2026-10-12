@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteCopy } from "@/content/site";
-import { workCases, type WorkCategory } from "@/content/work";
+import type { WorkCategory } from "@/content/work";
+import { displayWorkCases as workCases } from "@/content/work-copy";
 import { WorkCard, workCategories } from "./PortfolioUI";
 
 export default function WorkExplorer({ locale }: { locale: Locale }) {
@@ -35,11 +36,16 @@ export default function WorkExplorer({ locale }: { locale: Locale }) {
       <p className="result-count" role="status">
         {locale === "ja"
           ? `${visible.length}件を表示 / 全${workCases.length}件`
-          : `Showing ${visible.length} of ${workCases.length} projects`}
+          : `Showing ${visible.length} of ${workCases.length} work entries`}
       </p>
       <div className="work-grid work-grid-all">
         {visible.map((work) => (
-          <WorkCard key={work.id} work={work} locale={locale} />
+          <WorkCard
+            key={work.id}
+            work={work}
+            locale={locale}
+            headingLevel="h2"
+          />
         ))}
       </div>
     </>

@@ -1,17 +1,12 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  PanelsTopLeft,
-  Smartphone,
-  LayoutTemplate,
-  Workflow,
-} from "lucide-react";
+import { ArrowRight, SquareCode, Smartphone, Settings } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
+import { portfolioCopy } from "@/content/portfolio-copy";
 import type { WorkCase, WorkCategory } from "@/content/work";
-import WorkVisual, { type WorkVisualKind } from "./WorkVisual";
+import { workImageRegion } from "@/content/reference-artwork";
+import ReferenceImageRegion from "./ReferenceImageRegion";
 
 export const workCategories = [
   "business",
@@ -34,63 +29,72 @@ export function WorkGraphic({
   work,
   locale,
   context = "card",
+  showCaption = true,
 }: {
   work: WorkCase;
   locale: Locale;
   context?: "card" | "detail";
+  showCaption?: boolean;
 }) {
-  const kinds: Record<string, WorkVisualKind> = {
-    "business-web-mobile": "devices",
-    "workflow-automation": "flow",
-    "investment-information": "information",
-    "recruitment-matching": "matching",
-    "messaging-automation": "messaging",
-    "web-card-game": "cards",
-  };
-  const kind = kinds[work.id] ?? "devices";
+  const region = workImageRegion(work.id, locale, context === "detail");
+  if (!region) return null;
   return (
-    <WorkVisual
-      kind={kind}
-      identity={work.id}
-      locale={locale}
-      detail={context === "detail"}
-    />
+    <figure className={`work-visual work-visual-${context}`}>
+      <ReferenceImageRegion
+        region={region}
+        className="work-image"
+        priority={context === "detail"}
+      />
+      {showCaption ? (
+        <figcaption>
+          {portfolioCopy.global.labels.image_caption[locale]}
+        </figcaption>
+      ) : null}
+    </figure>
   );
 }
 
 export function WorkCard({
   work,
   locale,
-  variant = "standard",
+  preview = false,
+  headingLevel = "h3",
 }: {
   work: WorkCase;
   locale: Locale;
-  variant?: "standard" | "featured" | "compact";
+  preview?: boolean;
+  headingLevel?: "h2" | "h3";
 }) {
   const c = siteCopy[locale];
+  const Heading = headingLevel;
+  const hasImage = Boolean(workImageRegion(work.id, locale));
   return (
-    <article className={`work-card work-card-${variant}`}>
+    <article
+      className={`work-card ${preview ? "work-card-preview" : "work-card-standard"}`}
+      data-image-state={hasImage ? "provided" : "unprovided"}
+    >
       <Link className="work-card-link" href={`/${locale}/creations/${work.id}`}>
-        <WorkGraphic work={work} locale={locale} />
+        <WorkGraphic work={work} locale={locale} showCaption={!preview} />
         <div className="work-card-copy">
-          <div className="work-card-meta">
-            <span className="work-number">{work.number}</span>
-            <span className="category-label">{c[work.category]}</span>
-            <span className="work-kind">{work.kind[locale]}</span>
-            <span className="work-period">{work.period[locale]}</span>
-          </div>
-          <div className="work-card-content">
-            <div className="work-card-body">
-              <h3>{work.title[locale]}</h3>
-              <p>{work.summary[locale]}</p>
+          {preview ? null : (
+            <div className="work-card-meta">
+              <span>{c[work.category]}</span>
+              <span>{work.kind[locale]}</span>
+              <span>{work.period[locale]}</span>
             </div>
-          </div>
-          {work.technologies.length > 0 && (
-            <Tags items={work.technologies.slice(0, 4)} />
           )}
+          <Heading>{work.title[locale]}</Heading>
+          {preview ? (
+            <p className="image-caption">
+              {portfolioCopy.global.labels.image_caption[locale]}
+            </p>
+          ) : (
+            <p>{work.summary[locale]}</p>
+          )}
+          {preview ? null : <Tags items={work.technologies.slice(0, 4)} />}
           <span className="text-link">
-            <span>{c.explore}</span>
-            <ArrowUpRight size={18} aria-hidden="true" />
+            {c.explore}
+            <ArrowRight size={18} aria-hidden="true" />
           </span>
         </div>
       </Link>
@@ -98,19 +102,35 @@ export function WorkCard({
   );
 }
 
-export function Capabilities({ locale }: { locale: Locale }) {
-  const icons = [PanelsTopLeft, Smartphone, LayoutTemplate, Workflow];
+export function Capabilities({
+  locale,
+  summary = false,
+}: {
+  locale: Locale;
+  summary?: boolean;
+}) {
+  const icons = [SquareCode, Smartphone, Settings];
   return (
-    <div className="capability-grid">
+    <div className={summary ? "service-summary-grid" : "capability-grid"}>
       {capabilities.map((item, index) => {
         const Icon = icons[index];
-        return (
-          <article className="capability" key={item.code}>
-            <div className="capability-top">
-              <Icon size={32} strokeWidth={1.5} aria-hidden="true" />
-              <span className="eyebrow">{item.code}</span>
-            </div>
+        return summary ? (
+          <Link
+            className="service-summary"
+            key={item.id}
+            href={`/${locale}/services#service-${item.id}`}
+          >
+            <Icon size={42} strokeWidth={1.4} aria-hidden="true" />
             <h3>{item.title[locale]}</h3>
+          </Link>
+        ) : (
+          <article
+            className="capability"
+            id={`service-${item.id}`}
+            key={item.id}
+          >
+            <Icon size={38} strokeWidth={1.4} aria-hidden="true" />
+            <h2>{item.title[locale]}</h2>
             <p>{item.body[locale]}</p>
             <Tags items={item.technologies} />
           </article>
@@ -124,11 +144,10 @@ export function PageIntro({
   eyebrow,
   title,
   body,
-  artwork = "route",
   className = "",
   children,
 }: {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   body: string;
   artwork?: "route" | "none";
@@ -136,32 +155,37 @@ export function PageIntro({
   children?: ReactNode;
 }) {
   return (
-    <header
-      className={`page-intro ${artwork === "none" ? "page-intro-plain" : ""} ${className}`}
-    >
-      <div className="page-intro-copy">
-        <p className="eyebrow">{eyebrow}</p>
-        <h1>{title}</h1>
-        <p className="lead">{body}</p>
-        {children}
-      </div>
+    <header className={`page-intro ${className}`}>
+      {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+      <h1>{title}</h1>
+      <p className="lead">{body}</p>
+      {children}
     </header>
   );
 }
 
-export function ContactCallout({ locale }: { locale: Locale }) {
-  const c = siteCopy[locale];
+export function ContactCallout({
+  locale,
+  context = "project",
+}: {
+  locale: Locale;
+  context?: "home" | "services" | "project";
+}) {
+  const contexts = {
+    home: portfolioCopy.home,
+    services: portfolioCopy.services,
+    project: portfolioCopy.project_template,
+  };
+  const copy = contexts[context];
   return (
     <section className="contact-callout">
-      <div className="callout-copy">
-        <p className="eyebrow">LET’S BUILD</p>
-        <h2>{c.contactTitle}</h2>
-        <p>{c.contactBody}</p>
-        <Link className="button button-primary" href={`/${locale}/contact`}>
-          {c.contactCta}
-          <ArrowRight size={18} aria-hidden="true" />
-        </Link>
-      </div>
+      <h2>{copy.contact_heading[locale]}</h2>
+      <p>{copy.contact_body[locale]}</p>
+      <Link className="text-link" href={`/${locale}/contact`}>
+        {portfolioCopy.global.cta.contact[locale]}
+        <ArrowRight size={18} aria-hidden="true" />
+      </Link>
+      <p className="location">{portfolioCopy.global.location}</p>
     </section>
   );
 }

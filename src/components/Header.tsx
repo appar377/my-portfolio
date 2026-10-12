@@ -6,10 +6,9 @@ import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { siteCopy } from "@/content/site";
+import { navigationItems } from "@/content/navigation";
 import SettingLang from "./SettingLang";
 import BrandMark from "./BrandMark";
-
-const destinations = ["creations", "about", "services", "blog", "contact"];
 
 export default function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -30,7 +29,7 @@ export default function Header({ locale }: { locale: Locale }) {
   }
 
   useEffect(() => {
-    const desktop = window.matchMedia("(min-width: 1051px)");
+    const desktop = window.matchMedia("(min-width: 961px)");
     const closeOnDesktop = () => {
       if (desktop.matches) setMenuPath(null);
     };
@@ -107,13 +106,13 @@ export default function Header({ locale }: { locale: Locale }) {
           }
           className="desktop-nav"
         >
-          {destinations.map((path, index) => (
+          {navigationItems.map(({ path, label }) => (
             <Link
               href={`/${locale}/${path}`}
               key={path}
               aria-current={isCurrent(path) ? "page" : undefined}
             >
-              {c.nav[index]}
+              {label[locale]}
             </Link>
           ))}
         </nav>
@@ -140,7 +139,7 @@ export default function Header({ locale }: { locale: Locale }) {
         }
       >
         <div className="mobile-destinations">
-          {destinations.map((path, index) => (
+          {navigationItems.map(({ path, label }) => (
             <Link
               href={`/${locale}/${path}`}
               key={path}
@@ -148,9 +147,9 @@ export default function Header({ locale }: { locale: Locale }) {
               aria-current={isCurrent(path) ? "page" : undefined}
             >
               <span className="menu-number" aria-hidden="true">
-                0{index + 1}
+                {navigationItems.findIndex((item) => item.path === path) + 1}
               </span>
-              <span>{c.nav[index]}</span>
+              <span>{label[locale]}</span>
               <ArrowUpRight size={26} aria-hidden="true" />
             </Link>
           ))}

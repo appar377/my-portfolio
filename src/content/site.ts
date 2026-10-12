@@ -1,7 +1,8 @@
 import type { Locale } from "@/i18n/routing";
+import { portfolioCopy, blogCopy, blogNavigationCopy } from "./portfolio-copy";
 
 export const technicalNotesUrl = "https://appar377.github.io/tech-note/";
-export const siteCopy = {
+const legacySiteCopy = {
   ja: {
     nav: ["実績", "プロフィール", "できること", "技術ノート", "お問い合わせ"],
     skip: "本文へ移動",
@@ -157,47 +158,64 @@ export const siteCopy = {
   },
 } satisfies Record<Locale, object>;
 
-export const capabilities = [
-  {
-    code: "01 / WEB",
-    title: { ja: "Rails / 業務Web", en: "Rails / Business web" },
-    body: {
-      ja: "在庫・顧客・査定を扱う業務アプリ。検索、認可、通知設計、ETLを含む機能開発・改修。",
-      en: "Business applications for inventory, customers and vehicle appraisals. Features involving search, authorization, notifications and ETL.",
-    },
-    technologies: ["Ruby on Rails", "Hotwire", "Stimulus"],
-  },
-  {
-    code: "02 / MOBILE",
-    title: { ja: "Flutter / モバイル", en: "Flutter / Mobile" },
-    body: {
-      ja: "自動車業務アプリの開発。状態管理と画面遷移、画像アップロード、通信失敗時の再試行。",
-      en: "Automotive applications, including state management, navigation, image uploads and retries after communication failures.",
-    },
-    technologies: ["Flutter", "Dart", "Riverpod", "GoRouter"],
-  },
-  {
-    code: "03 / FRONTEND",
-    title: {
-      ja: "使う人に届く、画面づくり",
-      en: "Interfaces for the people who use them",
-    },
-    body: {
-      ja: "React・Vue.jsを使った画面開発。仕様の整理、UIコンポーネント、バックエンドとの連携。",
-      en: "React and Vue.js interfaces, from requirements and UI components to backend integration.",
-    },
-    technologies: ["React", "TypeScript", "Vue.js", "Next.js"],
-  },
-  {
-    code: "04 / AUTOMATION",
-    title: {
-      ja: "運用と自動化をつなぐ",
-      en: "Connecting operations and automation",
-    },
-    body: {
-      ja: "Pythonの自動化処理と管理画面をつなぐ開発。処理の状態を扱い、操作・管理できるUIへ。",
-      en: "Connecting Python automation with management interfaces, making workflow state available to the people operating it.",
-    },
-    technologies: ["Python", "Selenium", "React"],
-  },
-] as const;
+function localizedSiteCopy(locale: keyof typeof legacySiteCopy) {
+  const global = portfolioCopy.global;
+  const home = portfolioCopy.home;
+  return {
+    ...legacySiteCopy[locale],
+    home: global.nav.home[locale],
+    nav: [
+      global.nav.work[locale],
+      global.nav.about[locale],
+      global.nav.services[locale],
+      blogNavigationCopy.nav.blog[locale],
+      global.nav.contact[locale],
+    ],
+    heroTitle: [home.headline[locale]],
+    heroBody: home.body[locale],
+    workCta: global.cta.work[locale],
+    servicesCta: global.cta.services[locale],
+    explore: global.cta.project[locale],
+    selectedTitle: home.work_heading[locale],
+    selectedBody: home.work_body[locale],
+    allWork: global.cta.all_work[locale],
+    workTitle: portfolioCopy.work_index.headline[locale],
+    workIntro: portfolioCopy.work_index.body[locale],
+    capabilitiesTitle: home.services_heading[locale],
+    capabilitiesBody: home.services_body[locale],
+    servicesTitle: portfolioCopy.services.headline[locale],
+    servicesIntro: portfolioCopy.services.body[locale],
+    processTitle: home.process_heading[locale],
+    steps: home.process.map(
+      (step) => [step.title[locale], step.body[locale]] as const,
+    ),
+    aboutTitle: portfolioCopy.about.headline[locale],
+    aboutIntro: portfolioCopy.about.body[locale],
+    aboutBody: portfolioCopy.about.body[locale],
+    otherExperience: portfolioCopy.about.experience_heading[locale],
+    notesTitle: blogCopy.headline[locale],
+    notesBody: blogCopy.body[locale],
+    notesCta: blogCopy.primary_cta[locale],
+    contactTitle: portfolioCopy.contact.headline[locale],
+    contactBody: portfolioCopy.contact.body[locale],
+    contactCta: global.cta.contact[locale],
+    pendingTitle: portfolioCopy.contact.unavailable[locale],
+    footer: global.footer[locale],
+    back: global.cta.back_to_work[locale],
+    tech: global.labels.stack[locale],
+  };
+}
+
+export const siteCopy = {
+  ja: localizedSiteCopy("ja"),
+  en: localizedSiteCopy("en"),
+};
+
+export const capabilities = portfolioCopy.services.items.map((item, index) => ({
+  code: `0${index + 1} / ${item.id.toUpperCase()}`,
+  id: item.id,
+  title: item.title,
+  body: item.body,
+  technologies: item.stack,
+  relatedProjects: item.related_projects,
+}));

@@ -1,0 +1,250 @@
+{
+  "version": "v12.1-blog-supplement",
+  "global": {
+    "nav": {
+      "blog": {
+        "ja": "技術記事",
+        "en": "Articles"
+      }
+    },
+    "cta": {
+      "blog": {
+        "ja": "技術記事を見る",
+        "en": "Read articles"
+      }
+    }
+  },
+  "blog": {
+    "headline": {
+      "ja": "技術記事",
+      "en": "Articles"
+    },
+    "body": {
+      "ja": "開発に関する記事をTechNoteで公開しています。",
+      "en": "I publish articles about software development on TechNote."
+    },
+    "metadata": {
+      "title": {
+        "ja": "技術記事 | Abocado",
+        "en": "Articles | Abocado"
+      },
+      "description": {
+        "ja": "YusukeがTechNoteで公開している、開発に関する記事を紹介します。",
+        "en": "Articles about software development published by Yusuke on TechNote."
+      }
+    },
+    "list_heading": {
+      "ja": "記事一覧",
+      "en": "Articles"
+    },
+    "primary_cta": {
+      "ja": "TechNoteで記事を読む",
+      "en": "Read articles on TechNote"
+    },
+    "primary_url": "https://appar377.github.io/tech-note/",
+    "card_cta": {
+      "ja": "記事を読む",
+      "en": "Read article"
+    },
+    "card_external_cta": {
+      "ja": "TechNoteで読む",
+      "en": "Read on TechNote"
+    },
+    "labels": {
+      "published": {
+        "ja": "公開日",
+        "en": "Published"
+      },
+      "updated": {
+        "ja": "更新日",
+        "en": "Updated"
+      },
+      "tags": {
+        "ja": "タグ",
+        "en": "Tags"
+      },
+      "external": {
+        "ja": "外部サイト",
+        "en": "External site"
+      },
+      "back": {
+        "ja": "記事一覧に戻る",
+        "en": "Back to articles"
+      }
+    },
+    "loading": {
+      "title": {
+        "ja": "記事を読み込んでいます。",
+        "en": "Loading articles…"
+      }
+    },
+    "empty": {
+      "title": {
+        "ja": "表示できる記事がありません。",
+        "en": "No articles to display."
+      },
+      "body": {
+        "ja": "TechNoteで記事をご覧ください。",
+        "en": "You can read articles on TechNote."
+      },
+      "cta": {
+        "ja": "TechNoteを開く",
+        "en": "Open TechNote"
+      }
+    },
+    "error": {
+      "title": {
+        "ja": "記事を読み込めませんでした。",
+        "en": "The articles could not be loaded."
+      },
+      "body": {
+        "ja": "TechNoteで直接記事をご覧いただけます。",
+        "en": "You can read the articles directly on TechNote."
+      },
+      "cta": {
+        "ja": "TechNoteを開く",
+        "en": "Open TechNote"
+      },
+      "retry_cta": {
+        "ja": "もう一度読み込む",
+        "en": "Try again"
+      }
+    },
+    "optional_search": {
+      "label": {
+        "ja": "記事を検索",
+        "en": "Search articles"
+      },
+      "placeholder": {
+        "ja": "キーワードを入力",
+        "en": "Enter a keyword"
+      },
+      "empty_title": {
+        "ja": "条件に合う記事が見つかりませんでした。",
+        "en": "No articles match your search."
+      },
+      "reset_cta": {
+        "ja": "検索条件をクリア",
+        "en": "Clear search"
+      }
+    },
+    "optional_pagination": {
+      "previous": {
+        "ja": "前のページ",
+        "en": "Previous page"
+      },
+      "next": {
+        "ja": "次のページ",
+        "en": "Next page"
+      }
+    },
+    "optional_detail": {
+      "back_cta": {
+        "ja": "記事一覧に戻る",
+        "en": "Back to articles"
+      },
+      "source_cta": {
+        "ja": "TechNoteでこの記事を読む",
+        "en": "Read this article on TechNote"
+      },
+      "not_found_title": {
+        "ja": "記事が見つかりませんでした。",
+        "en": "Article not found."
+      },
+      "not_found_body": {
+        "ja": "記事一覧からお探しください。",
+        "en": "Please return to the article list."
+      },
+      "loading": {
+        "ja": "記事を読み込んでいます。",
+        "en": "Loading article…"
+      },
+      "error_title": {
+        "ja": "記事を読み込めませんでした。",
+        "en": "The article could not be loaded."
+      },
+      "error_body": {
+        "ja": "記事一覧に戻るか、TechNoteをご覧ください。",
+        "en": "Return to the article list or visit TechNote."
+      }
+    }
+  },
+  "editor_notes": [
+    "実際のブログルート、一覧データ取得方式、詳細ページの有無はMac担当の確認待ち。URLを推測して新しいルートを作らない。",
+    "TechNoteのトップURLのみ確認済み。各記事のタイトル・要約・日付・タグ・URLは実データをそのまま使い、この原稿では作成していない。",
+    "ブログ本文・記事の言語は確認していない。日英のUI対応を記事本文の英訳対応と誤認させない。",
+    "一覧の取得に成功して0件ならempty、取得に失敗した場合はerrorを表示。空表示を未執筆・記事不存在と解釈しない。",
+    "retry_cta、optional_search、optional_paginationは実機能が存在する場合だけ採用。原稿の存在を機能追加の指示としない。",
+    "optional_detailは実際に詳細ルートが存在する場合だけ使用。記事タイトル・descriptionは実記事のメタデータに結びつける。",
+    "各記事のsource_ctaは検証済み個別記事URLがある場合だけ表示。トップURLを個別記事リンクのように使わない。",
+    "現在の既存ナビにブログがある場合は削除せず、技術記事 / Articlesに統一。ナビ順は既存の構成とページ幅に合わせる。",
+    "公開ページをwebツールで開く試行は失敗したため、記事一覧・タイトル・更新頻度を独立確認できていない。本文の内容や最新性の主張を加えていない。"
+  ],
+  "coverage_audit": [
+    {
+      "page": "Home",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Work list",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Used-car sales detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Web workflow automation detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Investor information detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Job matching detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Messaging automation detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Web card game detail",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "About",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Services",
+      "v12": "covered",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Contact",
+      "v12": "covered; form not functional",
+      "v12_1": "unchanged"
+    },
+    {
+      "page": "Blog list",
+      "v12": "missing",
+      "v12_1": "added"
+    },
+    {
+      "page": "Blog detail",
+      "v12": "not assessed",
+      "v12_1": "conditional UI copy added; route existence pending"
+    }
+  ]
+}

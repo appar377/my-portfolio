@@ -4,7 +4,10 @@ import { siteCopy } from "@/content/site";
 import { ContactCallout, PageIntro } from "@/components/PortfolioUI";
 import WorkExplorer from "@/components/WorkExplorer";
 
-export const metadata: Metadata = { title: "Work / 開発実績" };
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const locale = await setPageLocale(params);
+  return { title: siteCopy[locale].workTitle, description: siteCopy[locale].workIntro };
+}
 
 export default async function Creations({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);

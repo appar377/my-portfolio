@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Locale } from "@/i18n/routing";
+import { portfolioCopy } from "@/content/portfolio-copy";
 
 export default function SettingLang({
   locale,
@@ -28,7 +29,7 @@ export default function SettingLang({
           aria-current={locale === language ? "page" : undefined}
           aria-label={language === "ja" ? "日本語" : "English"}
         >
-          {language === "ja" ? "JP" : "EN"}
+          {portfolioCopy.global.language_switch[language]}
         </Link>
       ))}
     </nav>

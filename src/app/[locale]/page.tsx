@@ -1,11 +1,11 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
-import { siteCopy, technicalNotesUrl } from "@/content/site";
-import { workCases } from "@/content/work";
-import HomeDestinations from "@/components/HomeDestinations";
-import DevelopmentApproach from "@/components/DevelopmentApproach";
+import { portfolioCopy } from "@/content/portfolio-copy";
+import { displayWorkCases } from "@/content/work-copy";
+import { heroImageRegion } from "@/content/reference-artwork";
+import ReferenceImageRegion from "@/components/ReferenceImageRegion";
+import WorkProcess from "@/components/WorkProcess";
 import {
   Capabilities,
   ContactCallout,
@@ -14,45 +14,55 @@ import {
 
 export default async function Home({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
-  const c = siteCopy[locale];
+  const copy = portfolioCopy.home;
+  const global = portfolioCopy.global;
+  const headline = copy.headline[locale];
+  const splitAt = headline.indexOf(locale === "ja" ? "アプリ" : "mobile");
+  const headlineLines =
+    splitAt > 0
+      ? [headline.slice(0, splitAt), headline.slice(splitAt)]
+      : [headline];
+  const selected = displayWorkCases.filter((work) =>
+    ["recruitment-matching", "messaging-automation"].includes(work.id),
+  );
   return (
     <>
-      <section className="hero hero-human">
-        <Image
-          src="/images/design-desk.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="hero-photo"
-        />
-        <div className="page-width hero-layout">
-          <div className="hero-copy">
-            <p className="eyebrow">YUSUKE / {c.role}</p>
-            <h1>
-              {c.heroTitle.map((line) => (
-                <span key={line}>{line} </span>
-              ))}
-            </h1>
-            <p className="hero-role">
-              <span>Full Stack Engineer</span>
-              <span className="hero-role-separator">×</span>
-              <span>Designer</span>
-            </p>
-            <p className="lead">{c.heroBody}</p>
-          </div>
-          <div className="actions hero-actions">
+      <section className="hero-v12">
+        <div className="hero-artwork">
+          <ReferenceImageRegion
+            region={heroImageRegion(locale)}
+            className="hero-image"
+            priority
+          />
+        </div>
+        <div className="page-width hero-content">
+          <p className="eyebrow">{copy.eyebrow[locale]}</p>
+          <h1>
+            {headlineLines.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h1>
+          <p className="lead">{copy.body[locale]}</p>
+          <div className="actions">
             <Link
               className="button button-primary"
               href={`/${locale}/creations`}
             >
-              {c.workCta}
+              {global.cta.work[locale]}
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
-            <Link className="button button-secondary" href={`/${locale}/about`}>
-              {c.aboutCta}
+            <Link className="text-link" href={`/${locale}/contact`}>
+              {global.cta.contact[locale]}
               <ArrowRight size={18} aria-hidden="true" />
             </Link>
+          </div>
+          <div className="hero-details">
+            <p className="location">{global.location}</p>
+            <ul className="hero-stack" aria-label={global.labels.stack[locale]}>
+              {copy.stack.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
         </div>
         <p className="hero-image-note">
@@ -61,65 +71,39 @@ export default async function Home({ params }: LocalePageProps) {
             : "Generated image · not a photograph of Yusuke"}
         </p>
       </section>
-      <section className="page-width section" id="work">
-        <div className="section-heading">
+      <div className="page-width home-sections">
+        <section className="home-services">
           <div>
-            <p className="eyebrow">SELECTED WORK</p>
-            <h2>{c.selectedTitle}</h2>
-            <p>{c.selectedBody}</p>
+            <h2>{copy.services_heading[locale]}</h2>
+            <p>{copy.services_body[locale]}</p>
           </div>
-          <Link className="text-link" href={`/${locale}/creations`}>
-            {c.allWork}
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </Link>
-        </div>
-        <div className="work-grid selected-work-grid">
-          {workCases.slice(0, 3).map((work, index) => (
-            <WorkCard
-              key={work.id}
-              work={work}
-              locale={locale}
-              variant={index === 0 ? "featured" : "compact"}
-            />
-          ))}
-        </div>
-      </section>
-      <HomeDestinations locale={locale} />
-      <section className="capabilities-section">
-        <div className="page-width section">
+          <Capabilities locale={locale} summary />
+        </section>
+        <section className="selected-work" id="work">
           <div className="section-heading">
-            <div>
-              <p className="eyebrow">WHAT I DO</p>
-              <h2>{c.capabilitiesTitle}</h2>
-              <p>{c.capabilitiesBody}</p>
-            </div>
+            <h2>{copy.work_heading[locale]}</h2>
+            <p>{copy.work_body[locale]}</p>
+            <Link className="text-link" href={`/${locale}/creations`}>
+              {global.cta.all_work[locale]}
+              <ArrowRight size={18} aria-hidden="true" />
+            </Link>
           </div>
-          <Capabilities locale={locale} />
-        </div>
-      </section>
-      <div className="approach-band">
-        <div className="page-width">
-          <DevelopmentApproach locale={locale} variant="summary" />
-        </div>
-      </div>
-      <section className="notes-section page-width">
-        <div>
-          <p className="eyebrow">LEARNING IN PUBLIC</p>
-          <h2>{c.notesTitle}</h2>
-          <p>{c.notesBody}</p>
-          <a
-            className="text-link"
-            href={technicalNotesUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {c.notesCta}
-            <ArrowUpRight size={18} aria-hidden="true" />
-          </a>
-        </div>
-      </section>
-      <div className="page-width">
-        <ContactCallout locale={locale} />
+          <div className="work-grid">
+            {selected.map((work) => (
+              <WorkCard key={work.id} work={work} locale={locale} preview />
+            ))}
+          </div>
+        </section>
+        <WorkProcess locale={locale} />
+        <section className="home-about-summary">
+          <h2>{copy.about_heading[locale]}</h2>
+          <p>{copy.about_body[locale]}</p>
+          <Link className="text-link" href={`/${locale}/about`}>
+            {global.nav.about[locale]}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </section>
+        <ContactCallout locale={locale} context="home" />
       </div>
     </>
   );

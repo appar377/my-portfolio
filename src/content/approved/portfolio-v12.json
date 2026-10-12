@@ -1,0 +1,702 @@
+{
+  "version": "v12",
+  "brand": "Abocado",
+  "owner": "Yusuke",
+  "languages": [
+    "ja",
+    "en"
+  ],
+  "global": {
+    "nav": {
+      "home": {
+        "ja": "ホーム",
+        "en": "Home"
+      },
+      "work": {
+        "ja": "開発事例",
+        "en": "Work"
+      },
+      "services": {
+        "ja": "できること",
+        "en": "Services"
+      },
+      "about": {
+        "ja": "プロフィール",
+        "en": "About"
+      },
+      "contact": {
+        "ja": "お問い合わせ",
+        "en": "Contact"
+      }
+    },
+    "language_switch": {
+      "ja": "日本語",
+      "en": "English"
+    },
+    "location": "Japan · JST / UTC+9",
+    "cta": {
+      "work": {
+        "ja": "開発事例を見る",
+        "en": "Explore my work"
+      },
+      "contact": {
+        "ja": "お問い合わせ",
+        "en": "Contact"
+      },
+      "project": {
+        "ja": "担当内容を見る",
+        "en": "View project details"
+      },
+      "all_work": {
+        "ja": "すべての開発事例を見る",
+        "en": "View all projects"
+      },
+      "back_to_work": {
+        "ja": "開発事例一覧に戻る",
+        "en": "Back to work"
+      },
+      "services": {
+        "ja": "できることを見る",
+        "en": "Explore services"
+      }
+    },
+    "labels": {
+      "role": {
+        "ja": "担当したこと",
+        "en": "My role"
+      },
+      "implementation": {
+        "ja": "実装内容",
+        "en": "Implementation"
+      },
+      "stack": {
+        "ja": "使用技術",
+        "en": "Technologies"
+      },
+      "links": {
+        "ja": "関連リンク",
+        "en": "Related links"
+      },
+      "commercial": {
+        "ja": "実務",
+        "en": "Professional work"
+      },
+      "experience": {
+        "ja": "開発経験",
+        "en": "Development experience"
+      },
+      "unpaid": {
+        "ja": "無償依頼での制作",
+        "en": "Unpaid commissioned project"
+      },
+      "image_caption": {
+        "ja": "掲載画像は、内容を伝えるためのイメージです。",
+        "en": "Illustrative image, not a product screenshot."
+      }
+    },
+    "footer": {
+      "ja": "Abocadoは、フリーランスエンジニアYusukeのポートフォリオです。",
+      "en": "Abocado is the portfolio of Yusuke, a freelance developer."
+    }
+  },
+  "home": {
+    "eyebrow": {
+      "ja": "Yusuke · フリーランスエンジニア",
+      "en": "Yusuke · Freelance developer"
+    },
+    "headline": {
+      "ja": "Webサービスとアプリを開発しています。",
+      "en": "I build web and mobile apps."
+    },
+    "body": {
+      "ja": "業務システムの機能追加や、Web・モバイルアプリの開発に取り組んでいます。日本を拠点に活動しています。",
+      "en": "I develop features for business software and build web and mobile apps. Based in Japan."
+    },
+    "stack": [
+      "Rails",
+      "React",
+      "Next.js",
+      "Swift",
+      "Flutter"
+    ],
+    "work_heading": {
+      "ja": "開発事例",
+      "en": "Selected work"
+    },
+    "work_body": {
+      "ja": "担当した機能と、開発で工夫したことを紹介します。",
+      "en": "A closer look at my role and implementation."
+    },
+    "services_heading": {
+      "ja": "できること",
+      "en": "Services"
+    },
+    "services_body": {
+      "ja": "Webの機能追加、アプリ開発、業務の自動化に対応しています。",
+      "en": "I work on web features, mobile apps, and workflow automation."
+    },
+    "process_heading": {
+      "ja": "仕事の進め方",
+      "en": "How I work"
+    },
+    "process": [
+      {
+        "title": {
+          "ja": "目的と条件を確認する",
+          "en": "Understand the project"
+        },
+        "body": {
+          "ja": "現在の状況と、必要な機能を確認します。",
+          "en": "Review the current setup and the features you need."
+        }
+      },
+      {
+        "title": {
+          "ja": "担当範囲を決める",
+          "en": "Agree on the scope"
+        },
+        "body": {
+          "ja": "担当する範囲と、実装内容の確認方法をすり合わせます。",
+          "en": "Agree on my responsibilities and how the work will be reviewed."
+        }
+      },
+      {
+        "title": {
+          "ja": "実装して確認する",
+          "en": "Build and review"
+        },
+        "body": {
+          "ja": "実装した内容を確認し、必要な修正を行います。",
+          "en": "Review the implementation and make the necessary changes."
+        }
+      }
+    ],
+    "about_heading": {
+      "ja": "開発者について",
+      "en": "About me"
+    },
+    "about_body": {
+      "ja": "日本を拠点に活動するフリーランスエンジニアのYusukeです。Webとモバイルの開発に取り組んでいます。",
+      "en": "I’m Yusuke, a freelance developer based in Japan. I work on web and mobile applications."
+    },
+    "contact_heading": {
+      "ja": "開発のご相談",
+      "en": "Discuss a project"
+    },
+    "contact_body": {
+      "ja": "つくりたいものや、既存のシステムで困っていることを教えてください。",
+      "en": "Tell me what you’d like to build or what needs attention in your existing software."
+    }
+  },
+  "work_index": {
+    "headline": {
+      "ja": "開発事例",
+      "en": "Work"
+    },
+    "body": {
+      "ja": "業務システム、Webサービス、モバイルアプリなどの開発経験をまとめています。各事例で、担当範囲と実装内容を紹介します。",
+      "en": "My experience includes business software, web services, and mobile apps. Each project describes my role and the work I contributed."
+    },
+    "project_order": [
+      "used_car",
+      "web_automation",
+      "investor_information",
+      "job_matching",
+      "messaging_automation",
+      "web_card_game"
+    ]
+  },
+  "project_template": {
+    "overview_heading": {
+      "ja": "概要",
+      "en": "Overview"
+    },
+    "role_heading": {
+      "ja": "担当したこと",
+      "en": "My role"
+    },
+    "implementation_heading": {
+      "ja": "実装内容",
+      "en": "Implementation"
+    },
+    "stack_heading": {
+      "ja": "使用技術",
+      "en": "Technologies"
+    },
+    "next_heading": {
+      "ja": "ほかの開発事例",
+      "en": "More projects"
+    },
+    "contact_heading": {
+      "ja": "開発のご相談",
+      "en": "Discuss a project"
+    },
+    "contact_body": {
+      "ja": "必要な機能や、今のシステムの状況を教えてください。",
+      "en": "Tell me about the features you need and your current setup."
+    }
+  },
+  "projects": [
+    {
+      "id": "used_car",
+      "title": {
+        "ja": "中古車販売の管理画面とアプリ",
+        "en": "Used-car sales software"
+      },
+      "category_key": "commercial",
+      "card_body": {
+        "ja": "中古車販売に関わる管理画面とモバイルアプリの開発。検索・認可・通知や、アプリの状態管理などを担当しました。",
+        "en": "Development of admin software and mobile apps for used-car sales. My work included search, access control, notifications, and mobile state management."
+      },
+      "overview": {
+        "ja": "中古車販売に関わる管理画面とモバイルアプリの開発。検索・認可・通知や、アプリの状態管理などを担当しました。",
+        "en": "Development of admin software and mobile apps for used-car sales. My work included search, access control, notifications, and mobile state management."
+      },
+      "role": {
+        "ja": "Railsの機能開発に加え、Next.jsでの試作、Swiftアプリの改修、Flutterへの移行に携わりました。",
+        "en": "I worked on Rails features, Next.js prototypes, updates to a Swift app, and a migration to Flutter."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "管理画面の機能開発",
+            "en": "Admin features"
+          },
+          "body": {
+            "ja": "Railsで検索、認可、ETL、通知に関わる機能を開発しました。",
+            "en": "I developed features for search, access control, ETL, and notifications in Rails."
+          }
+        },
+        {
+          "title": {
+            "ja": "アプリの状態管理と通信処理",
+            "en": "Mobile state and upload handling"
+          },
+          "body": {
+            "ja": "モバイル側では状態遷移やアップロードの再試行を実装しました。Swiftアプリの改修とFlutterへの移行にも携わりました。",
+            "en": "My mobile work included state transitions and upload retry handling, alongside updates to the Swift app and a migration to Flutter."
+          }
+        },
+        {
+          "title": {
+            "ja": "Next.jsでの試作",
+            "en": "Next.js prototyping"
+          },
+          "body": {
+            "ja": "Next.jsを使った試作にも取り組みました。",
+            "en": "I also worked on prototypes with Next.js."
+          }
+        }
+      ],
+      "stack": [
+        "Rails",
+        "Next.js",
+        "Swift",
+        "Flutter",
+        "Dart",
+        "Hotwire",
+        "Stimulus",
+        "Riverpod",
+        "GoRouter",
+        "MySQL"
+      ]
+    },
+    {
+      "id": "web_automation",
+      "title": {
+        "ja": "Web業務の自動化",
+        "en": "Web workflow automation"
+      },
+      "category_key": "commercial",
+      "card_body": {
+        "ja": "Web業務を自動化するシステムの開発。Reactの操作画面と、Pythonによる処理の連携などを担当しました。",
+        "en": "Development of software for automating web-based tasks. My work included React interfaces and integration with Python processing."
+      },
+      "overview": {
+        "ja": "Web業務を自動化するシステムの開発。Reactの操作画面と、Pythonによる処理の連携などを担当しました。",
+        "en": "Development of software for automating web-based tasks. My work included React interfaces and integration with Python processing."
+      },
+      "role": {
+        "ja": "仕様やUI・UXの検討、画面実装、Python連携、状態管理を担当しました。試作や管理機能、デスクトップ対応、決済、サーバー運用にも参加しました。",
+        "en": "I worked on requirements, UI and UX, interface implementation, Python integration, and state management. I also contributed to prototyping, admin features, desktop support, payments, and server operations."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "操作画面と処理の連携",
+            "en": "Interfaces and processing"
+          },
+          "body": {
+            "ja": "Reactの画面とPythonの処理を連携し、状態管理を実装しました。",
+            "en": "I connected React interfaces with Python processing and implemented state management."
+          }
+        },
+        {
+          "title": {
+            "ja": "試作から関連機能の開発まで",
+            "en": "Prototyping and related features"
+          },
+          "body": {
+            "ja": "試作に加え、管理機能やデスクトップ対応、決済に関わる開発に参加しました。",
+            "en": "I contributed to prototypes, admin features, desktop support, and payment-related development."
+          }
+        },
+        {
+          "title": {
+            "ja": "サーバー運用への参加",
+            "en": "Server operations"
+          },
+          "body": {
+            "ja": "開発に加え、サーバー運用にも携わりました。",
+            "en": "I also contributed to server operations."
+          }
+        }
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "Python",
+        "Selenium",
+        "Streamlit",
+        "Flask",
+        "PyInstaller",
+        "WebSocket",
+        "AWS EC2",
+        "Docker",
+        "MySQL",
+        "Playwright"
+      ]
+    },
+    {
+      "id": "investor_information",
+      "title": {
+        "ja": "投資家向け情報サービス",
+        "en": "Investor information service"
+      },
+      "category_key": "commercial",
+      "card_body": {
+        "ja": "投資家向け情報サービスで、Vueを使った新機能の設計・実装とUIコンポーネントの開発を担当しました。",
+        "en": "Design and implementation of new features and UI components in Vue for an investor information service."
+      },
+      "overview": {
+        "ja": "投資家向け情報サービスで、Vueを使った新機能の設計・実装とUIコンポーネントの開発を担当しました。",
+        "en": "Design and implementation of new features and UI components in Vue for an investor information service."
+      },
+      "role": {
+        "ja": "フロントエンドの新機能を設計・実装し、UIコンポーネントを開発しました。",
+        "en": "I designed and implemented frontend features and developed UI components."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "Vueによる機能開発",
+            "en": "Vue feature development"
+          },
+          "body": {
+            "ja": "新機能の設計から画面への実装まで担当しました。",
+            "en": "I worked on new features from design through interface implementation."
+          }
+        },
+        {
+          "title": {
+            "ja": "UIコンポーネント",
+            "en": "UI components"
+          },
+          "body": {
+            "ja": "サービス内で使用するUIコンポーネントを開発しました。",
+            "en": "I developed UI components for the service."
+          }
+        }
+      ],
+      "stack": [
+        "Vue",
+        "Vuex",
+        "SCSS"
+      ]
+    },
+    {
+      "id": "job_matching",
+      "title": {
+        "ja": "求人マッチングサービス",
+        "en": "Job matching platform"
+      },
+      "category_key": "experience",
+      "card_body": {
+        "ja": "求人マッチングサービスのフロントエンドとバックエンドの改修に携わりました。",
+        "en": "Frontend and backend updates for a job matching platform."
+      },
+      "overview": {
+        "ja": "求人マッチングサービスのフロントエンドとバックエンドの改修に携わりました。",
+        "en": "Frontend and backend updates for a job matching platform."
+      },
+      "role": {
+        "ja": "LaravelとMySQLを使うサービスで、画面側とバックエンド側の改修を担当しました。",
+        "en": "I worked on frontend and backend changes in a service built with Laravel and MySQL."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "既存サービスの改修",
+            "en": "Updates to an existing service"
+          },
+          "body": {
+            "ja": "既存の画面とバックエンドのコードを改修しました。",
+            "en": "I updated the existing frontend and backend code."
+          }
+        }
+      ],
+      "stack": [
+        "Laravel",
+        "MySQL"
+      ]
+    },
+    {
+      "id": "messaging_automation",
+      "title": {
+        "ja": "メッセージ業務の自動化",
+        "en": "Messaging workflow automation"
+      },
+      "category_key": "experience",
+      "card_body": {
+        "ja": "メッセージ業務の効率化を目的としたシステム開発に携わりました。",
+        "en": "Development of a system intended to make messaging workflows more efficient."
+      },
+      "overview": {
+        "ja": "メッセージ業務の効率化を目的としたシステム開発に携わりました。",
+        "en": "Development of a system intended to make messaging workflows more efficient."
+      },
+      "role": {
+        "ja": "MySQLを使用する、メッセージ業務の自動化システムの開発に参加しました。",
+        "en": "I contributed to the development of a messaging automation system using MySQL."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "業務自動化のシステム開発",
+            "en": "Automation system development"
+          },
+          "body": {
+            "ja": "メッセージ業務を自動化するための開発に取り組みました。",
+            "en": "I worked on software to automate messaging tasks."
+          }
+        }
+      ],
+      "stack": [
+        "MySQL"
+      ]
+    },
+    {
+      "id": "web_card_game",
+      "title": {
+        "ja": "Webカードゲーム",
+        "en": "Web-based card game"
+      },
+      "category_key": "unpaid",
+      "card_body": {
+        "ja": "無償の依頼を受けて制作したWebカードゲーム。仕様やUI・UXの検討、画面実装、バックエンド連携を担当しました。",
+        "en": "A web-based card game built as an unpaid commissioned project. I worked on requirements, UI and UX, frontend implementation, and backend integration."
+      },
+      "overview": {
+        "ja": "無償の依頼を受けて制作したWebカードゲーム。仕様やUI・UXの検討、画面実装、バックエンド連携を担当しました。",
+        "en": "A web-based card game built as an unpaid commissioned project. I worked on requirements, UI and UX, frontend implementation, and backend integration."
+      },
+      "role": {
+        "ja": "仕様とUI・UXの検討から、フロントエンド実装、状態管理、リアルタイム連携まで担当しました。ユーザーテストをもとに修正も行いました。",
+        "en": "I worked on requirements, UI and UX, frontend implementation, state management, and real-time integration. I also made changes based on user testing."
+      },
+      "sections": [
+        {
+          "title": {
+            "ja": "ゲーム画面と状態管理",
+            "en": "Game interface and state management"
+          },
+          "body": {
+            "ja": "ゲーム画面を実装し、状態管理とバックエンドとのリアルタイム連携に取り組みました。",
+            "en": "I implemented the game interface, state management, and real-time integration with the backend."
+          }
+        },
+        {
+          "title": {
+            "ja": "ユーザーテストからの修正",
+            "en": "Changes informed by user testing"
+          },
+          "body": {
+            "ja": "ユーザーテストで得た内容をもとに、実装を修正しました。",
+            "en": "I revised the implementation based on findings from user testing."
+          }
+        }
+      ],
+      "stack": [
+        "React",
+        "TypeScript",
+        "GitHub",
+        "Vercel"
+      ]
+    }
+  ],
+  "about": {
+    "headline": {
+      "ja": "プロフィール",
+      "en": "About"
+    },
+    "body": {
+      "ja": "Yusukeです。日本を拠点に、フリーランスエンジニアとしてWebサービスとモバイルアプリを開発しています。Abocadoでは、これまでに担当した開発の内容を紹介しています。",
+      "en": "I’m Yusuke, a freelance developer based in Japan. I develop web services and mobile apps. Abocado is where I share the work I’ve contributed to."
+    },
+    "experience_heading": {
+      "ja": "これまでの開発",
+      "en": "Development experience"
+    },
+    "experience_body": {
+      "ja": "Railsを使った業務システムの機能追加や、React・Vueによる画面開発、Swift・Flutterによるアプリ開発に携わってきました。業務自動化や、Webカードゲームの開発経験もあります。",
+      "en": "My experience includes features for Rails-based business systems, interfaces built with React and Vue, and mobile development with Swift and Flutter. I’ve also worked on workflow automation and a web-based card game."
+    },
+    "ai_heading": {
+      "ja": "開発でのAIの使い方",
+      "en": "How I use AI"
+    },
+    "ai_body": {
+      "ja": "実装の補助にAIを使います。要件の整理、設計の判断、コードのレビュー、動作の確認は、自分で行います。",
+      "en": "I use AI to assist with implementation. I define requirements, make architecture decisions, and review and test the code myself."
+    },
+    "location_heading": {
+      "ja": "活動拠点",
+      "en": "Location"
+    },
+    "location_body": {
+      "ja": "日本（JST / UTC+9）",
+      "en": "Japan (JST / UTC+9)"
+    }
+  },
+  "services": {
+    "headline": {
+      "ja": "できること",
+      "en": "Services"
+    },
+    "body": {
+      "ja": "Webサービスやアプリの開発、既存機能の改修、業務の自動化に取り組んでいます。具体的な担当範囲は、プロジェクトの内容に合わせて相談します。",
+      "en": "I develop web and mobile apps, update existing features, and automate workflows. The scope of my work depends on the project."
+    },
+    "items": [
+      {
+        "id": "web",
+        "title": {
+          "ja": "Webサービス・業務システム",
+          "en": "Web applications and business software"
+        },
+        "body": {
+          "ja": "管理画面やサービス画面の開発、検索・認可などの機能追加、既存コードの改修に対応します。",
+          "en": "I develop user-facing and admin interfaces, add features such as search and access control, and update existing code."
+        },
+        "stack": [
+          "Rails",
+          "React",
+          "Next.js",
+          "Vue",
+          "Laravel",
+          "MySQL"
+        ],
+        "related_projects": [
+          "used_car",
+          "investor_information",
+          "job_matching"
+        ]
+      },
+      {
+        "id": "mobile",
+        "title": {
+          "ja": "モバイルアプリ",
+          "en": "Mobile apps"
+        },
+        "body": {
+          "ja": "Swift・Flutterによるアプリ開発や改修に対応します。画面の状態管理やアップロード処理などの実装経験があります。",
+          "en": "I develop and update apps with Swift and Flutter. My experience includes screen state management and upload handling."
+        },
+        "stack": [
+          "Swift",
+          "Flutter",
+          "Dart",
+          "Riverpod",
+          "GoRouter"
+        ],
+        "related_projects": [
+          "used_car"
+        ]
+      },
+      {
+        "id": "automation",
+        "title": {
+          "ja": "業務の自動化",
+          "en": "Workflow automation"
+        },
+        "body": {
+          "ja": "Web操作やメッセージ業務の自動化に携わってきました。画面と処理の連携、データの管理など、必要な部分を相談しながら進めます。",
+          "en": "I’ve worked on automation for web-based tasks and messaging workflows. I can help connect interfaces, processing logic, and data management within an agreed scope."
+        },
+        "stack": [
+          "Python",
+          "Selenium",
+          "React",
+          "MySQL"
+        ],
+        "related_projects": [
+          "web_automation",
+          "messaging_automation"
+        ]
+      }
+    ],
+    "contact_heading": {
+      "ja": "担当範囲から相談できます",
+      "en": "Let’s discuss the scope"
+    },
+    "contact_body": {
+      "ja": "新しくつくる機能でも、既存システムの一部分でも、まずは内容を教えてください。",
+      "en": "Whether you need a new feature or changes to an existing system, tell me what you have in mind."
+    }
+  },
+  "contact": {
+    "headline": {
+      "ja": "お問い合わせ",
+      "en": "Contact"
+    },
+    "body": {
+      "ja": "開発したいものや、現在困っていることを教えてください。希望する時期や予算の目安があれば、あわせてお知らせください。",
+      "en": "Tell me what you’d like to build or where you need development help. If you have a timeline or an approximate budget, please include it."
+    },
+    "fields": {
+      "name": {
+        "ja": "お名前",
+        "en": "Name"
+      },
+      "email": {
+        "ja": "メールアドレス",
+        "en": "Email"
+      },
+      "company": {
+        "ja": "会社名（任意）",
+        "en": "Company (optional)"
+      },
+      "message": {
+        "ja": "ご相談内容",
+        "en": "Project details"
+      }
+    },
+    "message_hint": {
+      "ja": "プロジェクトの概要、現在の状況、希望する担当範囲など",
+      "en": "Project overview, current setup, and the work you need help with"
+    },
+    "submit": {
+      "ja": "問い合わせを送信",
+      "en": "Send inquiry"
+    },
+    "unavailable": {
+      "ja": "お問い合わせフォームは準備中です。",
+      "en": "The contact form is not yet available."
+    },
+    "required_label": {
+      "ja": "必須",
+      "en": "Required"
+    },
+    "location": "Japan · JST / UTC+9"
+  }
+}

@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CalendarDays, FileText, Layers } from "lucide-react";
-import { ContactArtwork } from "@/components/PortfolioArtwork";
+import { ArrowRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
-import { siteCopy } from "@/content/site";
+import { portfolioCopy } from "@/content/portfolio-copy";
 import { PageIntro } from "@/components/PortfolioUI";
 import ContactForm from "@/components/ContactForm";
 import { contactFormEnabled } from "@/config/contact";
 
-export const metadata: Metadata = { title: "Contact / お問い合わせ" };
 export const dynamic = "force-dynamic";
-
+export async function generateMetadata({
+  params,
+}: LocalePageProps): Promise<Metadata> {
+  const locale = await setPageLocale(params);
+  return {
+    title: portfolioCopy.contact.headline[locale],
+    description: portfolioCopy.contact.body[locale],
+  };
+}
 export default async function Contact({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
-  const c = siteCopy[locale];
-  const consultationIcons = [FileText, Layers, CalendarDays];
+  const copy = portfolioCopy.contact;
   const acceptingEnquiries =
     contactFormEnabled &&
     process.env.CONTACT_FORM_ENABLED === "true" &&
@@ -22,59 +27,21 @@ export default async function Contact({ params }: LocalePageProps) {
     process.env.GMAIL_PASS &&
     process.env.CONTACT_TO;
   return (
-    <div className="page-width">
-      <PageIntro
-        className="contact-intro"
-        eyebrow="CONTACT"
-        title={c.contactTitle}
-        body={c.contactBody}
-      />
-      <div className="contact-layout">
-        <aside>
-          <h2>
-            {locale === "ja" ? "ご相談の前に" : "A useful starting point"}
-          </h2>
-          <ul className="consultation-list">
-            {(locale === "ja"
-              ? [
-                  "つくりたいもの・解決したいこと",
-                  "現在の構成と必要な機能",
-                  "希望する時期と担当範囲",
-                ]
-              : [
-                  "What you want to build or improve",
-                  "Your current setup and required features",
-                  "Timing and the contribution you need",
-                ]
-            ).map((item, index) => {
-              const Icon = consultationIcons[index];
-              return (
-                <li key={item}>
-                  <Icon size={24} strokeWidth={1.3} aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              );
-            })}
-          </ul>
-          <Link className="text-link" href={`/${locale}/services`}>
-            {c.servicesCta} ↗
-          </Link>
-        </aside>
-        <div>
-          {acceptingEnquiries ? (
-            <ContactForm locale={locale} />
-          ) : (
-            <div className="contact-pending contact-pending-composed">
-              <ContactArtwork />
-              <p className="eyebrow">
-                {locale === "ja" ? "受付準備中" : "ENQUIRIES"}
-              </p>
-              <h2>{c.pendingTitle}</h2>
-              <p>{c.pendingBody}</p>
-            </div>
-          )}
-        </div>
-      </div>
+    <div className="page-width contact-page">
+      <PageIntro title={copy.headline[locale]} body={copy.body[locale]} />
+      {acceptingEnquiries ? (
+        <ContactForm locale={locale} />
+      ) : (
+        <section className="contact-pending">
+          <h2>{locale === "ja" ? "受付準備中" : "Contact availability"}</h2>
+          <p>{copy.unavailable[locale]}</p>
+          <p className="location">{copy.location}</p>
+        </section>
+      )}
+      <Link className="text-link" href={`/${locale}/services`}>
+        {portfolioCopy.global.cta.services[locale]}
+        <ArrowRight size={18} aria-hidden="true" />
+      </Link>
     </div>
   );
 }
