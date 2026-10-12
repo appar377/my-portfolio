@@ -88,14 +88,12 @@ export default async function Home({ params }: LocalePageProps) {
         <section className="home-services">
           <div>
             <h2>{copy.services_heading[locale]}</h2>
-            <p>{copy.services_body[locale]}</p>
           </div>
           <Capabilities locale={locale} summary />
         </section>
         <section className="selected-work" id="work">
           <div className="section-heading">
             <h2>{copy.work_heading[locale]}</h2>
-            <p>{copy.work_body[locale]}</p>
             <Link className="text-link" href={`/${locale}/creations`}>
               {global.cta.all_work[locale]}
               <ArrowRight size={18} aria-hidden="true" />
