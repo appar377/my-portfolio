@@ -32,7 +32,7 @@ export default async function CreationDetail({ params }: Props) {
   return (
     <div className="page-width">
       <header className="detail-intro">
-        <div>
+        <div className="detail-copy">
           <Link className="text-link" href={`/${locale}/creations`}>
             <ArrowLeft size={18} aria-hidden="true" />
             {c.back}
@@ -42,7 +42,7 @@ export default async function CreationDetail({ params }: Props) {
           <p className="work-kind">{work.kind[locale]}</p>
           <p className="lead">{work.summary[locale]}</p>
         </div>
-        <WorkGraphic work={work} context="detail" />
+        <WorkGraphic work={work} locale={locale} context="detail" />
       </header>
       <div className="detail-layout">
         <div className="detail-content">

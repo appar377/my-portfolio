@@ -9,14 +9,15 @@ export default function BrandMark() {
       strokeLinejoin="round"
       className="brand-mark"
     >
-      <path
-        d="M24 5C19 5 8 22 8 30c0 8 7 13 16 13s16-5 16-13C40 22 29 5 24 5Z"
-        stroke="var(--ink)"
-        strokeWidth="3.2"
-        fill="var(--paper)"
-      />
-      <path d="M14 28c1-6 5-13 9-16" stroke="var(--blue)" strokeWidth="2" />
-      <circle cx="24" cy="31" r="6" fill="var(--red)" />
+      <g transform="rotate(18 24 24)">
+        <path
+          d="M24 5C18 5 18 12 13 20c-4 6-6 10-5 14 2 7 8 10 16 10s14-3 16-10c1-4-1-8-5-14-5-8-5-15-11-15Z"
+          stroke="currentColor"
+          strokeWidth="3.3"
+          fill="none"
+        />
+        <ellipse cx="24" cy="31" rx="7" ry="7.5" fill="var(--copper)" />
+      </g>
     </svg>
   );
 }

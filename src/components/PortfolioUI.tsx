@@ -1,16 +1,17 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  PanelsTopLeft,
+  Smartphone,
+  LayoutTemplate,
+  Workflow,
+} from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
 import type { WorkCase, WorkCategory } from "@/content/work";
-import {
-  CardArtwork,
-  CalloutArtwork,
-  DetailArtwork,
-  RouteArtwork,
-  type WorkArtworkKind,
-} from "./PortfolioArtwork";
+import WorkVisual, { type WorkVisualKind } from "./WorkVisual";
 
 export const workCategories = [
   "business",
@@ -31,64 +32,82 @@ export function Tags({ items }: { items: readonly string[] }) {
 
 export function WorkGraphic({
   work,
+  locale,
   context = "card",
 }: {
   work: WorkCase;
+  locale: Locale;
   context?: "card" | "detail";
 }) {
-  const kinds: Record<string, WorkArtworkKind> = {
-    "business-web-mobile": "business",
-    "workflow-automation": "automation",
-    "investment-information": "frontend",
+  const kinds: Record<string, WorkVisualKind> = {
+    "business-web-mobile": "devices",
+    "workflow-automation": "flow",
+    "investment-information": "information",
     "recruitment-matching": "matching",
     "messaging-automation": "messaging",
-    "web-card-game": "game",
+    "web-card-game": "cards",
   };
-  const kind = kinds[work.id] ?? "business";
-  return context === "detail" ? (
-    <DetailArtwork kind={kind} />
-  ) : (
-    <CardArtwork kind={kind} />
+  const kind = kinds[work.id] ?? "devices";
+  return (
+    <WorkVisual
+      kind={kind}
+      identity={work.id}
+      locale={locale}
+      detail={context === "detail"}
+    />
   );
 }
 
-export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
+export function WorkCard({
+  work,
+  locale,
+  variant = "standard",
+}: {
+  work: WorkCase;
+  locale: Locale;
+  variant?: "standard" | "featured" | "compact";
+}) {
   const c = siteCopy[locale];
   return (
-    <article className="work-card work-card-composed">
+    <article className={`work-card work-card-${variant}`}>
       <Link className="work-card-link" href={`/${locale}/creations/${work.id}`}>
-        <div className="work-card-meta">
-          <span className="work-number">{work.number}</span>
-          <span className="category-label">{c[work.category]}</span>
-          <span className="work-kind">{work.kind[locale]}</span>
-          <span className="work-period">{work.period[locale]}</span>
-        </div>
-        <div className="work-card-content">
-          <div className="work-card-body">
-            <h3>{work.title[locale]}</h3>
-            <p>{work.summary[locale]}</p>
+        <WorkGraphic work={work} locale={locale} />
+        <div className="work-card-copy">
+          <div className="work-card-meta">
+            <span className="work-number">{work.number}</span>
+            <span className="category-label">{c[work.category]}</span>
+            <span className="work-kind">{work.kind[locale]}</span>
+            <span className="work-period">{work.period[locale]}</span>
           </div>
-          <WorkGraphic work={work} />
+          <div className="work-card-content">
+            <div className="work-card-body">
+              <h3>{work.title[locale]}</h3>
+              <p>{work.summary[locale]}</p>
+            </div>
+          </div>
+          {work.technologies.length > 0 && (
+            <Tags items={work.technologies.slice(0, 4)} />
+          )}
+          <span className="text-link">
+            <span>{c.explore}</span>
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </span>
         </div>
-        {work.technologies.length > 0 && (
-          <Tags items={work.technologies.slice(0, 4)} />
-        )}
-        <span className="text-link">
-          <span>{c.explore}</span>
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </span>
       </Link>
     </article>
   );
 }
 
 export function Capabilities({ locale }: { locale: Locale }) {
+  const icons = [PanelsTopLeft, Smartphone, LayoutTemplate, Workflow];
   return (
     <div className="capability-grid">
-      {capabilities.map((item) => {
+      {capabilities.map((item, index) => {
+        const Icon = icons[index];
         return (
           <article className="capability" key={item.code}>
             <div className="capability-top">
+              <Icon size={32} strokeWidth={1.5} aria-hidden="true" />
               <span className="eyebrow">{item.code}</span>
             </div>
             <h3>{item.title[locale]}</h3>
@@ -118,7 +137,7 @@ export function PageIntro({
 }) {
   return (
     <header
-      className={`page-intro page-intro-composed ${artwork === "route" ? "page-intro-with-art" : ""} ${className}`}
+      className={`page-intro ${artwork === "none" ? "page-intro-plain" : ""} ${className}`}
     >
       <div className="page-intro-copy">
         <p className="eyebrow">{eyebrow}</p>
@@ -126,7 +145,6 @@ export function PageIntro({
         <p className="lead">{body}</p>
         {children}
       </div>
-      {artwork === "route" ? <RouteArtwork /> : null}
     </header>
   );
 }
@@ -144,7 +162,6 @@ export function ContactCallout({ locale }: { locale: Locale }) {
           <ArrowRight size={18} aria-hidden="true" />
         </Link>
       </div>
-      <CalloutArtwork />
     </section>
   );
 }

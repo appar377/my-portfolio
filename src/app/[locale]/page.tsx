@@ -1,9 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { workCases } from "@/content/work";
-import { HeroArtwork } from "@/components/PortfolioArtwork";
 import HomeDestinations from "@/components/HomeDestinations";
 import DevelopmentApproach from "@/components/DevelopmentApproach";
 import {
@@ -17,24 +17,30 @@ export default async function Home({ params }: LocalePageProps) {
   const c = siteCopy[locale];
   return (
     <>
-      <section className="hero">
+      <section className="hero hero-human">
+        <Image
+          src="/images/design-desk.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="hero-photo"
+        />
         <div className="page-width hero-layout">
           <div className="hero-copy">
-            <p className="eyebrow">ABOCADO / {c.role}</p>
-            <h1>Yusuke</h1>
+            <p className="eyebrow">YUSUKE / {c.role}</p>
+            <h1>
+              {c.heroTitle.map((line) => (
+                <span key={line}>{line} </span>
+              ))}
+            </h1>
             <p className="hero-role">
               <span>Full Stack Engineer</span>
               <span className="hero-role-separator">×</span>
               <span>Designer</span>
             </p>
-            <p className="hero-statement">
-              {c.heroTitle.map((line) => (
-                <span key={line}>{line} </span>
-              ))}
-            </p>
             <p className="lead">{c.heroBody}</p>
           </div>
-          <HeroArtwork />
           <div className="actions hero-actions">
             <Link
               className="button button-primary"
@@ -49,6 +55,11 @@ export default async function Home({ params }: LocalePageProps) {
             </Link>
           </div>
         </div>
+        <p className="hero-image-note">
+          {locale === "ja"
+            ? "生成イメージ · 本人の写真ではありません"
+            : "Generated image · not a photograph of Yusuke"}
+        </p>
       </section>
       <section className="page-width section" id="work">
         <div className="section-heading">
@@ -62,9 +73,14 @@ export default async function Home({ params }: LocalePageProps) {
             <ArrowUpRight size={18} aria-hidden="true" />
           </Link>
         </div>
-        <div className="work-grid">
-          {workCases.slice(0, 3).map((work) => (
-            <WorkCard key={work.id} work={work} locale={locale} />
+        <div className="work-grid selected-work-grid">
+          {workCases.slice(0, 3).map((work, index) => (
+            <WorkCard
+              key={work.id}
+              work={work}
+              locale={locale}
+              variant={index === 0 ? "featured" : "compact"}
+            />
           ))}
         </div>
       </section>
@@ -81,8 +97,10 @@ export default async function Home({ params }: LocalePageProps) {
           <Capabilities locale={locale} />
         </div>
       </section>
-      <div className="page-width">
-        <DevelopmentApproach locale={locale} variant="summary" />
+      <div className="approach-band">
+        <div className="page-width">
+          <DevelopmentApproach locale={locale} variant="summary" />
+        </div>
       </div>
       <section className="notes-section page-width">
         <div>

@@ -27,6 +27,16 @@ export default function DevelopmentApproach({
         {summary ? copy.summaryBody : copy.introduction}
       </p>
       {summary ? (
+        <ol className="approach-summary-steps">
+          {copy.steps.map((step, index) => (
+            <li key={step.title}>
+              <span aria-hidden="true">0{index + 1}</span>
+              <span>{step.title}</span>
+            </li>
+          ))}
+        </ol>
+      ) : null}
+      {summary ? (
         <Link
           className="text-link"
           href={`/${locale}/services#development-approach`}
