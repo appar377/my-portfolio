@@ -420,6 +420,18 @@ html[lang="ja"] .hero-artwork {
   font-size: clamp(17px, calc(20 * var(--u)), 28px);
   line-height: 1.24;
 }
+@media (min-width: 961px) {
+  .home-services {
+    grid-template-columns: calc(160 * var(--u)) 1fr;
+    gap: 0;
+  }
+  .home-services h2 {
+    white-space: nowrap;
+  }
+  .home-services .service-summary-grid {
+    margin-right: calc(-24 * var(--u));
+  }
+}
 .selected-work {
   padding-top: calc(21 * var(--u));
   padding-bottom: calc(24 * var(--u));
