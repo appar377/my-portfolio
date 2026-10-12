@@ -618,6 +618,43 @@ textarea {
 .capabilities-section {
   border-top: 1px solid var(--line);
 }
+
+.development-approach {
+  margin-block: 64px;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+.development-approach h2 {
+  max-width: 30ch;
+  margin-top: 12px;
+}
+.approach-introduction {
+  max-width: 76ch;
+  margin-top: 20px;
+}
+.development-approach .text-link {
+  margin-top: 24px;
+}
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin: 36px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.approach-grid h3 {
+  margin-block: 12px;
+  font-size: 20px;
+}
+@media (max-width: 900px) {
+  .approach-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
 .capability-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

@@ -5,6 +5,7 @@ import { siteCopy, technicalNotesUrl } from "@/content/site";
 import { workCases } from "@/content/work";
 import { HeroArtwork } from "@/components/PortfolioArtwork";
 import HomeDestinations from "@/components/HomeDestinations";
+import DevelopmentApproach from "@/components/DevelopmentApproach";
 import {
   Capabilities,
   ContactCallout,
@@ -80,6 +81,9 @@ export default async function Home({ params }: LocalePageProps) {
           <Capabilities locale={locale} />
         </div>
       </section>
+      <div className="page-width">
+        <DevelopmentApproach locale={locale} variant="summary" />
+      </div>
       <section className="notes-section page-width">
         <div>
           <p className="eyebrow">LEARNING IN PUBLIC</p>

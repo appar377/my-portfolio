@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
+import DevelopmentApproach from "@/components/DevelopmentApproach";
 import {
   Capabilities,
   ContactCallout,
@@ -20,6 +21,7 @@ export default async function Services({ params }: LocalePageProps) {
         body={c.servicesIntro}
       />
       <Capabilities locale={locale} />
+      <DevelopmentApproach locale={locale} />
       <section className="section">
         <div className="section-heading">
           <div>
