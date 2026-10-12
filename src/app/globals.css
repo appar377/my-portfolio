@@ -427,6 +427,7 @@ html[lang="ja"] .hero-artwork {
   }
   .home-services h2 {
     white-space: nowrap;
+    width: max-content;
   }
   .home-services .service-summary-grid {
     margin-right: calc(-24 * var(--u));
