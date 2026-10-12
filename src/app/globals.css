@@ -314,6 +314,14 @@ textarea {
 .work-card-composed .text-link > svg {
   flex-shrink: 0;
 }
+.work-card-composed .text-link > span {
+  min-width: 0;
+  overflow-wrap: normal;
+}
+.work-card-composed .tags li {
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
 .card-art {
   width: 120px;
   height: 80px;
@@ -1117,6 +1125,7 @@ textarea {
     font-size: 27px;
   }
   .work-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
   .work-card-link {

@@ -74,7 +74,7 @@ export function WorkCard({ work, locale }: { work: WorkCase; locale: Locale }) {
           <Tags items={work.technologies.slice(0, 4)} />
         )}
         <span className="text-link">
-          {c.explore}
+          <span>{c.explore}</span>
           <ArrowUpRight size={18} aria-hidden="true" />
         </span>
       </Link>
