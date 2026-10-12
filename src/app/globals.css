@@ -971,6 +971,12 @@ html[lang="en"] .process-grid h3 {
 .footer-links .language-switch {
   padding-left: 18px;
 }
+@media (min-width: 961px) {
+  main:has(> .hero-v12) + .site-footer {
+    padding-block: 7px;
+    row-gap: 4px;
+  }
+}
 
 @media (min-width: 1441px) {
   .hero-artwork {
