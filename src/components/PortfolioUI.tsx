@@ -121,7 +121,7 @@ export function Capabilities({
             href={`/${locale}/services#service-${item.id}`}
           >
             <Icon size={42} strokeWidth={1.4} aria-hidden="true" />
-            <h3>{item.title[locale]}</h3>
+            <h3>{item.summaryTitle[locale]}</h3>
           </Link>
         ) : (
           <article

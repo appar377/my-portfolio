@@ -32,10 +32,14 @@ export default async function CreationDetail({ params }: Props) {
   const copy = work.copy;
   const labels = portfolioCopy.project_template;
   const c = siteCopy[locale];
+  const directReference = locale === "en" && id === "recruitment-matching";
+  const heroSummary = directReference
+    ? "Frontend and backend updates."
+    : copy.overview[locale];
   return (
     <div className="page-width project-page">
       <header
-        className={`detail-intro ${workImageRegion(id, locale, true) ? "" : "detail-without-image"} ${locale === "en" && id === "recruitment-matching" ? "detail-direct-reference" : ""}`}
+        className={`detail-intro ${workImageRegion(id, locale, true) ? "" : "detail-without-image"} ${directReference ? "detail-direct-reference" : ""}`}
       >
         <div className="detail-copy">
           <p className="breadcrumbs">
@@ -46,7 +50,7 @@ export default async function CreationDetail({ params }: Props) {
             {c.back}
           </Link>
           <h1>{copy.title[locale]}</h1>
-          <p className="lead">{copy.overview[locale]}</p>
+          <p className="lead">{heroSummary}</p>
           <Tags items={copy.stack} />
           <p className="project-meta">
             {work.kind[locale]} · {work.period[locale]}

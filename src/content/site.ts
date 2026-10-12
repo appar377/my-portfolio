@@ -211,10 +211,17 @@ export const siteCopy = {
   en: localizedSiteCopy("en"),
 };
 
+const capabilitySummaryTitles: Record<string, Record<Locale, string>> = {
+  web: { ja: "Web開発", en: "Web development" },
+  mobile: { ja: "アプリ開発", en: "Mobile apps" },
+  automation: { ja: "業務自動化", en: "Workflow automation" },
+};
+
 export const capabilities = portfolioCopy.services.items.map((item, index) => ({
   code: `0${index + 1} / ${item.id.toUpperCase()}`,
   id: item.id,
   title: item.title,
+  summaryTitle: capabilitySummaryTitles[item.id] ?? item.title,
   body: item.body,
   technologies: item.stack,
   relatedProjects: item.related_projects,
