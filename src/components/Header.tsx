@@ -9,6 +9,7 @@ import { siteCopy } from "@/content/site";
 import { navigationItems } from "@/content/navigation";
 import SettingLang from "./SettingLang";
 import BrandMark from "./BrandMark";
+import { brandCopy } from "@/content/brand";
 
 export default function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -100,6 +101,7 @@ export default function Header({ locale }: { locale: Locale }) {
           <BrandMark />
           <span>Abocado</span>
         </Link>
+        <p className="brand-tagline">{brandCopy[locale].tagline}</p>
         <nav
           aria-label={
             locale === "ja" ? "メインナビゲーション" : "Main navigation"

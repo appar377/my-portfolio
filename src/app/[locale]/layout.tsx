@@ -6,10 +6,11 @@ import BrandMark from "@/components/BrandMark";
 import { routing } from "@/i18n/routing";
 import { setPageLocale } from "@/i18n/page-locale";
 import { siteCopy, technicalNotesUrl } from "@/content/site";
-import { portfolioCopy } from "@/content/portfolio-copy";
 import { navigationItems } from "@/content/navigation";
 import SettingLang from "@/components/SettingLang";
 import "@/app/globals.css";
+import "@/app/studio.css";
+import { brandCopy } from "@/content/brand";
 
 type Props = { children: ReactNode; params: Promise<{ locale: string }> };
 
@@ -26,7 +27,7 @@ export async function generateMetadata({
       default: "Abocado / Yusuke — Web & Mobile Development",
       template: "%s | Abocado / Yusuke",
     },
-    description: portfolioCopy.home.body[locale === "en" ? "en" : "ja"],
+    description: brandCopy[locale === "en" ? "en" : "ja"].body,
   };
 }
 
@@ -48,7 +49,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <Link className="footer-brand" href={`/${locale}`}>
               <BrandMark /> <span>Abocado</span>
             </Link>
-            <p>{c.footer}</p>
+            <p>{brandCopy[locale].tagline} · v3.0.0</p>
           </div>
           <div className="footer-links">
             {navigationItems.map(({ path, label }) => (

@@ -1,111 +1,143 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
-import { portfolioCopy } from "@/content/portfolio-copy";
-import { displayWorkCases } from "@/content/work-copy";
-import { heroImageRegion } from "@/content/reference-artwork";
-import ReferenceImageRegion from "@/components/ReferenceImageRegion";
+import { brandCopy, featuredTechnologies } from "@/content/brand";
+import SystemPreview from "@/components/SystemPreview";
 import WorkProcess from "@/components/WorkProcess";
-import {
-  Capabilities,
-  ContactCallout,
-  WorkCard,
-} from "@/components/PortfolioUI";
+import { ContactCallout } from "@/components/PortfolioUI";
 
 export default async function Home({ params }: LocalePageProps) {
   const locale = await setPageLocale(params);
-  const copy = portfolioCopy.home;
-  const global = portfolioCopy.global;
-  const headline = copy.headline[locale];
-  const heroSummary =
-    locale === "ja"
-      ? "日本を拠点に、業務システムの機能追加とWeb・モバイルアプリの開発をしています。"
-      : copy.body[locale];
-  const splitAt = headline.indexOf(locale === "ja" ? "アプリ" : "mobile");
-  const headlineLines =
-    splitAt > 0
-      ? [headline.slice(0, splitAt), headline.slice(splitAt)]
-      : [headline];
-  const selected = displayWorkCases.filter((work) =>
-    ["recruitment-matching", "messaging-automation"].includes(work.id),
-  );
+  const c = brandCopy[locale];
+  const services = [
+    {
+      id: "web",
+      title: c.web,
+      body: c.webBody,
+      image: "/images/v3/web-concept.webp",
+    },
+    {
+      id: "mobile",
+      title: c.mobile,
+      body: c.mobileBody,
+      image: "/images/v3/mobile-concept.webp",
+    },
+  ];
   return (
     <>
-      <section className="hero-v12">
-        <div className="hero-artwork">
-          <ReferenceImageRegion
-            region={heroImageRegion(locale)}
-            className="hero-image"
-            priority
-          />
-        </div>
-        <div className="page-width hero-content">
-          <p className="eyebrow">
-            <Link
-              className="hero-profile-link"
-              href={`/${locale}/about`}
-              aria-label={`${global.nav.about[locale]}: ${copy.eyebrow[locale]}`}
-            >
-              {copy.eyebrow[locale]}
-              <ArrowRight size={12} aria-hidden="true" />
-            </Link>
-          </p>
-          <h1>
-            {headlineLines.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </h1>
-          <p className="lead">{heroSummary}</p>
-          <div className="actions">
-            <Link
-              className="button button-primary"
-              href={`/${locale}/creations`}
-            >
-              {global.cta.work[locale]}
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-            <Link className="text-link" href={`/${locale}/contact`}>
-              {global.cta.contact[locale]}
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="hero-details">
-            <p className="location">{global.location}</p>
-            <ul className="hero-stack" aria-label={global.labels.stack[locale]}>
-              {copy.stack.map((item) => (
-                <li key={item}>{item}</li>
+      <section className="studio-hero">
+        <div className="page-width studio-hero-inner">
+          <div className="studio-hero-copy">
+            <p className="eyebrow">INDEPENDENT SYSTEMS ENGINEER</p>
+            <h1>
+              {c.headline.map((line) => (
+                <span key={line}>{line}</span>
               ))}
-            </ul>
+            </h1>
+            <p className="hero-description">{c.body}</p>
+            <div className="actions">
+              <Link
+                className="button hero-primary"
+                href={`/${locale}/creations`}
+              >
+                {c.work}
+                <ArrowUpRight size={22} aria-hidden="true" />
+              </Link>
+              <Link
+                className="button hero-secondary"
+                href={`/${locale}/contact`}
+              >
+                {c.contact}
+              </Link>
+            </div>
+            <div className="technology-strip">
+              <p>TECHNOLOGY</p>
+              <ul>
+                {featuredTechnologies.map((t, i) => (
+                  <li key={t}>
+                    <span
+                      aria-hidden="true"
+                      className={`technology-icon tech-${i}`}
+                    >
+                      {["◒", "N", "⚛", "╱", "●"][i]}
+                    </span>
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+          <SystemPreview locale={locale} />
         </div>
-        <p className="hero-image-note">
-          {locale === "ja"
-            ? "生成イメージ · 本人の写真ではありません"
-            : "Generated image · not a photograph of Yusuke"}
-        </p>
       </section>
-      <div className="page-width home-sections">
-        <section className="home-services">
-          <div>
-            <h2>{copy.services_heading[locale]}</h2>
+      <div className="page-width studio-sections">
+        <section className="studio-work" aria-labelledby="work-title">
+          <div className="editorial-heading">
+            <h2 id="work-title">Work.</h2>
+            <span>{c.workLabel}</span>
+            <p>{c.workIntro}</p>
           </div>
-          <Capabilities locale={locale} summary />
-        </section>
-        <section className="selected-work" id="work">
-          <div className="section-heading">
-            <h2>{copy.work_heading[locale]}</h2>
-            <Link className="text-link" href={`/${locale}/creations`}>
-              {global.cta.all_work[locale]}
-              <ArrowRight size={18} aria-hidden="true" />
-            </Link>
-          </div>
-          <div className="work-grid">
-            {selected.map((work) => (
-              <WorkCard key={work.id} work={work} locale={locale} preview />
+          <div className="service-photo-grid">
+            {services.map((s) => (
+              <Link
+                className="service-photo"
+                key={s.id}
+                href={`/${locale}/services#service-${s.id}`}
+              >
+                <Image
+                  src={s.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                />
+                <span className="concept-label">CONCEPT PREVIEW</span>
+                <div>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                  <span className="circle-arrow">
+                    <ArrowRight size={24} aria-hidden="true" />
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
+          <p className="concept-note">
+            {locale === "ja"
+              ? "コンセプトイメージ · 実際の案件・アプリ画面ではありません"
+              : "Concept images · not screenshots of client projects or released apps"}
+          </p>
+          <Link
+            className="text-link section-link"
+            href={`/${locale}/creations`}
+          >
+            {locale === "ja"
+              ? "担当した実績を詳しく見る"
+              : "Explore my development experience"}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </section>
+        <section className="home-apps">
+          <div className="editorial-heading">
+            <h2>Apps.</h2>
+            <span>{c.apps}</span>
+          </div>
+          <p>{c.appsBody}</p>
+          <Link className="button button-primary" href={`/${locale}/apps`}>
+            {c.apps}
+            <ArrowUpRight size={18} aria-hidden="true" />
+          </Link>
         </section>
         <WorkProcess locale={locale} />
+        <section className="brand-story">
+          <p className="eyebrow">SOFTWARE & EVERYDAY LIFE</p>
+          <h2>{c.brand}</h2>
+          <p>{c.brandBody}</p>
+          <Link className="text-link" href={`/${locale}/about`}>
+            {locale === "ja" ? "私について" : "About me"}
+            <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </section>
         <ContactCallout locale={locale} context="home" />
       </div>
     </>
