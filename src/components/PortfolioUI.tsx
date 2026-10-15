@@ -5,8 +5,7 @@ import type { Locale } from "@/i18n/routing";
 import { capabilities, siteCopy } from "@/content/site";
 import { portfolioCopy } from "@/content/portfolio-copy";
 import type { WorkCase, WorkCategory } from "@/content/work";
-import { workImageRegion } from "@/content/reference-artwork";
-import ReferenceImageRegion from "./ReferenceImageRegion";
+import Image from "next/image";
 
 export const workCategories = [
   "business",
@@ -36,20 +35,26 @@ export function WorkGraphic({
   context?: "card" | "detail";
   showCaption?: boolean;
 }) {
-  const region = workImageRegion(work.id, locale, context === "detail");
-  if (!region) return null;
+  const image = work.category === "business" ? "mobile" : "web";
   return (
     <figure className={`work-visual work-visual-${context}`}>
-      <ReferenceImageRegion
-        region={region}
-        className="work-image"
-        priority={context === "detail"}
-      />
-      {showCaption ? (
+      <div className="work-concept-image">
+        <Image
+          src={`/images/v3/${image}-concept.webp`}
+          alt=""
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          priority={context === "detail"}
+        />
+        <span className="concept-label">CONCEPT PREVIEW</span>
+      </div>
+      {showCaption && (
         <figcaption>
-          {portfolioCopy.global.labels.image_caption[locale]}
+          {locale === "ja"
+            ? "コンセプトイメージ · 実際の案件画面ではありません"
+            : "Concept image · not a client screenshot"}
         </figcaption>
-      ) : null}
+      )}
     </figure>
   );
 }
@@ -67,7 +72,7 @@ export function WorkCard({
 }) {
   const c = siteCopy[locale];
   const Heading = headingLevel;
-  const hasImage = Boolean(workImageRegion(work.id, locale));
+  const hasImage = true;
   return (
     <article
       className={`work-card ${preview ? "work-card-preview" : "work-card-standard"}`}

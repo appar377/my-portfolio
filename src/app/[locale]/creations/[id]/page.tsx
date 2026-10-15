@@ -7,11 +7,6 @@ import { setPageLocale } from "@/i18n/page-locale";
 import { siteCopy } from "@/content/site";
 import { portfolioCopy } from "@/content/portfolio-copy";
 import { findDisplayWork, findNextWork } from "@/content/work-copy";
-import {
-  projectRelatedImageRegion,
-  workImageRegion,
-} from "@/content/reference-artwork";
-import ReferenceImageRegion from "@/components/ReferenceImageRegion";
 import { ContactCallout, Tags, WorkGraphic } from "@/components/PortfolioUI";
 
 type Props = { params: Promise<{ locale: Locale; id: string }> };
@@ -32,15 +27,10 @@ export default async function CreationDetail({ params }: Props) {
   const copy = work.copy;
   const labels = portfolioCopy.project_template;
   const c = siteCopy[locale];
-  const directReference = locale === "en" && id === "recruitment-matching";
-  const heroSummary = directReference
-    ? "Frontend and backend updates."
-    : copy.overview[locale];
+  const heroSummary = copy.overview[locale];
   return (
     <div className="page-width project-page">
-      <header
-        className={`detail-intro ${workImageRegion(id, locale, true) ? "" : "detail-without-image"} ${directReference ? "detail-direct-reference" : ""}`}
-      >
+      <header className="detail-intro">
         <div className="detail-copy">
           <p className="breadcrumbs">
             {portfolioCopy.global.nav.work[locale]} / {copy.title[locale]}
@@ -90,9 +80,7 @@ export default async function CreationDetail({ params }: Props) {
           </dl>
         </aside>
       </div>
-      <section
-        className={`more-work ${locale === "en" && id === "recruitment-matching" ? "more-work-direct-reference" : ""}`}
-      >
+      <section className="more-work">
         <div>
           <h2>{labels.next_heading[locale]}</h2>
           <Link className="text-link" href={`/${locale}/creations/${next.id}`}>
@@ -100,14 +88,7 @@ export default async function CreationDetail({ params }: Props) {
             <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
-        {locale === "en" && id === "recruitment-matching" ? (
-          <ReferenceImageRegion
-            region={projectRelatedImageRegion}
-            className="related-image"
-          />
-        ) : (
-          <WorkGraphic work={next} locale={locale} />
-        )}
+        <WorkGraphic work={next} locale={locale} />
       </section>
       <ContactCallout locale={locale} />
       <p className="scope-note">{c.sourceUnavailable}</p>

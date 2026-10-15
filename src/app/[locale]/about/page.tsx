@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { setPageLocale, type LocalePageProps } from "@/i18n/page-locale";
 import { portfolioCopy } from "@/content/portfolio-copy";
 import { siteCopy } from "@/content/site";
+import { brandCopy } from "@/content/brand";
 import { careerItems } from "@/content/career";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -40,6 +41,11 @@ export default async function About({ params }: LocalePageProps) {
           <h3>{copy.location_heading[locale]}</h3>
           <p>{copy.location_body[locale]}</p>
         </div>
+      </section>
+      <section className="brand-story">
+        <p className="eyebrow">SOFTWARE & EVERYDAY LIFE</p>
+        <h2>{brandCopy[locale].brand}</h2>
+        <p>{brandCopy[locale].brandBody}</p>
       </section>
       <section className="career-section">
         <h2>{c.career}</h2>
