@@ -57,7 +57,7 @@ npm start -- --hostname localhost --port 3077
 
 ## バージョン管理と戻し方
 
-v3.0.0は今回の実装候補です。公開済みv2.1.0は `8cc7a1becce4a296fda457a0826a24935fc6b717`。実装・検証・公開の状態は別に記録します。既存タグを移動しません。
+今回のリリースはv3.0.0です。前公開版v2.1.0は `8cc7a1becce4a296fda457a0826a24935fc6b717`。候補タグ `v3.0.0-rc.1` と既存タグを移動しません。公開結果と配備SHAは[GitHubのリリース記録](https://github.com/appar377/my-portfolio/releases/tag/v3.0.0)で確認できます。候補時点の検証記録は `docs/v3-verification.md` に保持しています。
 
 戻して確認する場合は、作業中の変更を保持し、新しいディレクトリにチェックアウトします。
 
